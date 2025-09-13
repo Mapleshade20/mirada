@@ -26,11 +26,11 @@ const App = () => {
   <QueryClientProvider client={queryClient}>
     <ConfigProvider
       theme={{
-        algorithm: theme.darkAlgorithm,
         token: {
-          colorPrimary: '#7c3aed',
+          colorPrimary: '#ef9678',
           borderRadius: 8,
           wireframe: false,
+          fontFamily: 'Heebo, -apple-system, BlinkMacSystemFont, sans-serif',
         },
       }}
     >

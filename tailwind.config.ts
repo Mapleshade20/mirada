@@ -48,7 +48,8 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        glass: "rgba(255, 255, 255, var(--glass))",
+        "pefa-peach": "var(--pefa-peach)",
+        "pefa-orange": "var(--pefa-orange)",
       },
       borderRadius: {
         lg: "var(--radius)",

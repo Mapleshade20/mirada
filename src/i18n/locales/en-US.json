@@ -2,10 +2,10 @@
   "app": {
     "title": "Encontrar - Social Pairing",
     "name": "Encontrar",
-    "tagline": "Premium social pairing for university students"
+    "tagline": "An Experimental Pairing Event"
   },
   "hero": {
-    "title": "Find Your Perfect University Match",
+    "minititle": "An Experimental Pairing Event",
     "subtitle": "Premium social pairing designed exclusively for university students. Connect through intelligent matching and meaningful conversations.",
     "getStarted": "Get Started",
     "learnMore": "Learn More",
@@ -30,7 +30,7 @@
     "signInPrompt": "Sign in to continue",
     "codePrompt": "Enter the verification code",
     "emailLabel": "Email Address",
-    "emailPlaceholder": "your.email@university.edu",
+    "emailPlaceholder": "your-email@university.edu",
     "codeLabel": "Verification Code",
     "codePlaceholder": "Enter 6-digit code",
     "codeSentTo": "Code sent to {{email}}",
@@ -40,7 +40,7 @@
     "sendNewCode": "Send new code",
     "validEmailError": "Please enter a valid university email address",
     "codeSentSuccess": "Verification code sent to your email",
-    "sendCodeError": "Failed to send verification code",
+    "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code"
   },
@@ -196,6 +196,34 @@
     "submitError": "Failed to submit form",
     "photoUploadSuccess": "Photo uploaded successfully",
     "photoUploadError": "Failed to upload photo"
+  },
+  "homepage": {
+    "header": {
+      "logIn": "Log In"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Getting matched is simple and secure. Follow these steps to find your perfect connection.",
+      "steps": {
+        "signUp": {
+          "title": "Sign Up & Verify",
+          "description": "Create your account with your university email and upload your student ID for verification."
+        },
+        "completeProfile": {
+          "title": "Complete Profile",
+          "description": "Fill out our comprehensive questionnaire about your interests, preferences, and what you're looking for."
+        },
+        "getMatched": {
+          "title": "Get Matched",
+          "description": "Our algorithm finds your perfect match. Review, connect, and start your journey together!"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Find Your Perfect Match?",
+      "subtitle": "Join our community of university students and discover meaningful connections that could last a lifetime.",
+      "buttonText": "Start Your Journey"
+    }
   },
   "common": {
     "loading": "Loading...",

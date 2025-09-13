@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { GlassCard } from "../components/ui/glass-card";
-import { Button } from "../components/ui/glass-button";
-import { Heart, Users, Sparkles, ArrowRight } from "lucide-react";
+import { Heart, Users, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import heroBackground from "../assets/hero-background.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -14,120 +11,177 @@ const Index = () => {
   const { isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    document.title = t('app.title');
-    
-    // Redirect authenticated users to dashboard
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
-  }, [isAuthenticated, navigate, t]);
+    document.title = t("app.title");
+  }, [t]);
 
   const handleGetStarted = () => {
-    navigate("/login");
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleLearnMore = () => {
+    const howItWorksSection = document.getElementById("how-it-works");
+    if (howItWorksSection) {
+      howItWorksSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <div className="min-h-screen relative">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBackground}
-          alt="Background"
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/70 via-background/85 to-background/95" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        {/* Language Switcher */}
-        <div className="absolute top-4 right-4 z-20">
-          <LanguageSwitcher />
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="pefa-container py-6">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <Heart className="h-8 w-8 text-pefa-peach" />
+            <h1 className="text-2xl font-semibold text-foreground">
+              Encontrar
+            </h1>
+          </div>
+          <div className="flex items-center space-x-6">
+            <LanguageSwitcher />
+            {isAuthenticated ? (
+              <button 
+                onClick={() => navigate("/dashboard")} 
+                className="pefa-button-outline"
+              >
+                {t("homepage.header.dashboard", "Dashboard")}
+              </button>
+            ) : (
+              <button onClick={handleGetStarted} className="pefa-button-outline">
+                {t("homepage.header.logIn")}
+              </button>
+            )}
+          </div>
         </div>
-        {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center p-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-12">
-              <h1 className="text-6xl md:text-7xl font-bold gradient-text mb-6 leading-tight">
-                {t('hero.title')}
+      </header>
+
+      {/* Hero Section */}
+      <section className="pefa-section py-20">
+        <div className="pefa-container">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left 1/3 - Image */}
+            <div className="w-full lg:w-1/3">
+              <div className="aspect-square bg-gradient-to-br from-pefa-peach/20 to-pefa-orange/20 rounded-3xl flex items-center justify-center">
+                <Heart className="h-32 w-32 text-pefa-peach opacity-60" />
+              </div>
+            </div>
+
+            {/* Right 2/3 - Content */}
+            <div className="w-full lg:w-2/3 text-center lg:text-left">
+              <div className="tagline mb-4">{t("hero.minititle")}</div>
+              <h1 className="heading-jumbo mb-6">
+                {"Meeting you was fate, becoming your friend was "}
+                <span className="orange-underline">a choice.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                {t('hero.subtitle')}
+              <p className="text-xl md:text-2xl pefa-text mb-8 max-w-2xl">
+                {t("hero.subtitle")}
               </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button
-                onClick={handleGetStarted}
-                variant="gradient"
-                size="lg"
-                className="text-lg px-12 py-4 h-auto"
-              >
-                {t('hero.getStarted')}
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="glass"
-                size="lg"
-                className="text-lg px-12 py-4 h-auto"
-              >
-                {t('hero.learnMore')}
-              </Button>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <GlassCard className="text-center p-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Heart className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {t('features.intelligentMatching.title')}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t('features.intelligentMatching.description')}
-                </p>
-              </GlassCard>
-
-              <GlassCard className="text-center p-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {t('features.universityNetwork.title')}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t('features.universityNetwork.description')}
-                </p>
-              </GlassCard>
-
-              <GlassCard className="text-center p-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {t('features.premiumExperience.title')}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t('features.premiumExperience.description')}
-                </p>
-              </GlassCard>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button
+                  onClick={handleGetStarted}
+                  className="pefa-button inline-flex items-center space-x-2"
+                >
+                  <span>
+                    {isAuthenticated 
+                      ? t("hero.goToDashboard", "Go to Dashboard")
+                      : t("hero.getStarted")
+                    }
+                  </span>
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+                <button onClick={handleLearnMore} className="pefa-button-outline">
+                  {t("hero.learnMore")}
+                </button>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="py-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            {t('hero.copyright')}
+      {/* How It Works Section */}
+      <section id="how-it-works" className="pefa-section">
+        <div className="pefa-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl pefa-heading mb-4">
+              {t("homepage.howItWorks.title")}
+            </h2>
+            <p className="text-lg pefa-text max-w-2xl mx-auto">
+              {t("homepage.howItWorks.subtitle")}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                step: "1",
+                title: t("homepage.howItWorks.steps.signUp.title"),
+                desc: t("homepage.howItWorks.steps.signUp.description"),
+              },
+              {
+                step: "2",
+                title: t("homepage.howItWorks.steps.completeProfile.title"),
+                desc: t("homepage.howItWorks.steps.completeProfile.description"),
+              },
+              {
+                step: "3",
+                title: t("homepage.howItWorks.steps.getMatched.title"),
+                desc: t("homepage.howItWorks.steps.getMatched.description"),
+              },
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 bg-pefa-peach rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-semibold text-lg">
+                    {item.step}
+                  </span>
+                </div>
+                <h3 className="text-xl pefa-heading mb-4">{item.title}</h3>
+                <p className="pefa-text">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="pefa-section bg-pefa-peach/5">
+        <div className="pefa-container text-center">
+          <h2 className="text-3xl md:text-4xl pefa-heading mb-4">
+            {t("homepage.cta.title")}
+          </h2>
+          <p className="text-lg pefa-text max-w-2xl mx-auto mb-8">
+            {t("homepage.cta.subtitle")}
           </p>
-        </footer>
-      </div>
+          <button
+            onClick={handleGetStarted}
+            className="pefa-button inline-flex items-center space-x-2 text-lg px-8 py-4"
+          >
+            <span>
+              {isAuthenticated 
+                ? t("homepage.cta.dashboardButtonText", "Go to Dashboard")
+                : t("homepage.cta.buttonText")
+              }
+            </span>
+            <ArrowRight className="h-5 w-5" />
+          </button>
+        </div>
+      </section>
 
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/10 rounded-full blur-xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-10 w-24 h-24 bg-primary-glow/20 rounded-full blur-xl animate-pulse delay-1000" />
-      <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-primary/5 rounded-full blur-lg animate-pulse delay-500" />
+      {/* Footer */}
+      <footer className="pefa-section py-8 border-t border-border">
+        <div className="pefa-container text-center">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <Heart className="h-6 w-6 text-pefa-peach" />
+            <span className="text-lg font-semibold text-foreground">
+              Encontrar
+            </span>
+          </div>
+          <p className="pefa-text">{t("hero.copyright")}</p>
+        </div>
+      </footer>
     </div>
   );
 };

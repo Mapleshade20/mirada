@@ -1,17 +1,17 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PefaCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
+const PefaCard = React.forwardRef<HTMLDivElement, PefaCardProps>(
   ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
-          "glass-panel rounded-2xl p-8 transition-all duration-300 hover:shadow-lg",
+          "pefa-card p-8",
           className
         )}
         {...props}
@@ -22,6 +22,9 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
   }
 );
 
-GlassCard.displayName = "GlassCard";
+PefaCard.displayName = "PefaCard";
 
-export { GlassCard };
+// Keep GlassCard as alias for backward compatibility
+const GlassCard = PefaCard;
+
+export { PefaCard, GlassCard };

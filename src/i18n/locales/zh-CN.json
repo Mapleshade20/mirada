@@ -1,11 +1,11 @@
 {
   "app": {
-    "title": "遇见 - 社交配对",
-    "name": "遇见",
-    "tagline": "为大学生量身定制的高端社交配对"
+    "title": "Project Encontrar",
+    "name": "Encontrar",
+    "tagline": "一场实验性的配对活动"
   },
   "hero": {
-    "title": "寻找你的完美大学匹配",
+    "minititle": "一场实验性的配对活动",
     "subtitle": "专为大学生设计的高端社交配对。通过智能匹配和有意义的对话建立联系。",
     "getStarted": "开始使用",
     "learnMore": "了解更多",
@@ -26,11 +26,11 @@
     }
   },
   "auth": {
-    "welcomeTitle": "欢迎来到遇见",
+    "welcomeTitle": "欢迎来到 Encontrar",
     "signInPrompt": "登录以继续",
     "codePrompt": "输入验证码",
     "emailLabel": "邮箱地址",
-    "emailPlaceholder": "your.email@university.edu",
+    "emailPlaceholder": "your-email@university.edu.cn",
     "codeLabel": "验证码",
     "codePlaceholder": "输入6位验证码",
     "codeSentTo": "验证码已发送至 {{email}}",
@@ -40,12 +40,12 @@
     "sendNewCode": "发送新验证码",
     "validEmailError": "请输入有效的大学邮箱地址",
     "codeSentSuccess": "验证码已发送至您的邮箱",
-    "sendCodeError": "发送验证码失败",
+    "sendCodeError": "发送验证码失败（操作频繁或后端离线）",
     "loginSuccess": "登录成功",
     "invalidCodeError": "验证码无效"
   },
   "dashboard": {
-    "title": "遇见仪表板",
+    "title": "Encontrar 仪表盘",
     "welcome": "欢迎回来，{{email}}",
     "privacyHints": "隐私提示",
     "logout": "退出登录",
@@ -196,6 +196,34 @@
     "submitError": "提交表单失败",
     "photoUploadSuccess": "照片上传成功",
     "photoUploadError": "上传照片失败"
+  },
+  "homepage": {
+    "header": {
+      "logIn": "登录"
+    },
+    "howItWorks": {
+      "title": "使用方法",
+      "subtitle": "匹配既简单又安全。按照以下步骤找到您的完美连接。",
+      "steps": {
+        "signUp": {
+          "title": "注册并验证",
+          "description": "使用您的大学邮箱创建账户，并上传学生证进行验证。"
+        },
+        "completeProfile": {
+          "title": "完善资料",
+          "description": "填写我们全面的问卷，包括您的兴趣、偏好以及您正在寻找的内容。"
+        },
+        "getMatched": {
+          "title": "获得匹配",
+          "description": "我们的算法为您找到完美匹配。查看、连接，开始您的旅程！"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备好找到您的完美匹配了吗？",
+      "subtitle": "加入我们的大学生社区，发现可能持续一生的有意义连接。",
+      "buttonText": "开始您的旅程"
+    }
   },
   "common": {
     "loading": "加载中...",

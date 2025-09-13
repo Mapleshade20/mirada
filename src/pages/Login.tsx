@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Home } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -35,8 +36,15 @@ const Login: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md">
-        {/* Language Switcher */}
-        <div className="absolute -top-16 right-0">
+        {/* Navigation and Language Switcher */}
+        <div className="absolute -top-16 left-0 right-0 flex justify-between items-center">
+          <button
+            onClick={() => navigate("/")}
+            className="pefa-button-outline inline-flex items-center space-x-2 px-4 py-2"
+          >
+            <Home className="h-4 w-4" />
+            <span>Home</span>
+          </button>
           <LanguageSwitcher />
         </div>
         <AuthForm />

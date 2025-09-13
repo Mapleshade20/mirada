@@ -8,7 +8,8 @@ import {
   HeartOutlined,
   LogoutOutlined,
   InfoCircleOutlined,
-  UploadOutlined
+  UploadOutlined,
+  HomeOutlined
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../store/authStore';
@@ -280,6 +281,13 @@ const Dashboard: React.FC = () => {
               <p className="text-gray-600">{t('dashboard.welcome', { email: user?.email })}</p>
             </div>
             <div className="flex items-center gap-4">
+              <Button 
+                icon={<HomeOutlined />}
+                onClick={() => navigate("/")}
+                type="text"
+              >
+                Home
+              </Button>
               <LanguageSwitcher />
               <Button 
                 icon={<InfoCircleOutlined />}

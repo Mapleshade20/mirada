@@ -14,7 +14,7 @@ import {
   message,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { User, Heart, MessageCircle, Camera, Save } from "lucide-react";
+import { User, Heart, MessageCircle, Camera, Save, ArrowLeft } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import { apiService } from "../lib/api";
 import { useDraftSaving } from "../hooks/useDraftSaving";
@@ -237,8 +237,15 @@ const ProfileForm: React.FC = () => {
       </div>
 
       <div className="relative z-10 p-4 py-8">
-        {/* Language Switcher */}
-        <div className="absolute top-4 right-4 z-20">
+        {/* Navigation and Language Switcher */}
+        <div className="absolute top-4 left-4 right-4 z-20 flex justify-between items-center">
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="pefa-button-outline inline-flex items-center space-x-2 px-4 py-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Dashboard</span>
+          </button>
           <LanguageSwitcher />
         </div>
 
