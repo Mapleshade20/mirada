@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { Home } from "lucide-react";
-import { useAuthStore } from "../store/authStore";
+import type React from "react";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import heroBackground from "../assets/hero-background.jpg";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import heroBackground from "../assets/hero-background.jpg";
+import { useAuthStore } from "../store/authStore";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -13,14 +14,13 @@ const Login: React.FC = () => {
   const { isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    document.title = t('app.title');
-    
+    document.title = t("app.title");
+
     // Redirect authenticated users to dashboard
     if (isAuthenticated) {
       navigate("/dashboard");
     }
   }, [isAuthenticated, navigate, t]);
-
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
@@ -39,11 +39,12 @@ const Login: React.FC = () => {
         {/* Navigation and Language Switcher */}
         <div className="absolute -top-16 left-0 right-0 flex justify-between items-center">
           <button
+            type="button"
             onClick={() => navigate("/")}
             className="pefa-button-outline inline-flex items-center space-x-2 px-4 py-2"
           >
             <Home className="h-4 w-4" />
-            <span>Home</span>
+            <span>{t("common.home")}</span>
           </button>
           <LanguageSwitcher />
         </div>
@@ -51,9 +52,7 @@ const Login: React.FC = () => {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            {t('app.tagline')}
-          </p>
+          <p className="text-sm text-muted-foreground">{t("app.tagline")}</p>
         </div>
       </div>
 

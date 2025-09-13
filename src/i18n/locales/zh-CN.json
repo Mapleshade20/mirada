@@ -6,23 +6,38 @@
   },
   "hero": {
     "minititle": "一场实验性的配对活动",
-    "subtitle": "专为大学生设计的高端社交配对。通过智能匹配和有意义的对话建立联系。",
+    "subtitle": "为大学生设计的情侣匹配体验活动，通过兴趣匹配和有意义的交流建立联系。",
     "getStarted": "开始使用",
+    "goToDashboard": "前往仪表盘",
     "learnMore": "了解更多",
-    "copyright": "© 2025 遇见. 为下一代打造的实验性社交配对"
+    "copyright": "Encontrar. 为下一代打造的实验性社交配对"
   },
-  "features": {
-    "intelligentMatching": {
-      "title": "智能匹配",
-      "description": "我们的先进算法会考虑您的兴趣、性格和偏好，为您找到理想的匹配。"
+  "homepage": {
+    "header": {
+      "logIn": "登录"
     },
-    "universityNetwork": {
-      "title": "大学网络",
-      "description": "专门与您所在地区经过验证的大学生建立联系，享受真实的关系。"
+    "howItWorks": {
+      "title": "系统设计",
+      "subtitle": "匹配既简单又安全，按照以下步骤参与活动。",
+      "steps": {
+        "signUp": {
+          "title": "注册并验证",
+          "description": "使用大学邮箱（仅支持部分大学）创建账号，并上传学生证进行验证。"
+        },
+        "completeProfile": {
+          "title": "完善资料",
+          "description": "填写一份问卷，包括您的兴趣、个性以及最近感兴趣的话题。"
+        },
+        "getMatched": {
+          "title": "参与匹配",
+          "description": "预览与您最为相配的多个用户，您可使用否决卡将部分用户排除在最终匹配之外，然后等待匹配结果吧！"
+        }
+      }
     },
-    "premiumExperience": {
-      "title": "优质体验",
-      "description": "享受精心策划的高质量体验，建立有意义的联系，无需无休止的滑动。"
+    "cta": {
+      "title": "准备好遇到与你合拍的人了吗😄",
+      "subtitle": "加入我们的大学生社区，寻找一次建立连接的新机会。",
+      "buttonText": "开始您的旅程"
     }
   },
   "auth": {
@@ -39,13 +54,13 @@
     "resendIn": "{{seconds}}秒后重发",
     "sendNewCode": "发送新验证码",
     "validEmailError": "请输入有效的大学邮箱地址",
-    "codeSentSuccess": "验证码已发送至您的邮箱",
+    "codeSentSuccess": "验证码已发送至你的邮箱",
     "sendCodeError": "发送验证码失败（操作频繁或后端离线）",
     "loginSuccess": "登录成功",
     "invalidCodeError": "验证码无效"
   },
   "dashboard": {
-    "title": "Encontrar 仪表盘",
+    "title": "Encontrar Dashboard",
     "welcome": "欢迎回来，{{email}}",
     "privacyHints": "隐私提示",
     "logout": "退出登录",
@@ -55,66 +70,65 @@
       "next": "下一步",
       "ok": "确定",
       "dataProtection": {
-        "title": "数据保护",
-        "description": "我们非常重视您的隐私，并使用企业级安全保护您的所有个人信息。"
+        "title": "我们对您的信息负责",
+        "description": "您提交的一切信息被安全存储于后端服务器上，仅用于匹配目的，不会与任何第三方共享，且会在活动开始后的20-28天期间被永久删除。如您需要在活动结束前删除您的数据，请向<maple@maplewrt.com>发送请求。"
       },
-      "aiMatching": {
-        "title": "AI匹配",
-        "description": "我们的先进算法分析您的偏好和性格，为您找到最兼容的匹配。"
+      "systemPrivacy": {
+        "title": "系统保护您的隐私",
+        "description": "您提交的学生证仅用于管理员手动验证您的学生身份，不会被后续的匹配系统展示或使用；您邮箱的学校域名部分对其他用户可见。个人资料中的非文本字段将用于计算匹配，连同部分文本字段用于否决系统向其他用户展示；个人生活照片在最终匹配产生后与对方共享，而微信号仅在双方都确认匹配后共享。"
       },
       "qualityConnections": {
         "title": "优质连接",
-        "description": "我们专注于与您所在地区经过验证的大学生建立有意义的关系。"
+        "description": "我们专注于帮助您与所在地区经过验证的大学生建立有意义的关系。"
       }
     }
   },
   "steps": {
     "idVerification": {
       "title": "身份验证",
-      "description": "上传您的学生证",
+      "description": "上传学生证",
       "uploadTitle": "上传学生证",
-      "uploadDescription": "请上传您的学生证进行验证",
+      "uploadDescription": "请上传你的学生证进行验证",
       "uploadButton": "上传学生证"
     },
     "verificationPending": {
       "title": "验证审核中",
-      "description": "您的证件正在审核中。通常需要12-24小时。"
+      "description": "证件正在审核中。通常需要12-24小时。"
     },
     "profileForm": {
       "title": "资料表单",
-      "description": "完成您的个人资料信息",
-      "completeTitle": "完善您的资料",
-      "completeDescription": "填写您的个人资料，帮助我们为您找到完美匹配",
+      "description": "完成个人资料信息",
+      "completeTitle": "完善你的资料",
+      "completeDescription": "填写个人资料，帮助我们为你找到完美匹配",
       "completeButton": "完善资料"
     },
     "previewMatches": {
       "title": "预览匹配",
-      "description": "查看潜在匹配",
+      "description": "查看和否决潜在匹配",
       "reviewTitle": "查看匹配预览",
-      "reviewDescription": "查看潜在匹配并使用否决系统",
       "viewButton": "查看预览"
     },
     "finalMatch": {
       "title": "最终匹配",
-      "description": "您的完美匹配在等待",
-      "matchTitle": "您有一个匹配！",
-      "matchDescription": "我们为您找到了完美匹配。查看他们的资料并做出决定。",
-      "viewMatchButton": "查看匹配"
+      "description": "等待最终的匹配"
     },
     "confirmed": {
-      "title": "匹配确认！",
-      "description": "你们双方都接受了匹配。这是他们的微信号：",
-      "wechatId": "微信号: {{wechatId}}",
-      "startConversation": "开始对话，享受彼此认识的过程！"
+      "mutualTitle": "匹配确认！",
+      "mutualDescription": "你们双方都接受了匹配。这是对方的微信号：",
+      "mutualFooter": "开始对话吧，享受彼此认识的过程！",
+      "waitingTitle": "等待回应",
+      "waitingDescription": "你已接受匹配！等待对方回应。",
+      "waitingFooter": "等一段时间再回来查看结果吧~",
+      "wechatId": "微信号: {{wechatId}}"
     }
   },
   "uploadModal": {
     "title": "上传学生证",
-    "gradeLabel": "年级水平",
-    "gradePlaceholder": "选择您的年级水平",
-    "gradeRequired": "请选择您的年级水平",
+    "gradeLabel": "年级",
+    "gradePlaceholder": "选择你的年级",
+    "gradeRequired": "请选择你的年级",
     "idCardLabel": "学生证",
-    "idCardRequired": "请上传您的学生证",
+    "idCardRequired": "请上传你的学生证",
     "selectImage": "选择图像",
     "cancel": "取消",
     "upload": "上传",
@@ -123,8 +137,8 @@
     "selectFileError": "请选择文件"
   },
   "profileForm": {
-    "title": "完善您的资料",
-    "subtitle": "告诉我们关于您自己的信息，以找到您的完美匹配",
+    "title": "个人信息",
+    "subtitle": "兴趣爱好和性格特质将被用于计算匹配",
     "sections": {
       "personalInfo": "个人信息",
       "interests": "兴趣爱好",
@@ -133,49 +147,49 @@
     "fields": {
       "wechatId": {
         "label": "微信号",
-        "placeholder": "您的微信号",
-        "required": "请输入您的微信号"
+        "placeholder": "wechat_id",
+        "required": "请输入微信号"
       },
       "gender": {
         "label": "性别",
-        "placeholder": "选择您的性别",
-        "required": "请选择您的性别",
+        "placeholder": "选择你的性别",
+        "required": "请选择性别",
         "male": "男",
         "female": "女"
       },
       "selfIntro": {
-        "label": "自我介绍",
-        "placeholder": "告诉我们关于您自己的情况...",
-        "required": "请介绍一下您自己"
+        "label": "自我介绍（两三句话即可）",
+        "placeholder": "给对方留下一点对你的初印象...",
+        "required": "请介绍一下自己"
       },
       "familiarTags": {
-        "label": "您熟悉的事物",
+        "label": "你喜欢、熟悉并且愿意和对方一起做的事 🤩",
         "placeholder": "选择熟悉的兴趣...",
         "required": "请选择熟悉的兴趣"
       },
       "aspirationalTags": {
-        "label": "您想学习的事物",
-        "placeholder": "选择想学习的兴趣...",
-        "required": "请选择想学习的兴趣"
+        "label": "你想了解、尝试并且希望对方也感兴趣的事 🤗",
+        "placeholder": "选择想尝试的兴趣...",
+        "required": "请选择想尝试的兴趣"
       },
       "selfTraits": {
-        "label": "您的特质",
-        "placeholder": "选择您的特质...",
-        "required": "请选择您的特质"
+        "label": "你觉得自己具有哪些性格特质 🤔",
+        "placeholder": "选择你的个性...",
+        "required": "请选择个性"
       },
       "idealTraits": {
-        "label": "理想伴侣特质",
+        "label": "你理想的伴侣具有哪些特质 🤔",
         "placeholder": "选择理想特质...",
         "required": "请选择理想特质"
       },
       "physicalBoundary": {
-        "label": "身体界限 (1-4级别)",
+        "label": "你在这段关系中期望的身体界限 (如牵手、拥抱等，1-4级别)",
         "conservative": "保守",
         "open": "开放"
       },
       "recentTopics": {
-        "label": "最近的对话话题",
-        "placeholder": "您最近在聊什么？",
+        "label": "你最近感兴趣、经常思考和谈论的话题，或者最近在做的有趣的事（各方面均可）",
+        "placeholder": "比如：最近在看什么书、电影，在学什么新技能，或者最近在思考什么问题...",
         "required": "请描述最近的话题"
       },
       "profilePhoto": {
@@ -197,33 +211,65 @@
     "photoUploadSuccess": "照片上传成功",
     "photoUploadError": "上传照片失败"
   },
-  "homepage": {
-    "header": {
-      "logIn": "登录"
+  "previews": {
+    "title": "预览匹配",
+    "subtitle": "查看和否决潜在匹配",
+    "refresh": "刷新",
+    "loading": "正在加载匹配预览...",
+    "infoTitle": "提示",
+    "infoDescription": "这里是基于你的资料计算出的一些潜在匹配。你可以向完全不感兴趣的人投出否决卡，被否决的用户不会出现在你的最终匹配中。过多次否决可能会造成你最后落单，所以请谨慎使用。",
+    "potentialMatches": "潜在匹配",
+    "vetoedMatches": "已否决匹配",
+    "noMatches": "目前没有可用的匹配预览",
+    "checkAgain": "再次检查",
+    "fetchError": "加载匹配预览失败",
+    "errorTitle": "加载预览失败",
+    "veto": "否决",
+    "approve": "恢复",
+    "vetoed": "已否决",
+    "recentTopics": "最近话题",
+    "familiarTags": "喜欢且熟悉的活动",
+    "aspirationalTags": "不熟但感兴趣的活动",
+    "vetoConfirm": {
+      "title": "否决此匹配？",
+      "content": "确定要否决这个候选人吗？对方将被排除在你的最终匹配之外。",
+      "confirm": "是的，否决",
+      "cancel": "取消"
     },
-    "howItWorks": {
-      "title": "使用方法",
-      "subtitle": "匹配既简单又安全。按照以下步骤找到您的完美连接。",
-      "steps": {
-        "signUp": {
-          "title": "注册并验证",
-          "description": "使用您的大学邮箱创建账户，并上传学生证进行验证。"
-        },
-        "completeProfile": {
-          "title": "完善资料",
-          "description": "填写我们全面的问卷，包括您的兴趣、偏好以及您正在寻找的内容。"
-        },
-        "getMatched": {
-          "title": "获得匹配",
-          "description": "我们的算法为您找到完美匹配。查看、连接，开始您的旅程！"
-        }
-      }
-    },
-    "cta": {
-      "title": "准备好找到您的完美匹配了吗？",
-      "subtitle": "加入我们的大学生社区，发现可能持续一生的有意义连接。",
-      "buttonText": "开始您的旅程"
+    "vetoSuccess": "候选人否决成功",
+    "vetoError": "否决候选人失败",
+    "revokeSuccess": "否决撤销成功",
+    "revokeError": "撤销否决失败",
+    "stats": {
+      "title": "统计",
+      "potential": "有效",
+      "vetoed": "已否决"
     }
+  },
+  "finalMatch": {
+    "title": "一个新朋友！",
+    "subtitle": "我们为你找到了一个特别的人，请查看对方的资料并做出决定。",
+    "selfIntro": "对方的自我介绍",
+    "familiarTags": "喜欢且熟悉的活动",
+    "aspirationalTags": "不熟但感兴趣的活动",
+    "acceptButton": "接受匹配",
+    "rejectButton": "拒绝",
+    "acceptConfirm": {
+      "title": "接受此匹配？",
+      "content": "确定要接受此匹配吗？如果你们都接受，将能够交换联系信息。",
+      "confirm": "是的，接受",
+      "cancel": "取消"
+    },
+    "rejectConfirm": {
+      "title": "拒绝此匹配？",
+      "content": "确定要拒绝此匹配吗？此操作无法撤销，你可能不会获得另一个匹配。",
+      "confirm": "是的，拒绝",
+      "cancel": "取消"
+    },
+    "acceptSuccess": "匹配已接受！等待对方回应。",
+    "acceptError": "接受匹配失败。请重试。",
+    "rejectSuccess": "匹配已拒绝。我们将为你寻找其他机会。",
+    "rejectError": "拒绝匹配失败。请重试。"
   },
   "common": {
     "loading": "加载中...",
@@ -237,6 +283,12 @@
     "back": "返回",
     "next": "下一步",
     "previous": "上一步",
-    "submit": "提交"
+    "submit": "提交",
+    "home": "主页",
+    "retry": "重试",
+    "dashboard": "仪表盘"
+  },
+  "footer": {
+    "experimental": "以AGPL-3.0许可证开源"
   }
 }

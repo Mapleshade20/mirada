@@ -8,18 +8,11 @@ interface PefaCardProps extends React.HTMLAttributes<HTMLDivElement> {
 const PefaCard = React.forwardRef<HTMLDivElement, PefaCardProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn(
-          "pefa-card p-8",
-          className
-        )}
-        {...props}
-      >
+      <div ref={ref} className={cn("pefa-card p-8", className)} {...props}>
         {children}
       </div>
     );
-  }
+  },
 );
 
 PefaCard.displayName = "PefaCard";

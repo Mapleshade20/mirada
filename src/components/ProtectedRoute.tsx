@@ -1,26 +1,22 @@
-import React, { useEffect, ReactNode } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import { Spin } from 'antd';
+import { Spin } from "antd";
+import type React from "react";
+import type { ReactNode } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
 interface ProtectedRouteProps {
   children: ReactNode;
   requiredStatus?: string[];
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
-  children, 
-  requiredStatus 
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  children,
+  requiredStatus,
 }) => {
-  const { isAuthenticated, user, isLoading, fetchUserProfile } = useAuthStore();
+  const { isAuthenticated, user, isLoading } = useAuthStore();
   const location = useLocation();
 
-  useEffect(() => {
-    // If we think we're authenticated but don't have user data, try to fetch it
-    if (isAuthenticated && !user && !isLoading) {
-      fetchUserProfile();
-    }
-  }, [isAuthenticated, user, isLoading, fetchUserProfile]);
+  // Remove redundant fetchUserProfile call - App.tsx initializeAuth() handles this
 
   // Show loading spinner while checking authentication or fetching user data
   if (isLoading || (isAuthenticated && !user)) {
@@ -41,17 +37,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     if (!requiredStatus.includes(user.status)) {
       // Redirect based on user status
       switch (user.status) {
-        case 'unverified':
+        case "unverified":
           return <Navigate to="/dashboard" replace />;
-        case 'verification_pending':
+        case "verification_pending":
           return <Navigate to="/dashboard" replace />;
-        case 'verified':
+        case "verified":
           return <Navigate to="/dashboard" replace />;
-        case 'form_completed':
+        case "form_completed":
           return <Navigate to="/dashboard" replace />;
-        case 'matched':
+        case "matched":
           return <Navigate to="/dashboard" replace />;
-        case 'confirmed':
+        case "confirmed":
           return <Navigate to="/dashboard" replace />;
         default:
           return <Navigate to="/dashboard" replace />;

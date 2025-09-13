@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Badge } from './ui/badge';
-import { Button } from './ui/glass-button';
-import { Input } from './ui/input';
-import { X, Search, Check } from 'lucide-react';
-import { GlassCard } from './ui/glass-card';
-import { Checkbox } from './ui/checkbox';
+import { Check, Search, X } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
+import { Badge } from "./ui/badge";
+import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/glass-button";
+import { GlassCard } from "./ui/glass-card";
+import { Input } from "./ui/input";
 
 interface MultiSelectProps {
   options: string[];
@@ -19,38 +20,46 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
   selected,
   onSelectionChange,
   placeholder = "Select options...",
-  maxSelections
+  maxSelections,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const toggleOption = (option: string) => {
     if (selected.includes(option)) {
-      onSelectionChange(selected.filter(item => item !== option));
+      onSelectionChange(selected.filter((item) => item !== option));
     } else if (!maxSelections || selected.length < maxSelections) {
       onSelectionChange([...selected, option]);
     }
   };
 
   const removeSelected = (optionToRemove: string) => {
-    onSelectionChange(selected.filter(item => item !== optionToRemove));
+    onSelectionChange(selected.filter((item) => item !== optionToRemove));
   };
 
   return (
     <div className="relative">
       {/* Selected Items Display */}
-      <div 
+      <div
         className="min-h-[40px] p-3 bg-muted/50 border border-border/50 rounded-md cursor-pointer flex flex-wrap gap-2 items-center"
         onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
+        role="button"
+        tabIndex={0}
       >
         {selected.length === 0 ? (
           <span className="text-muted-foreground">{placeholder}</span>
         ) : (
-          selected.map(item => (
+          selected.map((item) => (
             <Badge
               key={item}
               variant="secondary"
@@ -58,6 +67,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
             >
               {item}
               <button
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   removeSelected(item);
@@ -94,17 +104,30 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
 
           {/* Options List */}
           <div className="max-h-48 overflow-y-auto space-y-2">
-            {filteredOptions.map(option => {
+            {filteredOptions.map((option) => {
               const isSelected = selected.includes(option);
-              const isDisabled = maxSelections && selected.length >= maxSelections && !isSelected;
-              
+              const isDisabled =
+                maxSelections &&
+                selected.length >= maxSelections &&
+                !isSelected;
+
               return (
                 <div
                   key={option}
                   className={`flex items-center space-x-2 p-2 rounded cursor-pointer transition-colors ${
-                    isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-muted/30'
+                    isDisabled
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-muted/30"
                   }`}
                   onClick={() => !isDisabled && toggleOption(option)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      !isDisabled && toggleOption(option);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
                 >
                   <Checkbox
                     checked={isSelected}
@@ -112,7 +135,9 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
                     className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
                   <span className="text-sm">{option}</span>
-                  {isSelected && <Check className="h-4 w-4 text-primary ml-auto" />}
+                  {isSelected && (
+                    <Check className="h-4 w-4 text-primary ml-auto" />
+                  )}
                 </div>
               );
             })}
@@ -120,12 +145,11 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
 
           {/* Selection Counter */}
           <div className="mt-3 flex justify-between items-center text-sm text-muted-foreground">
-            <span>{selected.length} selected{maxSelections ? ` / ${maxSelections}` : ''}</span>
-            <Button
-              onClick={() => setIsOpen(false)}
-              variant="ghost"
-              size="sm"
-            >
+            <span>
+              {selected.length} selected
+              {maxSelections ? ` / ${maxSelections}` : ""}
+            </span>
+            <Button onClick={() => setIsOpen(false)} variant="ghost" size="sm">
               Close
             </Button>
           </div>

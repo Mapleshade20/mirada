@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight, Heart } from "lucide-react";
+import { useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
-import { Heart, Users, Sparkles, ArrowRight, CheckCircle } from "lucide-react";
-import { useAuthStore } from "../store/authStore";
+import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import { useAuthStore } from "../store/authStore";
 
 const Index = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
+  const howItWorksId = useId();
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     document.title = t("app.title");
@@ -23,7 +25,7 @@ const Index = () => {
   };
 
   const handleLearnMore = () => {
-    const howItWorksSection = document.getElementById("how-it-works");
+    const howItWorksSection = document.getElementById(howItWorksId);
     if (howItWorksSection) {
       howItWorksSection.scrollIntoView({ behavior: "smooth" });
     }
@@ -43,14 +45,19 @@ const Index = () => {
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
             {isAuthenticated ? (
-              <button 
-                onClick={() => navigate("/dashboard")} 
+              <button
+                type="button"
+                onClick={() => navigate("/dashboard")}
                 className="pefa-button-outline"
               >
-                {t("homepage.header.dashboard", "Dashboard")}
+                {t("common.dashboard")}
               </button>
             ) : (
-              <button onClick={handleGetStarted} className="pefa-button-outline">
+              <button
+                type="button"
+                onClick={handleGetStarted}
+                className="pefa-button-outline"
+              >
                 {t("homepage.header.logIn")}
               </button>
             )}
@@ -82,18 +89,22 @@ const Index = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
+                  type="button"
                   onClick={handleGetStarted}
                   className="pefa-button inline-flex items-center space-x-2"
                 >
                   <span>
-                    {isAuthenticated 
-                      ? t("hero.goToDashboard", "Go to Dashboard")
-                      : t("hero.getStarted")
-                    }
+                    {isAuthenticated
+                      ? t("hero.goToDashboard")
+                      : t("hero.getStarted")}
                   </span>
                   <ArrowRight className="h-5 w-5" />
                 </button>
-                <button onClick={handleLearnMore} className="pefa-button-outline">
+                <button
+                  type="button"
+                  onClick={handleLearnMore}
+                  className="pefa-button-outline"
+                >
                   {t("hero.learnMore")}
                 </button>
               </div>
@@ -103,7 +114,7 @@ const Index = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="pefa-section">
+      <section id={howItWorksId} className="pefa-section">
         <div className="pefa-container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl pefa-heading mb-4">
@@ -124,15 +135,17 @@ const Index = () => {
               {
                 step: "2",
                 title: t("homepage.howItWorks.steps.completeProfile.title"),
-                desc: t("homepage.howItWorks.steps.completeProfile.description"),
+                desc: t(
+                  "homepage.howItWorks.steps.completeProfile.description",
+                ),
               },
               {
                 step: "3",
                 title: t("homepage.howItWorks.steps.getMatched.title"),
                 desc: t("homepage.howItWorks.steps.getMatched.description"),
               },
-            ].map((item, index) => (
-              <div key={index} className="text-center">
+            ].map((item) => (
+              <div key={item.step} className="text-center">
                 <div className="w-12 h-12 bg-pefa-peach rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-white font-semibold text-lg">
                     {item.step}
@@ -156,14 +169,14 @@ const Index = () => {
             {t("homepage.cta.subtitle")}
           </p>
           <button
+            type="button"
             onClick={handleGetStarted}
             className="pefa-button inline-flex items-center space-x-2 text-lg px-8 py-4"
           >
             <span>
-              {isAuthenticated 
-                ? t("homepage.cta.dashboardButtonText", "Go to Dashboard")
-                : t("homepage.cta.buttonText")
-              }
+              {isAuthenticated
+                ? t("hero.goToDashboard")
+                : t("homepage.cta.buttonText")}
             </span>
             <ArrowRight className="h-5 w-5" />
           </button>
@@ -179,7 +192,10 @@ const Index = () => {
               Encontrar
             </span>
           </div>
-          <p className="pefa-text">{t("hero.copyright")}</p>
+          <p className="pefa-text">
+            {"© "}
+            {currentYear} {t("hero.copyright")}
+          </p>
         </div>
       </footer>
     </div>

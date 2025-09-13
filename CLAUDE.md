@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Encontrar (backend repo name "hilo" and frontend repo name "mirada") is a one-time social pairing application that matches university students (1 female - 1 male) based on interests, traits, and preferences. This is currently a boilerplate React frontend that will connect to an existing fully-featured Rust backend.
+Encontrar (backend repo name "hilo" and frontend repo name "mirada") is a one-time social pairing application that matches university students (1 female - 1 male) based on interests, traits, and preferences. This is a React frontend that will communicate with the existing fully-featured Rust backend.
 
 ## Development Commands
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production (TypeScript check included)
-- `npm run lint` - Run ESLint
+- `npx @biomejs/biome check --write` - Format, lint, and organize imports of all files
 - `npm run preview` - Preview production build
 
 ## Code Formatting

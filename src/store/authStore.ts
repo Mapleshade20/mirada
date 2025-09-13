@@ -1,10 +1,10 @@
-import { create } from 'zustand';
-import { apiService, UserProfile } from '../lib/api';
-import { toast } from '../hooks/use-toast';
-import axios from 'axios';
+import axios from "axios";
+import { create } from "zustand";
+import { toast } from "../hooks/use-toast";
+import { apiService, type UserProfile } from "../lib/api";
 
 // Helper function to check if error is an AxiosError
-const isAxiosError = (error: unknown): error is import('axios').AxiosError => {
+const isAxiosError = (error: unknown): error is import("axios").AxiosError => {
   return axios.isAxiosError(error);
 };
 
@@ -13,13 +13,16 @@ interface AuthState {
   isLoading: boolean;
   error: string | null;
   isAuthenticated: boolean;
-  
+  isInitializing: boolean;
+
   // Actions
   login: (email: string, code: string) => Promise<void>;
   logout: () => void;
   sendVerificationCode: (email: string) => Promise<void>;
   fetchUserProfile: () => Promise<void>;
   updateUserProfile: (profile: UserProfile) => void;
+  acceptMatch: () => Promise<void>;
+  rejectMatch: () => Promise<void>;
   clearError: () => void;
   setLoading: (loading: boolean) => void;
   initializeAuth: () => Promise<void>;
@@ -29,15 +32,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   isLoading: false,
   error: null,
-  isAuthenticated: !!localStorage.getItem('access_token'),
+  isAuthenticated: !!localStorage.getItem("access_token"),
+  isInitializing: false,
 
   login: async (email: string, code: string) => {
     set({ isLoading: true, error: null });
-    
+
     try {
       await apiService.verifyCode(email, code);
       const profile = await apiService.getProfile();
-      
+
       set({
         user: profile,
         isAuthenticated: true,
@@ -45,7 +49,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       });
     } catch (error: unknown) {
       set({
-        error: isAxiosError(error) ? error.response?.data?.message || 'Authentication failed' : 'Authentication failed',
+        error: isAxiosError(error)
+          ? error.response?.data?.message || "Authentication failed"
+          : "Authentication failed",
         isLoading: false,
         isAuthenticated: false,
       });
@@ -64,13 +70,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   sendVerificationCode: async (email: string) => {
     set({ isLoading: true, error: null });
-    
+
     try {
       await apiService.sendVerificationCode(email);
       set({ isLoading: false });
     } catch (error: unknown) {
       set({
-        error: isAxiosError(error) ? error.response?.data?.message || 'Failed to send verification code' : 'Failed to send verification code',
+        error: isAxiosError(error)
+          ? error.response?.data?.message || "Failed to send verification code"
+          : "Failed to send verification code",
         isLoading: false,
       });
       throw error;
@@ -80,9 +88,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   fetchUserProfile: async () => {
     const state = get();
     if (!state.isAuthenticated || state.isLoading) return;
-    
+
     set({ isLoading: true, error: null });
-    
+
     try {
       const profile = await apiService.getProfile();
       set({
@@ -90,14 +98,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         isLoading: false,
       });
     } catch (error: unknown) {
-      const errorMessage = isAxiosError(error) ? error.response?.data?.message || 'Failed to fetch profile' : 'Failed to fetch profile';
-      
+      const errorMessage = isAxiosError(error)
+        ? error.response?.data?.message || "Failed to fetch profile"
+        : "Failed to fetch profile";
+
       // Only logout for 401 unauthorized errors (invalid/expired tokens)
       // For network errors or server errors, show error message but keep user logged in
       if (isAxiosError(error) && error.response?.status === 401) {
         get().logout();
         set({
-          error: 'Session expired. Please log in again.',
+          error: "Session expired. Please log in again.",
           isLoading: false,
         });
         toast({
@@ -107,17 +117,21 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         });
       } else {
         // For network errors or other server errors, don't logout, show toast
-        const isConnectionError = error.code === 'NETWORK_ERROR' || !error.response;
-        const connectionErrorMessage = 'Server is temporarily unavailable. Please try again later.';
-        
+        const isConnectionError =
+          error.code === "NETWORK_ERROR" || !error.response;
+        const connectionErrorMessage =
+          "Server is temporarily unavailable. Please try again later.";
+
         set({
           error: isConnectionError ? connectionErrorMessage : errorMessage,
           isLoading: false,
         });
-        
+
         toast({
           title: isConnectionError ? "Connection Error" : "Server Error",
-          description: isConnectionError ? connectionErrorMessage : errorMessage,
+          description: isConnectionError
+            ? connectionErrorMessage
+            : errorMessage,
           variant: "destructive",
         });
       }
@@ -126,6 +140,46 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   updateUserProfile: (profile: UserProfile) => {
     set({ user: profile });
+  },
+
+  acceptMatch: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const updatedProfile = await apiService.acceptMatch();
+      set({
+        user: updatedProfile,
+        isLoading: false,
+      });
+    } catch (error: unknown) {
+      set({
+        error: isAxiosError(error)
+          ? error.response?.data?.message || "Failed to accept match"
+          : "Failed to accept match",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
+
+  rejectMatch: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const updatedProfile = await apiService.rejectMatch();
+      set({
+        user: updatedProfile,
+        isLoading: false,
+      });
+    } catch (error: unknown) {
+      set({
+        error: isAxiosError(error)
+          ? error.response?.data?.message || "Failed to reject match"
+          : "Failed to reject match",
+        isLoading: false,
+      });
+      throw error;
+    }
   },
 
   clearError: () => {
@@ -137,12 +191,20 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   initializeAuth: async () => {
-    const hasToken = !!localStorage.getItem('access_token');
-    
+    const state = get();
+
+    // Prevent concurrent initialization calls
+    if (state.isInitializing) return;
+
+    const hasToken = !!localStorage.getItem("access_token");
+
     if (!hasToken) {
-      set({ isAuthenticated: false });
+      set({ isAuthenticated: false, isLoading: false, isInitializing: false });
       return;
     }
+
+    // Set loading and initializing state immediately to prevent race conditions
+    set({ isLoading: true, isInitializing: true, error: null });
 
     // If we have a token, try to fetch user profile to verify it's valid
     try {
@@ -150,6 +212,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({
         user: profile,
         isAuthenticated: true,
+        isLoading: false,
+        isInitializing: false,
         error: null,
       });
     } catch (error: unknown) {
@@ -160,18 +224,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         set({
           user: null,
           isAuthenticated: false,
+          isLoading: false,
+          isInitializing: false,
           error: null,
         });
       } else {
         // For network errors, keep user authenticated but show toast
-        const isConnectionError = error.code === 'NETWORK_ERROR' || !error.response;
-        const connectionErrorMessage = 'Server is temporarily unavailable. Your session will be restored when connection is re-established.';
-        
+        const isConnectionError =
+          error.code === "NETWORK_ERROR" || !error.response;
+        const connectionErrorMessage =
+          "Server is temporarily unavailable. Your session will be restored when connection is re-established.";
+
         set({
           isAuthenticated: true,
-          error: isConnectionError ? connectionErrorMessage : 'Failed to verify session',
+          isLoading: false,
+          isInitializing: false,
+          error: isConnectionError
+            ? connectionErrorMessage
+            : "Failed to verify session",
         });
-        
+
         // Only show toast for connection errors during initialization
         if (isConnectionError) {
           toast({

@@ -6,23 +6,38 @@
   },
   "hero": {
     "minititle": "An Experimental Pairing Event",
-    "subtitle": "Premium social pairing designed exclusively for university students. Connect through intelligent matching and meaningful conversations.",
+    "subtitle": "A dating experience matching event designed for university students to connect through interest-based matching and meaningful conversations.",
     "getStarted": "Get Started",
+    "goToDashboard": "Go to Dashboard",
     "learnMore": "Learn More",
-    "copyright": "© 2025 Encontrar. Experimental social pairing for the next generation."
+    "copyright": "Encontrar. Experimental social pairing for the next generation."
   },
-  "features": {
-    "intelligentMatching": {
-      "title": "Intelligent Matching",
-      "description": "Our advanced algorithm considers your interests, personality, and preferences to find your ideal match."
+  "homepage": {
+    "header": {
+      "logIn": "Log In"
     },
-    "universityNetwork": {
-      "title": "University Network",
-      "description": "Connect exclusively with verified university students in your area for authentic relationships."
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Getting matched is simple and secure. Follow these steps to find your perfect connection.",
+      "steps": {
+        "signUp": {
+          "title": "Sign Up & Verify",
+          "description": "Create an account using your university email (limited to certain universities) and upload your student ID for verification."
+        },
+        "completeProfile": {
+          "title": "Complete Profile",
+          "description": "Fill out your profile with interests and personality traits to help us find your ideal match."
+        },
+        "getMatched": {
+          "title": "Get Matched",
+          "description": "Review potential matches and use our veto system to filter out anyone you're not interested in. We'll then find your final match."
+        }
+      }
     },
-    "premiumExperience": {
-      "title": "Premium Experience",
-      "description": "Enjoy a curated, high-quality experience with meaningful connections and no endless swiping."
+    "cta": {
+      "title": "Ready to Find Your Perfect Match? 😄",
+      "subtitle": "Join our community of university students and discover meaningful connections that could last a lifetime.",
+      "buttonText": "Start Your Journey"
     }
   },
   "auth": {
@@ -56,11 +71,11 @@
       "ok": "OK",
       "dataProtection": {
         "title": "Data Protection",
-        "description": "We take your privacy seriously and protect all your personal information with enterprise-grade security."
+        "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 20-28 days after the event starts. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>"
       },
-      "aiMatching": {
-        "title": "AI Matching",
-        "description": "Our advanced algorithm analyzes your preferences and personality to find the most compatible matches."
+      "systemPrivacy": {
+        "title": "The System Protects Your Privacy",
+        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Non-text fields in your profile will be used for matching calculations and, along with some text fields, for the veto system to be shown to other users; personal life photos will be shared with the other party after the final match is made, and WeChat IDs will only be shared after mutual match confirmation."
       },
       "qualityConnections": {
         "title": "Quality Connections",
@@ -91,21 +106,20 @@
       "title": "Preview Matches",
       "description": "Review potential matches",
       "reviewTitle": "Review Match Previews",
-      "reviewDescription": "Check out potential matches and use the veto system",
       "viewButton": "View Previews"
     },
     "finalMatch": {
       "title": "Final Match",
-      "description": "Your perfect match awaits",
-      "matchTitle": "You Have a Match!",
-      "matchDescription": "We found your perfect match. Review their profile and decide.",
-      "viewMatchButton": "View Match"
+      "description": "Your final match awaits"
     },
     "confirmed": {
-      "title": "Match Confirmed!",
-      "description": "Both of you accepted the match. Here's their WeChat ID:",
-      "wechatId": "WeChat ID: {{wechatId}}",
-      "startConversation": "Start your conversation and enjoy getting to know each other!"
+      "mutualTitle": "Match Confirmed!",
+      "mutualDescription": "Both of you accepted the match. Here's their WeChat ID:",
+      "mutualFooter": "Start your conversation and enjoy getting to know each other!",
+      "waitingTitle": "Waiting for Response",
+      "waitingDescription": "You've accepted the match! Waiting for them to respond.",
+      "waitingFooter": "Check back later for the result.",
+      "wechatId": "WeChat ID: {{wechatId}}"
     }
   },
   "uploadModal": {
@@ -123,8 +137,8 @@
     "selectFileError": "Please select a file"
   },
   "profileForm": {
-    "title": "Complete Your Profile",
-    "subtitle": "Tell us about yourself to find your perfect match",
+    "title": "Your Profile",
+    "subtitle": "Interests and personality will be used for matching calculations",
     "sections": {
       "personalInfo": "Personal Information",
       "interests": "Interests",
@@ -133,7 +147,7 @@
     "fields": {
       "wechatId": {
         "label": "WeChat ID",
-        "placeholder": "Your WeChat ID",
+        "placeholder": "wechat_id",
         "required": "Please enter your WeChat ID"
       },
       "gender": {
@@ -144,38 +158,38 @@
         "female": "Female"
       },
       "selfIntro": {
-        "label": "Self Introduction",
-        "placeholder": "Tell us about yourself...",
+        "label": "Self Introduction (brief)",
+        "placeholder": "Leave a first impression about yourself...",
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you're familiar with",
+        "label": "Things you like, are familiar with, and would like to do together 🤩",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
       "aspirationalTags": {
-        "label": "Things you want to learn",
-        "placeholder": "Select aspirational interests...",
-        "required": "Please select aspirational interests"
+        "label": "Things you want to learn, try, and hope the other person is also interested in 🤗",
+        "placeholder": "Select interests you want to try...",
+        "required": "Please select interests you want to try"
       },
       "selfTraits": {
-        "label": "Your traits",
-        "placeholder": "Select your traits...",
-        "required": "Please select your traits"
+        "label": "Your Personality Traits 🤔",
+        "placeholder": "Select your personality...",
+        "required": "Please select your personality"
       },
       "idealTraits": {
-        "label": "Ideal partner traits",
+        "label": "Ideal partner traits 🤔",
         "placeholder": "Select ideal traits...",
         "required": "Please select ideal traits"
       },
       "physicalBoundary": {
-        "label": "Physical Boundary (1-4 scale)",
+        "label": "Your physical boundaries in dating (e.g. holding hands, hugging, kissing, etc., 1-4 scale)",
         "conservative": "Conservative",
         "open": "Open"
       },
       "recentTopics": {
-        "label": "Recent Conversation Topics",
-        "placeholder": "What have you been talking about lately?",
+        "label": "Topics you've been interested in, thinking about, or discussing recently, or interesting things you've been doing lately (can be from any aspect)",
+        "placeholder": "For example: what books or movies you've been into, new skills you're learning, or questions you've been pondering...",
         "required": "Please describe recent topics"
       },
       "profilePhoto": {
@@ -197,33 +211,65 @@
     "photoUploadSuccess": "Photo uploaded successfully",
     "photoUploadError": "Failed to upload photo"
   },
-  "homepage": {
-    "header": {
-      "logIn": "Log In"
+  "previews": {
+    "title": "Match Previews",
+    "subtitle": "Review potential matches and use veto system",
+    "refresh": "Refresh",
+    "loading": "Loading match previews...",
+    "infoTitle": "Tips",
+    "infoDescription": "These are some potential matches calculated based on your profile. You can use veto cards on candidates you're completely not interested in; vetoed users will not appear in your final match. Excessive vetoes may result in you being unmatched, so please use them wisely.",
+    "potentialMatches": "Potential Matches",
+    "vetoedMatches": "Vetoed Matches",
+    "noMatches": "No match previews available at this time",
+    "checkAgain": "Check Again",
+    "fetchError": "Failed to load match previews",
+    "errorTitle": "Failed to Load Previews",
+    "veto": "Veto",
+    "approve": "Approve",
+    "vetoed": "Vetoed",
+    "recentTopics": "Recent Topics",
+    "familiarTags": "They Like and Are Familiar With",
+    "aspirationalTags": "They Want to Try",
+    "vetoConfirm": {
+      "title": "Veto This Match?",
+      "content": "Are you sure you want to veto this candidate? They will be excluded from your final matching.",
+      "confirm": "Yes, Veto",
+      "cancel": "Cancel"
     },
-    "howItWorks": {
-      "title": "How It Works",
-      "subtitle": "Getting matched is simple and secure. Follow these steps to find your perfect connection.",
-      "steps": {
-        "signUp": {
-          "title": "Sign Up & Verify",
-          "description": "Create your account with your university email and upload your student ID for verification."
-        },
-        "completeProfile": {
-          "title": "Complete Profile",
-          "description": "Fill out our comprehensive questionnaire about your interests, preferences, and what you're looking for."
-        },
-        "getMatched": {
-          "title": "Get Matched",
-          "description": "Our algorithm finds your perfect match. Review, connect, and start your journey together!"
-        }
-      }
-    },
-    "cta": {
-      "title": "Ready to Find Your Perfect Match?",
-      "subtitle": "Join our community of university students and discover meaningful connections that could last a lifetime.",
-      "buttonText": "Start Your Journey"
+    "vetoSuccess": "Candidate vetoed successfully",
+    "vetoError": "Failed to veto candidate",
+    "revokeSuccess": "Veto revoked successfully",
+    "revokeError": "Failed to revoke veto",
+    "stats": {
+      "title": "Summary",
+      "potential": "Potential",
+      "vetoed": "Vetoed"
     }
+  },
+  "finalMatch": {
+    "title": "A new friend!",
+    "subtitle": "We found someone special for you. Review their profile and decide.",
+    "selfIntro": "About them",
+    "familiarTags": "They like and are familiar with",
+    "aspirationalTags": "They want to try",
+    "acceptButton": "Accept Match",
+    "rejectButton": "Pass",
+    "acceptConfirm": {
+      "title": "Accept This Match?",
+      "content": "Are you sure you want to accept this match? If both of you accept, you'll be able to exchange contact information.",
+      "confirm": "Yes, Accept",
+      "cancel": "Cancel"
+    },
+    "rejectConfirm": {
+      "title": "Pass on This Match?",
+      "content": "Are you sure you want to pass on this match? This action cannot be undone and you may not get another match.",
+      "confirm": "Yes, Pass",
+      "cancel": "Cancel"
+    },
+    "acceptSuccess": "Match accepted! Waiting for their response.",
+    "acceptError": "Failed to accept match. Please try again.",
+    "rejectSuccess": "Match passed. We'll find you another opportunity.",
+    "rejectError": "Failed to pass on match. Please try again."
   },
   "common": {
     "loading": "Loading...",
@@ -237,6 +283,12 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "submit": "Submit"
+    "submit": "Submit",
+    "home": "Home",
+    "retry": "Retry",
+    "dashboard": "Dashboard"
+  },
+  "footer": {
+    "experimental": "Open source under the AGPL-3.0 license"
   }
 }

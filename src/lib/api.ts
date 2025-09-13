@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { type AxiosError, type AxiosInstance } from "axios";
 
 interface TokenResponse {
   access_token: string;
@@ -14,7 +14,13 @@ const isAxiosError = (error: unknown): error is AxiosError => {
 
 interface UserProfile {
   email: string;
-  status: 'unverified' | 'verification_pending' | 'verified' | 'form_completed' | 'matched' | 'confirmed';
+  status:
+    | "unverified"
+    | "verification_pending"
+    | "verified"
+    | "form_completed"
+    | "matched"
+    | "confirmed";
   grade?: string;
   final_match?: {
     email_domain: string;
@@ -29,7 +35,7 @@ interface UserProfile {
 
 interface FormData {
   wechat_id: string;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
   familiar_tags: string[];
   aspirational_tags: string[];
   recent_topics: string;
@@ -63,7 +69,7 @@ class ApiService {
 
   constructor() {
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8090',
+      baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8090",
       timeout: 10000,
     });
 
@@ -79,7 +85,7 @@ class ApiService {
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      (error) => Promise.reject(error),
     );
 
     // Response interceptor to handle token refresh
@@ -102,18 +108,18 @@ class ApiService {
             throw refreshError;
           }
         }
-        
+
         // For network errors and other non-401 errors, don't clear tokens
         // Let the calling code handle the error appropriately
         throw error;
-      }
+      },
     );
   }
 
   private loadTokensFromStorage(): void {
-    this.accessToken = localStorage.getItem('access_token');
-    this.refreshToken = localStorage.getItem('refresh_token');
-    const expiry = localStorage.getItem('token_expiry');
+    this.accessToken = localStorage.getItem("access_token");
+    this.refreshToken = localStorage.getItem("refresh_token");
+    const expiry = localStorage.getItem("token_expiry");
     this.tokenExpiry = expiry ? parseInt(expiry, 10) : null;
   }
 
@@ -122,9 +128,9 @@ class ApiService {
     this.refreshToken = tokens.refresh_token;
     this.tokenExpiry = Date.now() + tokens.expires_in * 1000;
 
-    localStorage.setItem('access_token', tokens.access_token);
-    localStorage.setItem('refresh_token', tokens.refresh_token);
-    localStorage.setItem('token_expiry', this.tokenExpiry.toString());
+    localStorage.setItem("access_token", tokens.access_token);
+    localStorage.setItem("refresh_token", tokens.refresh_token);
+    localStorage.setItem("token_expiry", this.tokenExpiry.toString());
   }
 
   private clearTokens(): void {
@@ -132,9 +138,9 @@ class ApiService {
     this.refreshToken = null;
     this.tokenExpiry = null;
 
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('token_expiry');
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("token_expiry");
   }
 
   private async ensureValidToken(): Promise<void> {
@@ -154,11 +160,14 @@ class ApiService {
   }
 
   private async refreshAccessToken(): Promise<void> {
-    if (!this.refreshToken) throw new Error('No refresh token available');
+    if (!this.refreshToken) throw new Error("No refresh token available");
 
-    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8090'}/api/auth/refresh`, {
-      refresh_token: this.refreshToken,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8090"}/api/auth/refresh`,
+      {
+        refresh_token: this.refreshToken,
+      },
+    );
 
     this.saveTokensToStorage(response.data);
   }
@@ -167,7 +176,7 @@ class ApiService {
     requestFn: () => Promise<T>,
     endpoint: string,
     maxRetries: number = 4,
-    baseDelay: number = 3000
+    baseDelay: number = 3000,
   ): Promise<T> {
     const retryKey = endpoint;
     let attempts = this.retryAttempts.get(retryKey) || 0;
@@ -179,12 +188,13 @@ class ApiService {
       return result;
     } catch (error: unknown) {
       // Only retry for network errors or 5xx server errors
-      const isRetryableError = !isAxiosError(error) || 
-        !error.response || 
+      const isRetryableError =
+        !isAxiosError(error) ||
+        !error.response ||
         (error.response.status >= 500 && error.response.status < 600) ||
-        error.code === 'NETWORK_ERROR' ||
-        error.code === 'ECONNREFUSED';
-      
+        error.code === "NETWORK_ERROR" ||
+        error.code === "ECONNREFUSED";
+
       if (!isRetryableError || attempts >= maxRetries) {
         this.retryAttempts.delete(retryKey);
         throw error;
@@ -192,124 +202,132 @@ class ApiService {
 
       attempts++;
       this.retryAttempts.set(retryKey, attempts);
-      
+
       // Exponential backoff with jitter
-      const delay = baseDelay * Math.pow(1.5, attempts - 1) + Math.random() * 1000;
-      
-      await new Promise(resolve => setTimeout(resolve, delay));
-      
+      const delay = baseDelay * 1.5 ** (attempts - 1) + Math.random() * 1000;
+
+      await new Promise((resolve) => setTimeout(resolve, delay));
+
       return this.retryRequest(requestFn, endpoint, maxRetries, baseDelay);
     }
   }
 
   // Auth methods
   async sendVerificationCode(email: string): Promise<void> {
-    await this.api.post('/api/auth/send-code', { email });
+    await this.api.post("/api/auth/send-code", { email });
   }
 
   async verifyCode(email: string, code: string): Promise<TokenResponse> {
-    const response = await this.api.post<TokenResponse>('/api/auth/verify-code', {
-      email,
-      code,
-    });
-    
+    const response = await this.api.post<TokenResponse>(
+      "/api/auth/verify-code",
+      {
+        email,
+        code,
+      },
+    );
+
     this.saveTokensToStorage(response.data);
     return response.data;
   }
 
   // Profile methods
   async getProfile(): Promise<UserProfile> {
-    return this.retryRequest(
-      async () => {
-        const response = await this.api.get<UserProfile>('/api/profile');
-        return response.data;
-      },
-      '/api/profile'
-    );
+    return this.retryRequest(async () => {
+      const response = await this.api.get<UserProfile>("/api/profile");
+      return response.data;
+    }, "/api/profile");
   }
 
   // Form methods
   async submitForm(formData: FormData): Promise<Partial<FormData>> {
-    return this.retryRequest(
-      async () => {
-        const response = await this.api.post('/api/form', formData);
-        return response.data;
-      },
-      '/api/form'
-    );
+    return this.retryRequest(async () => {
+      const response = await this.api.post("/api/form", formData);
+      return response.data;
+    }, "/api/form");
   }
 
   async getForm(): Promise<Partial<FormData>> {
-    return this.retryRequest(
-      async () => {
-        const response = await this.api.get('/api/form');
-        return response.data;
-      },
-      '/api/form'
-    );
+    return this.retryRequest(async () => {
+      const response = await this.api.get("/api/form");
+      return response.data;
+    }, "/api/form");
   }
 
   // Upload methods
   async uploadProfilePhoto(file: File): Promise<UploadResponse> {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
-    const response = await this.api.post<UploadResponse>('/api/upload/profile-photo', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const response = await this.api.post<UploadResponse>(
+      "/api/upload/profile-photo",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    });
+    );
 
     return response.data;
   }
 
   async uploadIdCard(file: File, grade: string): Promise<UserProfile> {
     const formData = new FormData();
-    formData.append('card', file);
-    formData.append('grade', grade);
+    formData.append("card", file);
+    formData.append("grade", grade);
 
-    const response = await this.api.post<UserProfile>('/api/upload/card', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const response = await this.api.post<UserProfile>(
+      "/api/upload/card",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    });
+    );
 
     return response.data;
   }
 
   // Veto methods
   async getVetoPreviews(): Promise<VetoPreview[]> {
-    const response = await this.api.get<VetoPreview[]>('/api/veto/previews');
+    const response = await this.api.get<VetoPreview[]>("/api/veto/previews");
     return response.data;
   }
 
   async submitVeto(vetoedId: string): Promise<void> {
-    await this.api.post('/api/veto', { vetoed_id: vetoedId });
+    await this.api.post("/api/veto", { vetoed_id: vetoedId });
   }
 
   async revokeVeto(vetoedId: string): Promise<void> {
-    await this.api.delete('/api/veto', { data: { vetoed_id: vetoedId } });
+    await this.api.delete("/api/veto", { data: { vetoed_id: vetoedId } });
   }
 
   async getVetoes(): Promise<string[]> {
-    const response = await this.api.get<string[]>('/api/vetoes');
+    const response = await this.api.get<string[]>("/api/vetoes");
     return response.data;
   }
 
   // Match methods
   async acceptMatch(): Promise<UserProfile> {
-    const response = await this.api.post<UserProfile>('/api/final-match/accept');
+    const response = await this.api.post<UserProfile>(
+      "/api/final-match/accept",
+    );
     return response.data;
   }
 
   async rejectMatch(): Promise<UserProfile> {
-    const response = await this.api.post<UserProfile>('/api/final-match/reject');
+    const response = await this.api.post<UserProfile>(
+      "/api/final-match/reject",
+    );
     return response.data;
   }
 
   // Utility methods
   isAuthenticated(): boolean {
-    return !!this.accessToken && !!this.tokenExpiry && this.tokenExpiry > Date.now();
+    return (
+      !!this.accessToken && !!this.tokenExpiry && this.tokenExpiry > Date.now()
+    );
   }
 
   logout(): void {

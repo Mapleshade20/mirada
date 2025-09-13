@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { Plus, Search, X } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/glass-button";
-import { Input } from "./ui/input";
-import { X, Plus, Search } from "lucide-react";
 import { GlassCard } from "./ui/glass-card";
+import { Input } from "./ui/input";
 
 interface TagSelectorProps {
   selectedTags: string[];
@@ -58,6 +59,14 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
       <div
         className="min-h-[40px] p-3 bg-muted/50 border border-border/50 rounded-md cursor-pointer flex flex-wrap gap-2 items-center"
         onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
+        role="button"
+        tabIndex={0}
       >
         {selectedTags.length === 0 ? (
           <span className="text-muted-foreground">{placeholder}</span>
@@ -70,6 +79,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             >
               {tag}
               <button
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   removeTag(tag);

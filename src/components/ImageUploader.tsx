@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { Button } from './ui/glass-button';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
-import { GlassCard } from './ui/glass-card';
+import { Image as ImageIcon, Upload, X } from "lucide-react";
+import type React from "react";
+import { useRef, useState } from "react";
+import { Button } from "./ui/glass-button";
+import { GlassCard } from "./ui/glass-card";
 
 interface ImageUploaderProps {
   onImageUpload: (filename: string) => void;
@@ -14,14 +15,16 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
   onImageUpload,
   currentImage,
   maxSizeMB = 5,
-  acceptedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+  acceptedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"],
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -30,7 +33,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 
     // Validate file type
     if (!acceptedTypes.includes(file.type)) {
-      setError('Please select a valid image file (JPEG, PNG, or WebP)');
+      setError("Please select a valid image file (JPEG, PNG, or WebP)");
       return;
     }
 
@@ -52,24 +55,23 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     try {
       // TODO: Replace with actual API call to your Rust backend
       const formData = new FormData();
-      formData.append('file', file);
-      
+      formData.append("file", file);
+
       // Mock upload - replace with actual API call
-      const response = await fetch('/api/upload/profile-photo', {
-        method: 'POST',
+      const response = await fetch("/api/upload/profile-photo", {
+        method: "POST",
         body: formData,
       });
-      
+
       if (!response.ok) {
-        throw new Error('Upload failed');
+        throw new Error("Upload failed");
       }
-      
+
       const result = await response.json();
       onImageUpload(result.filename);
-      
     } catch (err) {
-      console.error('Upload failed:', err);
-      setError('Failed to upload image. Please try again.');
+      console.error("Upload failed:", err);
+      setError("Failed to upload image. Please try again.");
       setPreview(null);
     } finally {
       setIsUploading(false);
@@ -78,9 +80,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 
   const handleRemove = () => {
     setPreview(null);
-    onImageUpload('');
+    onImageUpload("");
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -94,7 +96,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(file);
         input.files = dataTransfer.files;
-        input.dispatchEvent(new Event('change', { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
       }
     }
   };
@@ -134,18 +136,21 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         <GlassCard className="p-4">
           <div className="relative inline-block">
             <img
-              src={preview || (currentImage ? `/api/images/${currentImage}` : '')}
+              src={
+                preview || (currentImage ? `/api/images/${currentImage}` : "")
+              }
               alt="Profile preview"
               className="w-32 h-32 object-cover rounded-lg border border-border/50"
             />
             <button
+              type="button"
               onClick={handleRemove}
               className="absolute -top-2 -right-2 w-6 h-6 bg-destructive rounded-full flex items-center justify-center hover:bg-destructive/80 transition-colors"
             >
               <X className="h-4 w-4 text-destructive-foreground" />
             </button>
           </div>
-          
+
           <div className="mt-4 flex gap-2">
             <Button
               onClick={() => fileInputRef.current?.click()}
@@ -178,7 +183,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       <input
         ref={fileInputRef}
         type="file"
-        accept={acceptedTypes.join(',')}
+        accept={acceptedTypes.join(",")}
         onChange={handleFileSelect}
         className="hidden"
       />

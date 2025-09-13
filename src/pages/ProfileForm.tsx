@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { UploadOutlined } from "@ant-design/icons";
 import {
+  Button,
+  Card,
   Form,
   Input,
-  Button,
-  Select,
-  TreeSelect,
-  Slider,
-  Upload,
-  Card,
   message,
+  Select,
+  Slider,
+  TreeSelect,
+  Upload,
 } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import { User, Heart, MessageCircle, Camera, Save, ArrowLeft } from "lucide-react";
-import { useAuthStore } from "../store/authStore";
-import { apiService } from "../lib/api";
-import { useDraftSaving } from "../hooks/useDraftSaving";
-import { getTagsLimit, getTraitsLimit } from "../utils/validation";
-import LanguageSwitcher from "../components/LanguageSwitcher";
+import axios from "axios";
+import { ArrowLeft, Camera, Heart, MessageCircle, User } from "lucide-react";
+import type React from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import heroBackground from "../assets/hero-background.jpg";
+import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
+import { useDraftSaving } from "../hooks/useDraftSaving";
+import { apiService } from "../lib/api";
+import { getTagsLimit, getTraitsLimit } from "../utils/validation";
 
 interface FormData {
   wechat_id: string;
@@ -53,12 +54,13 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
     const children = category.children
       ? convertTagsToTreeData(category.children, excludedTags)
       : undefined;
-    
+
     // Check if all children are disabled when this node has children
-    const allChildrenDisabled = children && children.length > 0 
-      ? children.every(child => child.disabled)
-      : false;
-    
+    const allChildrenDisabled =
+      children && children.length > 0
+        ? children.every((child) => child.disabled)
+        : false;
+
     return {
       title: category.name,
       value: category.id,
@@ -67,9 +69,10 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
       // 1. Not matchable and has no children (leaf node that can't be selected)
       // 2. Already selected in the other category
       // 3. Has children but all children are disabled
-      disabled: (!category.is_matchable && !category.children) || 
-                excludedTags.includes(category.id) ||
-                allChildrenDisabled,
+      disabled:
+        (!category.is_matchable && !category.children) ||
+        excludedTags.includes(category.id) ||
+        allChildrenDisabled,
       children,
     };
   });
@@ -78,7 +81,6 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
 const ProfileForm: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { updateUserProfile } = useAuthStore();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedPhoto, setUploadedPhoto] = useState<string | null>(null);
@@ -95,25 +97,25 @@ const ProfileForm: React.FC = () => {
         // Try to load existing form data from backend
         const existingData = await apiService.getForm();
         form.setFieldsValue(existingData);
-        
+
         // Initialize tag state
         setFamiliarTags(existingData.familiar_tags || []);
         setAspirationalTags(existingData.aspirational_tags || []);
-        
+
         // Initialize uploaded photo state
         if (existingData.profile_photo_filename) {
           setUploadedPhoto(existingData.profile_photo_filename);
         }
-      } catch (error) {
+      } catch (_error) {
         // If no existing data, try to load draft
         const draft = loadDraft();
         if (draft) {
           form.setFieldsValue(draft);
-          
+
           // Initialize tag state from draft
           setFamiliarTags(draft.familiar_tags || []);
           setAspirationalTags(draft.aspirational_tags || []);
-          
+
           // Initialize uploaded photo state from draft
           if (draft.profile_photo_filename) {
             setUploadedPhoto(draft.profile_photo_filename);
@@ -125,10 +127,10 @@ const ProfileForm: React.FC = () => {
     loadFormData();
   }, [form, loadDraft]);
 
-  // Convert tag and trait data for Ant Design components  
+  // Convert tag and trait data for Ant Design components
   const familiarTagTreeData = convertTagsToTreeData(tagData, aspirationalTags);
   const aspirationalTagTreeData = convertTagsToTreeData(tagData, familiarTags);
-  
+
   const traitOptions = traitData.map((trait) => ({
     label: trait.name,
     value: trait.id,
@@ -139,15 +141,15 @@ const ProfileForm: React.FC = () => {
       const response = await apiService.uploadProfilePhoto(file);
       setUploadedPhoto(response.filename);
       form.setFieldValue("profile_photo_filename", response.filename);
-      
+
       // Save draft immediately with the uploaded photo filename
       const currentValues = form.getFieldsValue();
       currentValues.profile_photo_filename = response.filename;
       saveDraft(currentValues);
-      
+
       message.success(t("profileForm.photoUploadSuccess"));
       return false; // Prevent default upload behavior
-    } catch (error) {
+    } catch (_error) {
       message.error(t("profileForm.photoUploadError"));
       return false;
     }
@@ -170,9 +172,10 @@ const ProfileForm: React.FC = () => {
       message.success(t("profileForm.submitSuccess"));
       navigate("/dashboard");
     } catch (error: unknown) {
-      const errorMessage = axios.isAxiosError(error) && error.response?.data?.message 
-        ? error.response.data.message 
-        : t("profileForm.submitError");
+      const errorMessage =
+        axios.isAxiosError(error) && error.response?.data?.message
+          ? error.response.data.message
+          : t("profileForm.submitError");
       message.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -180,13 +183,16 @@ const ProfileForm: React.FC = () => {
   };
 
   // Save draft whenever form values change
-  const handleValuesChange = (changedValues: Partial<FormData>, allValues: FormData) => {
+  const handleValuesChange = (
+    _changedValues: Partial<FormData>,
+    allValues: FormData,
+  ) => {
     saveDraft(allValues);
 
     // Update tag state for mutual exclusion
     const newFamiliarTags = allValues.familiar_tags || [];
     const newAspirationalTags = allValues.aspirational_tags || [];
-    
+
     if (newFamiliarTags !== familiarTags) {
       setFamiliarTags(newFamiliarTags);
     }
@@ -225,7 +231,7 @@ const ProfileForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative flex flex-col">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
@@ -236,10 +242,11 @@ const ProfileForm: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/90 to-background/95" />
       </div>
 
-      <div className="relative z-10 p-4 py-8">
+      <div className="relative z-10 p-4 py-8 flex-1">
         {/* Navigation and Language Switcher */}
         <div className="absolute top-4 left-4 right-4 z-20 flex justify-between items-center">
           <button
+            type="button"
             onClick={() => navigate("/dashboard")}
             className="pefa-button-outline inline-flex items-center space-x-2 px-4 py-2"
           >
@@ -586,6 +593,8 @@ const ProfileForm: React.FC = () => {
           </Card>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -15,7 +15,7 @@ Tech Stack:
 
 - HTTP Client: Axios
 
-- State Management: Zustand (lightweight and simple) or React Context for user/auth state.
+- State Management: Zustand
 
 - Routing: React Router
 

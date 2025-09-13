@@ -1,18 +1,18 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Button } from './ui/glass-button';
-import { Languages } from 'lucide-react';
+import { Languages } from "lucide-react";
+import type React from "react";
+import { useTranslation } from "react-i18next";
+import { Button } from "./ui/glass-button";
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'zh-CN' ? 'en-US' : 'zh-CN';
+    const newLang = i18n.language === "zh-CN" ? "en-US" : "zh-CN";
     i18n.changeLanguage(newLang);
   };
 
-  const currentLang = i18n.language === 'zh-CN' ? '中文' : 'English';
-  const nextLang = i18n.language === 'zh-CN' ? 'English' : '中文';
+  const currentLang = i18n.language === "zh-CN" ? "中文" : "English";
+  const nextLang = i18n.language === "zh-CN" ? "English" : "中文";
 
   return (
     <Button

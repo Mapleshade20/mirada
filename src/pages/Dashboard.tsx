@@ -1,68 +1,69 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Steps, Button, Card, Modal, Upload, Form, Select, Input, message } from 'antd';
-import { 
-  UserOutlined, 
-  IdcardOutlined, 
-  FormOutlined, 
-  EyeOutlined, 
+import {
+  EyeOutlined,
+  FormOutlined,
   HeartOutlined,
-  LogoutOutlined,
+  HomeOutlined,
+  IdcardOutlined,
   InfoCircleOutlined,
+  LogoutOutlined,
   UploadOutlined,
-  HomeOutlined
-} from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
-import { useAuthStore } from '../store/authStore';
-import { apiService } from '../lib/api';
-import { useNavigate } from 'react-router-dom';
-import { getAllowedGrades } from '../utils/validation';
-import LanguageSwitcher from '../components/LanguageSwitcher';
-import heroBackground from '../assets/hero-background.jpg';
+} from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  Form,
+  Modal,
+  message,
+  Select,
+  Steps,
+  Upload,
+} from "antd";
+import type React from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import heroBackground from "../assets/hero-background.jpg";
+import FinalMatchCard from "../components/FinalMatchCard";
+import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import { apiService } from "../lib/api";
+import { useAuthStore } from "../store/authStore";
+import { getAllowedGrades } from "../utils/validation";
 
 const { Option } = Select;
-const { TextArea } = Input;
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation();
-  const { user, logout, updateUserProfile, fetchUserProfile } = useAuthStore();
+  const { user, logout, updateUserProfile } = useAuthStore();
   const navigate = useNavigate();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
   const [form] = Form.useForm();
 
-  const checkAndFetchProfile = useCallback(() => {
-    if (!user) {
-      fetchUserProfile();
-    }
-  }, [user, fetchUserProfile]);
-
   useEffect(() => {
     // Check if this is the first time visiting dashboard
-    const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding');
-    if (hasSeenOnboarding !== 'true') {
+    const hasSeenOnboarding = localStorage.getItem("hasSeenOnboarding");
+    if (hasSeenOnboarding !== "true") {
       setShowOnboarding(true);
     }
-    
-    // Only fetch profile if we don't have user data yet
-    checkAndFetchProfile();
-  }, [checkAndFetchProfile]);
+  }, []);
 
   const getCurrentStep = () => {
     if (!user) return 0;
-    
+
     switch (user.status) {
-      case 'unverified':
+      case "unverified":
         return 0;
-      case 'verification_pending':
+      case "verification_pending":
         return 0;
-      case 'verified':
+      case "verified":
         return 1;
-      case 'form_completed':
+      case "form_completed":
         return 2;
-      case 'matched':
+      case "matched":
         return 3;
-      case 'confirmed':
+      case "confirmed":
         return 4;
       default:
         return 0;
@@ -71,9 +72,9 @@ const Dashboard: React.FC = () => {
 
   const getStepStatus = (stepIndex: number) => {
     const currentStep = getCurrentStep();
-    if (stepIndex < currentStep) return 'finish';
-    if (stepIndex === currentStep) return 'process';
-    return 'wait';
+    if (stepIndex < currentStep) return "finish";
+    if (stepIndex === currentStep) return "process";
+    return "wait";
   };
 
   const handleOnboardingNext = () => {
@@ -81,7 +82,7 @@ const Dashboard: React.FC = () => {
       setOnboardingStep(onboardingStep + 1);
     } else {
       setShowOnboarding(false);
-      localStorage.setItem('hasSeenOnboarding', 'true');
+      localStorage.setItem("hasSeenOnboarding", "true");
     }
   };
 
@@ -93,14 +94,16 @@ const Dashboard: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
   };
 
-  const handleUploadIdCard = async (values: { upload?: Array<{ originFileObj?: File; name?: string }> }) => {
+  const handleUploadIdCard = async (values: {
+    upload?: Array<{ originFileObj?: File; name?: string }>;
+  }) => {
     try {
       const file = values.upload?.[0]?.originFileObj || values.upload?.[0];
       if (!file) {
-        message.error(t('uploadModal.selectFileError'));
+        message.error(t("uploadModal.selectFileError"));
         return;
       }
 
@@ -108,32 +111,32 @@ const Dashboard: React.FC = () => {
       updateUserProfile(updatedProfile);
       setUploadModalVisible(false);
       form.resetFields();
-      message.success(t('uploadModal.uploadSuccess'));
-    } catch (error) {
-      message.error(t('uploadModal.uploadError'));
+      message.success(t("uploadModal.uploadSuccess"));
+    } catch (_error) {
+      message.error(t("uploadModal.uploadError"));
     }
   };
 
   const steps = [
     {
-      title: t('steps.idVerification.title'),
+      title: t("steps.idVerification.title"),
       icon: <IdcardOutlined />,
-      description: t('steps.idVerification.description'),
+      description: t("steps.idVerification.description"),
     },
     {
-      title: t('steps.profileForm.title'),
+      title: t("steps.profileForm.title"),
       icon: <FormOutlined />,
-      description: t('steps.profileForm.description'),
+      description: t("steps.profileForm.description"),
     },
     {
-      title: t('steps.previewMatches.title'),
+      title: t("steps.previewMatches.title"),
       icon: <EyeOutlined />,
-      description: t('steps.previewMatches.description'),
+      description: t("steps.previewMatches.description"),
     },
     {
-      title: t('steps.finalMatch.title'),
+      title: t("steps.finalMatch.title"),
       icon: <HeartOutlined />,
-      description: t('steps.finalMatch.description'),
+      description: t("steps.finalMatch.description"),
     },
   ];
 
@@ -141,119 +144,147 @@ const Dashboard: React.FC = () => {
     if (!user) return null;
 
     switch (user.status) {
-      case 'unverified':
+      case "unverified":
         return (
           <Card className="mt-6">
             <div className="text-center">
               <IdcardOutlined className="text-4xl text-blue-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('steps.idVerification.uploadTitle')}</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {t("steps.idVerification.uploadTitle")}
+              </h3>
               <p className="text-gray-600 mb-4">
-                {t('steps.idVerification.uploadDescription')}
+                {t("steps.idVerification.uploadDescription")}
               </p>
-              <Button 
-                type="primary" 
+              <Button
+                type="primary"
                 size="large"
                 onClick={() => setUploadModalVisible(true)}
               >
-                {t('steps.idVerification.uploadButton')}
+                {t("steps.idVerification.uploadButton")}
               </Button>
             </div>
           </Card>
         );
 
-      case 'verification_pending':
+      case "verification_pending":
         return (
           <Card className="mt-6">
             <div className="text-center">
               <IdcardOutlined className="text-4xl text-orange-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('steps.verificationPending.title')}</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {t("steps.verificationPending.title")}
+              </h3>
               <p className="text-gray-600">
-                {t('steps.verificationPending.description')}
+                {t("steps.verificationPending.description")}
               </p>
             </div>
           </Card>
         );
 
-      case 'verified':
+      case "verified":
         return (
           <Card className="mt-6">
             <div className="text-center">
               <FormOutlined className="text-4xl text-green-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{t('steps.profileForm.completeTitle')}</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {t("steps.profileForm.completeTitle")}
+              </h3>
               <p className="text-gray-600 mb-4">
-                {t('steps.profileForm.completeDescription')}
+                {t("steps.profileForm.completeDescription")}
               </p>
-              <Button 
-                type="primary" 
+              <Button
+                type="primary"
                 size="large"
-                onClick={() => navigate('/form')}
+                onClick={() => navigate("/form")}
               >
-                {t('steps.profileForm.completeButton')}
+                {t("steps.profileForm.completeButton")}
               </Button>
             </div>
           </Card>
         );
 
-      case 'form_completed':
+      case "form_completed":
         return (
           <Card className="mt-6">
             <div className="text-center">
               <EyeOutlined className="text-4xl text-purple-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Review Match Previews</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {t("steps.previewMatches.reviewTitle")}
+              </h3>
               <p className="text-gray-600 mb-4">
-                Check out potential matches and use the veto system
+                {t("steps.previewMatches.description")}
               </p>
-              <Button 
-                type="primary" 
+              <Button
+                type="primary"
                 size="large"
-                onClick={() => navigate('/previews')}
+                onClick={() => navigate("/previews")}
               >
-                View Previews
+                {t("steps.previewMatches.viewButton")}
               </Button>
             </div>
           </Card>
         );
 
-      case 'matched':
-        return (
+      case "matched":
+        return user.final_match ? (
+          <div className="mt-6">
+            <FinalMatchCard finalMatch={user.final_match} />
+          </div>
+        ) : (
           <Card className="mt-6">
             <div className="text-center">
               <HeartOutlined className="text-4xl text-red-500 mb-4" />
               <h3 className="text-xl font-semibold mb-2">You Have a Match!</h3>
-              <p className="text-gray-600 mb-4">
-                We found your perfect match. Review their profile and decide.
-              </p>
-              <Button 
-                type="primary" 
-                size="large"
-                onClick={() => navigate('/match')}
-              >
-                View Match
-              </Button>
+              <p className="text-gray-600">Loading your match details...</p>
             </div>
           </Card>
         );
 
-      case 'confirmed':
+      case "confirmed": {
+        // Check if both users have confirmed (wechat_id is available)
+        const bothConfirmed = user.final_match?.wechat_id != null;
+
         return (
-          <Card className="mt-6">
-            <div className="text-center">
-              <HeartOutlined className="text-4xl text-green-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Match Confirmed!</h3>
-              <p className="text-gray-600 mb-4">
-                Both of you accepted the match. Here's their WeChat ID:
-              </p>
-              {user.final_match?.wechat_id && (
-                <div className="bg-green-50 p-4 rounded-lg mb-4">
-                  <strong>WeChat ID: {user.final_match.wechat_id}</strong>
-                </div>
-              )}
-              <p className="text-sm text-gray-500">
-                Start your conversation and enjoy getting to know each other!
-              </p>
-            </div>
-          </Card>
+          <div className="mt-6 space-y-6">
+            {/* Confirmation status card */}
+            <Card>
+              <div className="text-center">
+                <HeartOutlined
+                  className={`text-4xl mb-4 ${bothConfirmed ? "text-green-500" : "text-orange-500"}`}
+                />
+                <h3 className="text-xl font-semibold mb-2">
+                  {bothConfirmed
+                    ? t("steps.confirmed.mutualTitle")
+                    : t("steps.confirmed.waitingTitle")}
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {bothConfirmed
+                    ? t("steps.confirmed.mutualDescription")
+                    : t("steps.confirmed.waitingDescription")}
+                </p>
+                {bothConfirmed && user.final_match?.wechat_id && (
+                  <div className="bg-green-50 p-4 rounded-lg mb-4">
+                    <strong>{user.final_match.wechat_id}</strong>
+                  </div>
+                )}
+                <p className="text-sm text-gray-500">
+                  {bothConfirmed
+                    ? t("steps.confirmed.mutualFooter")
+                    : t("steps.confirmed.waitingFooter")}
+                </p>
+              </div>
+            </Card>
+
+            {/* Show partner profile if available */}
+            {user.final_match && (
+              <FinalMatchCard
+                finalMatch={user.final_match}
+                showActions={false}
+              />
+            )}
+          </div>
         );
+      }
 
       default:
         return null;
@@ -261,7 +292,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative flex flex-col">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
@@ -272,24 +303,28 @@ const Dashboard: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/95 to-background/98" />
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex-1">
         {/* Header */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
           <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">{t('dashboard.title')}</h1>
-              <p className="text-gray-600">{t('dashboard.welcome', { email: user?.email })}</p>
+              <h1 className="text-2xl font-bold text-gray-800">
+                {t("dashboard.title")}
+              </h1>
+              <p className="text-gray-600">
+                {t("dashboard.welcome", { email: user?.email })}
+              </p>
             </div>
             <div className="flex items-center gap-4">
-              <Button 
+              <Button
                 icon={<HomeOutlined />}
                 onClick={() => navigate("/")}
                 type="text"
               >
-                Home
+                {t("common.home")}
               </Button>
               <LanguageSwitcher />
-              <Button 
+              <Button
                 icon={<InfoCircleOutlined />}
                 onClick={() => {
                   setOnboardingStep(0);
@@ -297,15 +332,15 @@ const Dashboard: React.FC = () => {
                 }}
                 type="text"
               >
-                {t('dashboard.privacyHints')}
+                {t("dashboard.privacyHints")}
               </Button>
-              <Button 
+              <Button
                 icon={<LogoutOutlined />}
                 onClick={handleLogout}
                 type="text"
                 danger
               >
-                {t('dashboard.logout')}
+                {t("dashboard.logout")}
               </Button>
             </div>
           </div>
@@ -315,8 +350,8 @@ const Dashboard: React.FC = () => {
         <div className="max-w-4xl mx-auto p-6">
           {/* Progress Steps */}
           <Card className="mb-6">
-            <Steps 
-              current={getCurrentStep()} 
+            <Steps
+              current={getCurrentStep()}
               items={steps.map((step, index) => ({
                 ...step,
                 status: getStepStatus(index),
@@ -329,82 +364,88 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
+      <Footer />
+
       {/* Onboarding Modal */}
       <Modal
-        title={t('dashboard.onboarding.title')}
+        title={t("dashboard.onboarding.title")}
         open={showOnboarding}
         onCancel={() => setShowOnboarding(false)}
         centered
         footer={[
-          <Button 
-            key="back" 
-            onClick={handleOnboardingBack} 
+          <Button
+            key="back"
+            onClick={handleOnboardingBack}
             disabled={onboardingStep === 0}
           >
-            {t('dashboard.onboarding.before')}
+            {t("dashboard.onboarding.before")}
           </Button>,
-          <Button 
-            key="next" 
-            type="primary" 
-            onClick={handleOnboardingNext}
-          >
-            {onboardingStep < 2 ? t('dashboard.onboarding.next') : t('dashboard.onboarding.ok')}
-          </Button>
+          <Button key="next" type="primary" onClick={handleOnboardingNext}>
+            {onboardingStep < 2
+              ? t("dashboard.onboarding.next")
+              : t("dashboard.onboarding.ok")}
+          </Button>,
         ]}
       >
         {onboardingStep === 0 && (
           <div className="text-center py-4">
             <div className="text-6xl mb-4">🔒</div>
-            <h3 className="text-lg font-semibold mb-2">{t('dashboard.onboarding.dataProtection.title')}</h3>
-            <p>{t('dashboard.onboarding.dataProtection.description')}</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t("dashboard.onboarding.dataProtection.title")}
+            </h3>
+            <p>{t("dashboard.onboarding.dataProtection.description")}</p>
           </div>
         )}
         {onboardingStep === 1 && (
           <div className="text-center py-4">
             <div className="text-6xl mb-4">🤖</div>
-            <h3 className="text-lg font-semibold mb-2">{t('dashboard.onboarding.aiMatching.title')}</h3>
-            <p>{t('dashboard.onboarding.aiMatching.description')}</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t("dashboard.onboarding.systemPrivacy.title")}
+            </h3>
+            <p>{t("dashboard.onboarding.systemPrivacy.description")}</p>
           </div>
         )}
         {onboardingStep === 2 && (
           <div className="text-center py-4">
             <div className="text-6xl mb-4">💝</div>
-            <h3 className="text-lg font-semibold mb-2">{t('dashboard.onboarding.qualityConnections.title')}</h3>
-            <p>{t('dashboard.onboarding.qualityConnections.description')}</p>
+            <h3 className="text-lg font-semibold mb-2">
+              {t("dashboard.onboarding.qualityConnections.title")}
+            </h3>
+            <p>{t("dashboard.onboarding.qualityConnections.description")}</p>
           </div>
         )}
       </Modal>
 
       {/* Upload ID Card Modal */}
       <Modal
-        title={t('uploadModal.title')}
+        title={t("uploadModal.title")}
         open={uploadModalVisible}
         onCancel={() => setUploadModalVisible(false)}
         footer={null}
       >
-        <Form
-          form={form}
-          onFinish={handleUploadIdCard}
-          layout="vertical"
-        >
+        <Form form={form} onFinish={handleUploadIdCard} layout="vertical">
           <Form.Item
             name="grade"
-            label={t('uploadModal.gradeLabel')}
-            rules={[{ required: true, message: t('uploadModal.gradeRequired') }]}
+            label={t("uploadModal.gradeLabel")}
+            rules={[
+              { required: true, message: t("uploadModal.gradeRequired") },
+            ]}
           >
-            <Select placeholder={t('uploadModal.gradePlaceholder')}>
-              {getAllowedGrades().map(grade => (
+            <Select placeholder={t("uploadModal.gradePlaceholder")}>
+              {getAllowedGrades().map((grade) => (
                 <Option key={grade} value={grade}>
                   {grade.charAt(0).toUpperCase() + grade.slice(1)}
                 </Option>
               ))}
             </Select>
           </Form.Item>
-          
+
           <Form.Item
             name="upload"
-            label={t('uploadModal.idCardLabel')}
-            rules={[{ required: true, message: t('uploadModal.idCardRequired') }]}
+            label={t("uploadModal.idCardLabel")}
+            rules={[
+              { required: true, message: t("uploadModal.idCardRequired") },
+            ]}
             valuePropName="fileList"
             getValueFromEvent={(e) => {
               if (Array.isArray(e)) {
@@ -413,22 +454,20 @@ const Dashboard: React.FC = () => {
               return e?.fileList;
             }}
           >
-            <Upload
-              maxCount={1}
-              beforeUpload={() => false}
-              accept="image/*"
-            >
-              <Button icon={<UploadOutlined />}>{t('uploadModal.selectImage')}</Button>
+            <Upload maxCount={1} beforeUpload={() => false} accept="image/*">
+              <Button icon={<UploadOutlined />}>
+                {t("uploadModal.selectImage")}
+              </Button>
             </Upload>
           </Form.Item>
 
           <Form.Item>
             <div className="flex justify-end gap-2">
               <Button onClick={() => setUploadModalVisible(false)}>
-                {t('uploadModal.cancel')}
+                {t("uploadModal.cancel")}
               </Button>
               <Button type="primary" htmlType="submit">
-                {t('uploadModal.upload')}
+                {t("uploadModal.upload")}
               </Button>
             </div>
           </Form.Item>

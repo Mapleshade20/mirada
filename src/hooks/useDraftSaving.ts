@@ -1,20 +1,23 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 export const useDraftSaving = (key: string) => {
-  const saveDraft = useCallback((data: unknown) => {
-    try {
-      localStorage.setItem(`draft_${key}`, JSON.stringify(data));
-    } catch (error) {
-      console.warn('Failed to save draft to localStorage:', error);
-    }
-  }, [key]);
+  const saveDraft = useCallback(
+    (data: unknown) => {
+      try {
+        localStorage.setItem(`draft_${key}`, JSON.stringify(data));
+      } catch (error) {
+        console.warn("Failed to save draft to localStorage:", error);
+      }
+    },
+    [key],
+  );
 
   const loadDraft = useCallback(() => {
     try {
       const draft = localStorage.getItem(`draft_${key}`);
       return draft ? JSON.parse(draft) : null;
     } catch (error) {
-      console.warn('Failed to load draft from localStorage:', error);
+      console.warn("Failed to load draft from localStorage:", error);
       return null;
     }
   }, [key]);
@@ -23,7 +26,7 @@ export const useDraftSaving = (key: string) => {
     try {
       localStorage.removeItem(`draft_${key}`);
     } catch (error) {
-      console.warn('Failed to clear draft from localStorage:', error);
+      console.warn("Failed to clear draft from localStorage:", error);
     }
   }, [key]);
 
