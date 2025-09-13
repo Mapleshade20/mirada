@@ -1,23 +1,25 @@
-import React, { useEffect } from 'react';
-import AuthForm from '../components/AuthForm';
-import heroBackground from '../assets/hero-background.jpg';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../store/authStore";
+import AuthForm from "../components/AuthForm";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import heroBackground from "../assets/hero-background.jpg";
 
 const Login: React.FC = () => {
-  useEffect(() => {
-    // Set page title
-    document.title = 'Hilo - Social Pairing';
-  }, []);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { isAuthenticated } = useAuthStore();
 
-  const handleAuth = async (email: string, code?: string) => {
-    // Mock API calls for now
-    if (code) {
-      console.log('Verifying code:', { email, code });
-      // TODO: Call actual API endpoint /api/auth/verify-code
-    } else {
-      console.log('Sending code to:', email);
-      // TODO: Call actual API endpoint /api/auth/send-code
+  useEffect(() => {
+    document.title = t('app.title');
+    
+    // Redirect authenticated users to dashboard
+    if (isAuthenticated) {
+      navigate("/dashboard");
     }
-  };
+  }, [isAuthenticated, navigate, t]);
+
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
@@ -33,12 +35,16 @@ const Login: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md">
-        <AuthForm onSubmit={handleAuth} />
-        
+        {/* Language Switcher */}
+        <div className="absolute -top-16 right-0">
+          <LanguageSwitcher />
+        </div>
+        <AuthForm />
+
         {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            Premium social pairing for university students
+            {t('app.tagline')}
           </p>
         </div>
       </div>

@@ -1,0 +1,214 @@
+{
+  "app": {
+    "title": "Encontrar - Social Pairing",
+    "name": "Encontrar",
+    "tagline": "Premium social pairing for university students"
+  },
+  "hero": {
+    "title": "Find Your Perfect University Match",
+    "subtitle": "Premium social pairing designed exclusively for university students. Connect through intelligent matching and meaningful conversations.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "copyright": "© 2025 Encontrar. Experimental social pairing for the next generation."
+  },
+  "features": {
+    "intelligentMatching": {
+      "title": "Intelligent Matching",
+      "description": "Our advanced algorithm considers your interests, personality, and preferences to find your ideal match."
+    },
+    "universityNetwork": {
+      "title": "University Network",
+      "description": "Connect exclusively with verified university students in your area for authentic relationships."
+    },
+    "premiumExperience": {
+      "title": "Premium Experience",
+      "description": "Enjoy a curated, high-quality experience with meaningful connections and no endless swiping."
+    }
+  },
+  "auth": {
+    "welcomeTitle": "Welcome to Encontrar",
+    "signInPrompt": "Sign in to continue",
+    "codePrompt": "Enter the verification code",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your.email@university.edu",
+    "codeLabel": "Verification Code",
+    "codePlaceholder": "Enter 6-digit code",
+    "codeSentTo": "Code sent to {{email}}",
+    "sendCode": "Send Verification Code",
+    "verifyCode": "Verify Code",
+    "resendIn": "Resend code in {{seconds}}s",
+    "sendNewCode": "Send new code",
+    "validEmailError": "Please enter a valid university email address",
+    "codeSentSuccess": "Verification code sent to your email",
+    "sendCodeError": "Failed to send verification code",
+    "loginSuccess": "Login successful",
+    "invalidCodeError": "Invalid verification code"
+  },
+  "dashboard": {
+    "title": "Encontrar Dashboard",
+    "welcome": "Welcome back, {{email}}",
+    "privacyHints": "Privacy Hints",
+    "logout": "Logout",
+    "onboarding": {
+      "title": "Privacy Hints",
+      "before": "Before",
+      "next": "Next",
+      "ok": "OK",
+      "dataProtection": {
+        "title": "Data Protection",
+        "description": "We take your privacy seriously and protect all your personal information with enterprise-grade security."
+      },
+      "aiMatching": {
+        "title": "AI Matching",
+        "description": "Our advanced algorithm analyzes your preferences and personality to find the most compatible matches."
+      },
+      "qualityConnections": {
+        "title": "Quality Connections",
+        "description": "We focus on meaningful relationships with verified university students in your area."
+      }
+    }
+  },
+  "steps": {
+    "idVerification": {
+      "title": "ID Verification",
+      "description": "Upload your student ID card",
+      "uploadTitle": "Upload Student ID Card",
+      "uploadDescription": "Please upload your student ID card for verification",
+      "uploadButton": "Upload ID Card"
+    },
+    "verificationPending": {
+      "title": "Verification Pending",
+      "description": "Your ID card is being reviewed by our team. This usually takes 24-48 hours."
+    },
+    "profileForm": {
+      "title": "Profile Form",
+      "description": "Complete your profile information",
+      "completeTitle": "Complete Your Profile",
+      "completeDescription": "Fill out your profile to help us find your perfect match",
+      "completeButton": "Complete Profile"
+    },
+    "previewMatches": {
+      "title": "Preview Matches",
+      "description": "Review potential matches",
+      "reviewTitle": "Review Match Previews",
+      "reviewDescription": "Check out potential matches and use the veto system",
+      "viewButton": "View Previews"
+    },
+    "finalMatch": {
+      "title": "Final Match",
+      "description": "Your perfect match awaits",
+      "matchTitle": "You Have a Match!",
+      "matchDescription": "We found your perfect match. Review their profile and decide.",
+      "viewMatchButton": "View Match"
+    },
+    "confirmed": {
+      "title": "Match Confirmed!",
+      "description": "Both of you accepted the match. Here's their WeChat ID:",
+      "wechatId": "WeChat ID: {{wechatId}}",
+      "startConversation": "Start your conversation and enjoy getting to know each other!"
+    }
+  },
+  "uploadModal": {
+    "title": "Upload Student ID Card",
+    "gradeLabel": "Grade Level",
+    "gradePlaceholder": "Select your grade level",
+    "gradeRequired": "Please select your grade level",
+    "idCardLabel": "Student ID Card",
+    "idCardRequired": "Please upload your ID card",
+    "selectImage": "Select Image",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "uploadSuccess": "ID card uploaded successfully",
+    "uploadError": "Failed to upload ID card",
+    "selectFileError": "Please select a file"
+  },
+  "profileForm": {
+    "title": "Complete Your Profile",
+    "subtitle": "Tell us about yourself to find your perfect match",
+    "sections": {
+      "personalInfo": "Personal Information",
+      "interests": "Interests",
+      "personality": "Personality"
+    },
+    "fields": {
+      "wechatId": {
+        "label": "WeChat ID",
+        "placeholder": "Your WeChat ID",
+        "required": "Please enter your WeChat ID"
+      },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select your gender",
+        "required": "Please select your gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "selfIntro": {
+        "label": "Self Introduction",
+        "placeholder": "Tell us about yourself...",
+        "required": "Please introduce yourself"
+      },
+      "familiarTags": {
+        "label": "Things you're familiar with",
+        "placeholder": "Select familiar interests...",
+        "required": "Please select familiar interests"
+      },
+      "aspirationalTags": {
+        "label": "Things you want to learn",
+        "placeholder": "Select aspirational interests...",
+        "required": "Please select aspirational interests"
+      },
+      "selfTraits": {
+        "label": "Your traits",
+        "placeholder": "Select your traits...",
+        "required": "Please select your traits"
+      },
+      "idealTraits": {
+        "label": "Ideal partner traits",
+        "placeholder": "Select ideal traits...",
+        "required": "Please select ideal traits"
+      },
+      "physicalBoundary": {
+        "label": "Physical Boundary (1-4 scale)",
+        "conservative": "Conservative",
+        "open": "Open"
+      },
+      "recentTopics": {
+        "label": "Recent Conversation Topics",
+        "placeholder": "What have you been talking about lately?",
+        "required": "Please describe recent topics"
+      },
+      "profilePhoto": {
+        "label": "Profile Photo (Optional)",
+        "upload": "Upload Photo",
+        "change": "Change Photo",
+        "success": "✓ Photo uploaded successfully"
+      }
+    },
+    "validation": {
+      "totalTagsLimit": "Total tags cannot exceed {{limit}}",
+      "traitsLimit": "Cannot select more than {{limit}} traits",
+      "selfTraitsLimit": "Self traits cannot exceed {{limit}}",
+      "idealTraitsLimit": "Ideal traits cannot exceed {{limit}}"
+    },
+    "submitButton": "Submit Profile",
+    "submitSuccess": "Profile submitted successfully!",
+    "submitError": "Failed to submit form",
+    "photoUploadSuccess": "Photo uploaded successfully",
+    "photoUploadError": "Failed to upload photo"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit"
+  }
+}

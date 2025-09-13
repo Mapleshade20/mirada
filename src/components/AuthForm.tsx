@@ -1,30 +1,40 @@
-import React, { useState } from 'react';
-import { GlassCard } from './ui/glass-card';
-import { Button } from './ui/glass-button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Mail, KeyRound, Loader2 } from 'lucide-react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { GlassCard } from "./ui/glass-card";
+import { Button } from "./ui/glass-button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Mail, KeyRound, Loader2 } from "lucide-react";
+import { useAuthStore } from "../store/authStore";
+import { toast } from "sonner";
+import { validateEmail, getEmailRateLimit } from "../utils/validation";
 
-interface AuthFormProps {
-  onSubmit: (email: string, code?: string) => Promise<void>;
-}
-
-const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
+const AuthForm: React.FC = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { login, sendVerificationCode, isLoading, error, clearError } = useAuthStore();
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [isCodeSent, setIsCodeSent] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [timer, setTimer] = useState(0);
 
   const handleSendCode = async () => {
     if (!email) return;
-    
-    setIsLoading(true);
+
+    // Validate email before sending
+    if (!validateEmail(email)) {
+      toast.error(t('auth.validEmailError'));
+      return;
+    }
+
+    clearError();
     try {
-      await onSubmit(email);
+      await sendVerificationCode(email);
       setIsCodeSent(true);
-      setTimer(60);
-      
+      setTimer(getEmailRateLimit());
+      toast.success(t('auth.codeSentSuccess'));
+
       // Start countdown timer
       const interval = setInterval(() => {
         setTimer((prev) => {
@@ -36,22 +46,20 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
         });
       }, 1000);
     } catch (error) {
-      console.error('Failed to send code:', error);
-    } finally {
-      setIsLoading(false);
+      toast.error(t('auth.sendCodeError'));
     }
   };
 
   const handleVerifyCode = async () => {
     if (!code || code.length !== 6) return;
-    
-    setIsLoading(true);
+
+    clearError();
     try {
-      await onSubmit(email, code);
+      await login(email, code);
+      toast.success(t('auth.loginSuccess'));
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Failed to verify code:', error);
-    } finally {
-      setIsLoading(false);
+      toast.error(t('auth.invalidCodeError'));
     }
   };
 
@@ -59,10 +67,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
     <GlassCard className="w-full max-w-md mx-auto">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold gradient-text mb-2">
-          Welcome to Hilo
+          {t('auth.welcomeTitle')}
         </h1>
         <p className="text-muted-foreground">
-          {isCodeSent ? 'Enter the verification code' : 'Sign in to continue'}
+          {isCodeSent ? t('auth.codePrompt') : t('auth.signInPrompt')}
         </p>
       </div>
 
@@ -70,16 +78,21 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
         {/* Email Input */}
         <div className="space-y-2">
           <Label htmlFor="email" className="text-foreground font-medium">
-            Email Address
+            {t('auth.emailLabel')}
           </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
             <Input
               id="email"
               type="email"
-              placeholder="your.email@university.edu"
+              placeholder={t('auth.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !isCodeSent && validateEmail(email) && !isLoading) {
+                  handleSendCode();
+                }
+              }}
               disabled={isCodeSent}
               className="pl-10 bg-muted/50 border-border/50 focus:border-primary focus:ring-primary/20"
             />
@@ -90,22 +103,27 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
         {isCodeSent && (
           <div className="space-y-2">
             <Label htmlFor="code" className="text-foreground font-medium">
-              Verification Code
+              {t('auth.codeLabel')}
             </Label>
             <div className="relative">
               <KeyRound className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="code"
                 type="text"
-                placeholder="Enter 6-digit code"
+                placeholder={t('auth.codePlaceholder')}
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && code.length === 6 && !isLoading) {
+                    handleVerifyCode();
+                  }
+                }}
                 maxLength={6}
                 className="pl-10 bg-muted/50 border-border/50 focus:border-primary focus:ring-primary/20 text-center text-lg tracking-widest"
               />
             </div>
             <p className="text-sm text-muted-foreground text-center">
-              Code sent to {email}
+              {t('auth.codeSentTo', { email })}
             </p>
           </div>
         )}
@@ -113,13 +131,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
         {/* Action Button */}
         <Button
           onClick={isCodeSent ? handleVerifyCode : handleSendCode}
-          disabled={isLoading || (!email || (isCodeSent && code.length !== 6))}
+          disabled={isLoading || !email || (isCodeSent && code.length !== 6) || (!isCodeSent && !validateEmail(email))}
           variant="gradient"
           size="lg"
           className="w-full"
         >
           {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-          {isCodeSent ? 'Verify Code' : 'Send Verification Code'}
+          {isCodeSent ? t('auth.verifyCode') : t('auth.sendCode')}
         </Button>
 
         {/* Timer & Resend */}
@@ -127,18 +145,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
           <div className="text-center">
             {timer > 0 ? (
               <p className="text-sm text-muted-foreground">
-                Resend code in {timer}s
+                {t('auth.resendIn', { seconds: timer })}
               </p>
             ) : (
               <Button
                 variant="ghost"
                 onClick={() => {
                   setIsCodeSent(false);
-                  setCode('');
+                  setCode("");
                 }}
                 className="text-primary hover:text-primary-glow"
               >
-                Send new code
+                {t('auth.sendNewCode')}
               </Button>
             )}
           </div>

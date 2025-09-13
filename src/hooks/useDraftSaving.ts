@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 export const useDraftSaving = (key: string) => {
-  const saveDraft = useCallback((data: any) => {
+  const saveDraft = useCallback((data: unknown) => {
     try {
       localStorage.setItem(`draft_${key}`, JSON.stringify(data));
     } catch (error) {

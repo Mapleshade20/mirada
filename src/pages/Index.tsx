@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GlassCard } from '../components/ui/glass-card';
-import { Button } from '../components/ui/glass-button';
-import { Heart, Users, Sparkles, ArrowRight } from 'lucide-react';
-import heroBackground from '../assets/hero-background.jpg';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { GlassCard } from "../components/ui/glass-card";
+import { Button } from "../components/ui/glass-button";
+import { Heart, Users, Sparkles, ArrowRight } from "lucide-react";
+import { useAuthStore } from "../store/authStore";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import heroBackground from "../assets/hero-background.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    document.title = 'Hilo - Social Pairing';
-  }, []);
+    document.title = t('app.title');
+    
+    // Redirect authenticated users to dashboard
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate, t]);
 
   const handleGetStarted = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -30,18 +40,19 @@ const Index = () => {
 
       {/* Content */}
       <div className="relative z-10">
+        {/* Language Switcher */}
+        <div className="absolute top-4 right-4 z-20">
+          <LanguageSwitcher />
+        </div>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center p-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-12">
               <h1 className="text-6xl md:text-7xl font-bold gradient-text mb-6 leading-tight">
-                Find Your Perfect
-                <br />
-                University Match
+                {t('hero.title')}
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Premium social pairing designed exclusively for university students. 
-                Connect through intelligent matching and meaningful conversations.
+                {t('hero.subtitle')}
               </p>
             </div>
 
@@ -52,15 +63,15 @@ const Index = () => {
                 size="lg"
                 className="text-lg px-12 py-4 h-auto"
               >
-                Get Started
+                {t('hero.getStarted')}
                 <ArrowRight className="h-5 w-5" />
               </Button>
               <Button
                 variant="glass"
-                size="lg"  
+                size="lg"
                 className="text-lg px-12 py-4 h-auto"
               >
-                Learn More
+                {t('hero.learnMore')}
               </Button>
             </div>
 
@@ -71,10 +82,10 @@ const Index = () => {
                   <Heart className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Intelligent Matching
+                  {t('features.intelligentMatching.title')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Our advanced algorithm considers your interests, personality, and preferences to find your ideal match.
+                  {t('features.intelligentMatching.description')}
                 </p>
               </GlassCard>
 
@@ -83,10 +94,10 @@ const Index = () => {
                   <Users className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  University Network
+                  {t('features.universityNetwork.title')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Connect exclusively with verified university students in your area for authentic relationships.
+                  {t('features.universityNetwork.description')}
                 </p>
               </GlassCard>
 
@@ -95,10 +106,10 @@ const Index = () => {
                   <Sparkles className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Premium Experience
+                  {t('features.premiumExperience.title')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Enjoy a curated, high-quality experience with meaningful connections and no endless swiping.
+                  {t('features.premiumExperience.description')}
                 </p>
               </GlassCard>
             </div>
@@ -108,7 +119,7 @@ const Index = () => {
         {/* Footer */}
         <footer className="py-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 Hilo. Premium social pairing for the next generation.
+            {t('hero.copyright')}
           </p>
         </footer>
       </div>

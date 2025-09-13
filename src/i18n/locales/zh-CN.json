@@ -1,0 +1,214 @@
+{
+  "app": {
+    "title": "遇见 - 社交配对",
+    "name": "遇见",
+    "tagline": "为大学生量身定制的高端社交配对"
+  },
+  "hero": {
+    "title": "寻找你的完美大学匹配",
+    "subtitle": "专为大学生设计的高端社交配对。通过智能匹配和有意义的对话建立联系。",
+    "getStarted": "开始使用",
+    "learnMore": "了解更多",
+    "copyright": "© 2025 遇见. 为下一代打造的实验性社交配对"
+  },
+  "features": {
+    "intelligentMatching": {
+      "title": "智能匹配",
+      "description": "我们的先进算法会考虑您的兴趣、性格和偏好，为您找到理想的匹配。"
+    },
+    "universityNetwork": {
+      "title": "大学网络",
+      "description": "专门与您所在地区经过验证的大学生建立联系，享受真实的关系。"
+    },
+    "premiumExperience": {
+      "title": "优质体验",
+      "description": "享受精心策划的高质量体验，建立有意义的联系，无需无休止的滑动。"
+    }
+  },
+  "auth": {
+    "welcomeTitle": "欢迎来到遇见",
+    "signInPrompt": "登录以继续",
+    "codePrompt": "输入验证码",
+    "emailLabel": "邮箱地址",
+    "emailPlaceholder": "your.email@university.edu",
+    "codeLabel": "验证码",
+    "codePlaceholder": "输入6位验证码",
+    "codeSentTo": "验证码已发送至 {{email}}",
+    "sendCode": "发送验证码",
+    "verifyCode": "验证验证码",
+    "resendIn": "{{seconds}}秒后重发",
+    "sendNewCode": "发送新验证码",
+    "validEmailError": "请输入有效的大学邮箱地址",
+    "codeSentSuccess": "验证码已发送至您的邮箱",
+    "sendCodeError": "发送验证码失败",
+    "loginSuccess": "登录成功",
+    "invalidCodeError": "验证码无效"
+  },
+  "dashboard": {
+    "title": "遇见仪表板",
+    "welcome": "欢迎回来，{{email}}",
+    "privacyHints": "隐私提示",
+    "logout": "退出登录",
+    "onboarding": {
+      "title": "隐私提示",
+      "before": "上一步",
+      "next": "下一步",
+      "ok": "确定",
+      "dataProtection": {
+        "title": "数据保护",
+        "description": "我们非常重视您的隐私，并使用企业级安全保护您的所有个人信息。"
+      },
+      "aiMatching": {
+        "title": "AI匹配",
+        "description": "我们的先进算法分析您的偏好和性格，为您找到最兼容的匹配。"
+      },
+      "qualityConnections": {
+        "title": "优质连接",
+        "description": "我们专注于与您所在地区经过验证的大学生建立有意义的关系。"
+      }
+    }
+  },
+  "steps": {
+    "idVerification": {
+      "title": "身份验证",
+      "description": "上传您的学生证",
+      "uploadTitle": "上传学生证",
+      "uploadDescription": "请上传您的学生证进行验证",
+      "uploadButton": "上传学生证"
+    },
+    "verificationPending": {
+      "title": "验证审核中",
+      "description": "您的证件正在审核中。通常需要12-24小时。"
+    },
+    "profileForm": {
+      "title": "资料表单",
+      "description": "完成您的个人资料信息",
+      "completeTitle": "完善您的资料",
+      "completeDescription": "填写您的个人资料，帮助我们为您找到完美匹配",
+      "completeButton": "完善资料"
+    },
+    "previewMatches": {
+      "title": "预览匹配",
+      "description": "查看潜在匹配",
+      "reviewTitle": "查看匹配预览",
+      "reviewDescription": "查看潜在匹配并使用否决系统",
+      "viewButton": "查看预览"
+    },
+    "finalMatch": {
+      "title": "最终匹配",
+      "description": "您的完美匹配在等待",
+      "matchTitle": "您有一个匹配！",
+      "matchDescription": "我们为您找到了完美匹配。查看他们的资料并做出决定。",
+      "viewMatchButton": "查看匹配"
+    },
+    "confirmed": {
+      "title": "匹配确认！",
+      "description": "你们双方都接受了匹配。这是他们的微信号：",
+      "wechatId": "微信号: {{wechatId}}",
+      "startConversation": "开始对话，享受彼此认识的过程！"
+    }
+  },
+  "uploadModal": {
+    "title": "上传学生证",
+    "gradeLabel": "年级水平",
+    "gradePlaceholder": "选择您的年级水平",
+    "gradeRequired": "请选择您的年级水平",
+    "idCardLabel": "学生证",
+    "idCardRequired": "请上传您的学生证",
+    "selectImage": "选择图像",
+    "cancel": "取消",
+    "upload": "上传",
+    "uploadSuccess": "学生证上传成功",
+    "uploadError": "上传学生证失败",
+    "selectFileError": "请选择文件"
+  },
+  "profileForm": {
+    "title": "完善您的资料",
+    "subtitle": "告诉我们关于您自己的信息，以找到您的完美匹配",
+    "sections": {
+      "personalInfo": "个人信息",
+      "interests": "兴趣爱好",
+      "personality": "性格特质"
+    },
+    "fields": {
+      "wechatId": {
+        "label": "微信号",
+        "placeholder": "您的微信号",
+        "required": "请输入您的微信号"
+      },
+      "gender": {
+        "label": "性别",
+        "placeholder": "选择您的性别",
+        "required": "请选择您的性别",
+        "male": "男",
+        "female": "女"
+      },
+      "selfIntro": {
+        "label": "自我介绍",
+        "placeholder": "告诉我们关于您自己的情况...",
+        "required": "请介绍一下您自己"
+      },
+      "familiarTags": {
+        "label": "您熟悉的事物",
+        "placeholder": "选择熟悉的兴趣...",
+        "required": "请选择熟悉的兴趣"
+      },
+      "aspirationalTags": {
+        "label": "您想学习的事物",
+        "placeholder": "选择想学习的兴趣...",
+        "required": "请选择想学习的兴趣"
+      },
+      "selfTraits": {
+        "label": "您的特质",
+        "placeholder": "选择您的特质...",
+        "required": "请选择您的特质"
+      },
+      "idealTraits": {
+        "label": "理想伴侣特质",
+        "placeholder": "选择理想特质...",
+        "required": "请选择理想特质"
+      },
+      "physicalBoundary": {
+        "label": "身体界限 (1-4级别)",
+        "conservative": "保守",
+        "open": "开放"
+      },
+      "recentTopics": {
+        "label": "最近的对话话题",
+        "placeholder": "您最近在聊什么？",
+        "required": "请描述最近的话题"
+      },
+      "profilePhoto": {
+        "label": "个人生活照片",
+        "upload": "上传照片",
+        "change": "更换照片",
+        "success": "✓ 照片上传成功"
+      }
+    },
+    "validation": {
+      "totalTagsLimit": "总标签数不能超过 {{limit}}",
+      "traitsLimit": "不能选择超过 {{limit}} 个特质",
+      "selfTraitsLimit": "自我特质不能超过 {{limit}}",
+      "idealTraitsLimit": "理想特质不能超过 {{limit}}"
+    },
+    "submitButton": "提交资料",
+    "submitSuccess": "资料提交成功！",
+    "submitError": "提交表单失败",
+    "photoUploadSuccess": "照片上传成功",
+    "photoUploadError": "上传照片失败"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "submit": "提交"
+  }
+}

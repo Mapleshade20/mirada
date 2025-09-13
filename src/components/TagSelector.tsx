@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Badge } from './ui/badge';
-import { Button } from './ui/glass-button';
-import { Input } from './ui/input';
-import { X, Plus, Search } from 'lucide-react';
-import { GlassCard } from './ui/glass-card';
+import React, { useState } from "react";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/glass-button";
+import { Input } from "./ui/input";
+import { X, Plus, Search } from "lucide-react";
+import { GlassCard } from "./ui/glass-card";
 
 interface TagSelectorProps {
   selectedTags: string[];
@@ -12,30 +12,27 @@ interface TagSelectorProps {
 }
 
 const predefinedTags = [
-  // Sports & Fitness
-  'Basketball', 'Football', 'Tennis', 'Swimming', 'Yoga', 'Gym',
-  // Arts & Creative
-  'Photography', 'Music', 'Painting', 'Dancing', 'Writing', 'Theater',
-  // Academic
-  'Computer Science', 'Mathematics', 'Literature', 'History', 'Science', 'Philosophy',
-  // Hobbies
-  'Gaming', 'Cooking', 'Travel', 'Reading', 'Movies', 'Fashion',
-  // Social
-  'Volunteering', 'Debate', 'Public Speaking', 'Networking', 'Leadership',
+  // TODO: Change to what's in tags.json
+  "Volunteering",
+  "Debate",
+  "Public Speaking",
+  "Networking",
+  "Leadership",
 ];
 
 export const TagSelector: React.FC<TagSelectorProps> = ({
   selectedTags,
   onTagsChange,
-  placeholder = "Select tags..."
+  placeholder = "Select tags...",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [customTag, setCustomTag] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [customTag, setCustomTag] = useState("");
 
-  const filteredTags = predefinedTags.filter(tag =>
-    tag.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    !selectedTags.includes(tag)
+  const filteredTags = predefinedTags.filter(
+    (tag) =>
+      tag.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      !selectedTags.includes(tag),
   );
 
   const addTag = (tag: string) => {
@@ -45,27 +42,27 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
   };
 
   const removeTag = (tagToRemove: string) => {
-    onTagsChange(selectedTags.filter(tag => tag !== tagToRemove));
+    onTagsChange(selectedTags.filter((tag) => tag !== tagToRemove));
   };
 
   const addCustomTag = () => {
     if (customTag.trim() && !selectedTags.includes(customTag.trim())) {
       addTag(customTag.trim());
-      setCustomTag('');
+      setCustomTag("");
     }
   };
 
   return (
     <div className="relative">
       {/* Selected Tags Display */}
-      <div 
+      <div
         className="min-h-[40px] p-3 bg-muted/50 border border-border/50 rounded-md cursor-pointer flex flex-wrap gap-2 items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedTags.length === 0 ? (
           <span className="text-muted-foreground">{placeholder}</span>
         ) : (
-          selectedTags.map(tag => (
+          selectedTags.map((tag) => (
             <Badge
               key={tag}
               variant="secondary"
@@ -106,7 +103,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
               placeholder="Add custom tag..."
               value={customTag}
               onChange={(e) => setCustomTag(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && addCustomTag()}
+              onKeyPress={(e) => e.key === "Enter" && addCustomTag()}
               className="bg-muted/50 border-border/50 flex-1"
             />
             <Button
@@ -122,7 +119,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           {/* Predefined Tags */}
           <div className="max-h-48 overflow-y-auto">
             <div className="flex flex-wrap gap-2">
-              {filteredTags.map(tag => (
+              {filteredTags.map((tag) => (
                 <Badge
                   key={tag}
                   variant="outline"
@@ -138,11 +135,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
 
           {/* Close Button */}
           <div className="mt-3 text-center">
-            <Button
-              onClick={() => setIsOpen(false)}
-              variant="ghost"
-              size="sm"
-            >
+            <Button onClick={() => setIsOpen(false)} variant="ghost" size="sm">
               Close
             </Button>
           </div>
