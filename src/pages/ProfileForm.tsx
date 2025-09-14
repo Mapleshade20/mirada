@@ -33,6 +33,7 @@ import { useDraftSaving } from "../hooks/useDraftSaving";
 import { useImageCompression } from "../hooks/useImageCompression";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
+import { useTagTranslation, useTraitTranslation } from "../utils/i18n-helpers";
 import { getTagsLimit, getTraitsLimit } from "../utils/validation";
 
 interface FormData {
@@ -59,10 +60,14 @@ interface Tag {
 }
 
 // Helper function to convert tag data to TreeSelect format
-const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
+const convertTagsToTreeData = (
+  tags: Tag[],
+  excludedTags: string[] = [],
+  getTagName: (tagId: string) => string,
+) => {
   return tags.map((category) => {
     const children = category.children
-      ? convertTagsToTreeData(category.children, excludedTags)
+      ? convertTagsToTreeData(category.children, excludedTags, getTagName)
       : undefined;
 
     // Check if all children are disabled when this node has children
@@ -72,7 +77,7 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
         : false;
 
     return {
-      title: category.name,
+      title: getTagName(category.id),
       value: category.id,
       key: category.id,
       // Disable if:
@@ -88,33 +93,14 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
   });
 };
 
-// Helper function to get tag name by ID
-const getTagNameById = (tagId: string): string => {
-  const findTag = (tags: Tag[]): string | null => {
-    for (const tag of tags) {
-      if (tag.id === tagId) {
-        return tag.name;
-      }
-      if (tag.children) {
-        const found = findTag(tag.children);
-        if (found) return found;
-      }
-    }
-    return null;
-  };
-  return findTag(tagData) || tagId;
-};
-
-// Helper function to get trait name by ID
-const getTraitNameById = (traitId: string): string => {
-  const trait = traitData.find((t) => t.id === traitId);
-  return trait ? trait.name : traitId;
-};
+// These helper functions are now replaced by translation hooks in the component
 
 const ProfileForm: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { updateUserProfile } = useAuthStore();
+  const { getTagName } = useTagTranslation();
+  const { getTraitName } = useTraitTranslation();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedPhoto, setUploadedPhoto] = useState<string | null>(null);
@@ -165,11 +151,19 @@ const ProfileForm: React.FC = () => {
   }, [form, loadDraft]);
 
   // Convert tag and trait data for Ant Design components
-  const familiarTagTreeData = convertTagsToTreeData(tagData, aspirationalTags);
-  const aspirationalTagTreeData = convertTagsToTreeData(tagData, familiarTags);
+  const familiarTagTreeData = convertTagsToTreeData(
+    tagData,
+    aspirationalTags,
+    getTagName,
+  );
+  const aspirationalTagTreeData = convertTagsToTreeData(
+    tagData,
+    familiarTags,
+    getTagName,
+  );
 
   const traitOptions = traitData.map((trait) => ({
-    label: trait.name,
+    label: getTraitName(trait.id),
     value: trait.id,
   }));
 
@@ -245,7 +239,7 @@ const ProfileForm: React.FC = () => {
 
   // Save draft whenever form values change
   const handleValuesChange = (
-    _changedValues: Partial<FormData>,
+    changedValues: Partial<FormData>,
     allValues: FormData,
   ) => {
     saveDraft(allValues);
@@ -259,6 +253,14 @@ const ProfileForm: React.FC = () => {
     }
     if (newAspirationalTags !== aspirationalTags) {
       setAspirationalTags(newAspirationalTags);
+    }
+
+    // If either tag field changed, manually validate both to refresh validation state
+    if (changedValues.familiar_tags !== undefined || changedValues.aspirational_tags !== undefined) {
+      // Use setTimeout to ensure the form values are updated before validation
+      setTimeout(() => {
+        form.validateFields(['familiar_tags', 'aspirational_tags']);
+      }, 0);
     }
 
     // Validate tag limits
@@ -739,7 +741,7 @@ const ProfileForm: React.FC = () => {
                           key={tagId}
                           className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
                         >
-                          {getTagNameById(tagId)}
+                          {getTagName(tagId)}
                         </span>
                       ))}
                     </div>
@@ -754,7 +756,7 @@ const ProfileForm: React.FC = () => {
                           key={tagId}
                           className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
                         >
-                          {getTagNameById(tagId)}
+                          {getTagName(tagId)}
                         </span>
                       ))}
                     </div>
@@ -779,7 +781,7 @@ const ProfileForm: React.FC = () => {
                           key={traitId}
                           className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
                         >
-                          {getTraitNameById(traitId)}
+                          {getTraitName(traitId)}
                         </span>
                       ))}
                     </div>
@@ -794,7 +796,7 @@ const ProfileForm: React.FC = () => {
                           key={traitId}
                           className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm"
                         >
-                          {getTraitNameById(traitId)}
+                          {getTraitName(traitId)}
                         </span>
                       ))}
                     </div>

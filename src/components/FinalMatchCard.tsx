@@ -8,9 +8,9 @@ import { Button, Card, Modal, message, Tag } from "antd";
 import type React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { tagData } from "../data/tags";
 import type { UserProfile } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
+import { useTagTranslation } from "../utils/i18n-helpers";
 import { translateGrade } from "../utils/validation";
 import AuthenticatedImage from "./AuthenticatedImage";
 
@@ -29,22 +29,7 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
   const { acceptMatch, rejectMatch } = useAuthStore();
   const [isAccepting, setIsAccepting] = useState(false);
   const [isRejecting, setIsRejecting] = useState(false);
-
-  const getTagName = (tagId: string): string => {
-    const searchTag = (tags: typeof tagData): string | null => {
-      for (const tag of tags) {
-        if (tag.id === tagId) return tag.name;
-        if (tag.children) {
-          const found = searchTag(tag.children);
-          if (found) return found;
-        }
-      }
-      return null;
-    };
-
-    const found = searchTag(tagData);
-    return found || tagId;
-  };
+  const { getTagName } = useTagTranslation();
 
   const handleAccept = () => {
     Modal.confirm({

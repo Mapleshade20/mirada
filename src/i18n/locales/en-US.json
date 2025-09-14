@@ -243,7 +243,7 @@
     "refresh": "Refresh",
     "loading": "Loading match previews...",
     "infoTitle": "Tips",
-    "infoDescription": "These are some potential matches calculated based on your profile. You can use veto cards on candidates you're completely not interested in; vetoed users will not appear in your final match. Excessive vetoes may result in you being unmatched, so please use them wisely.",
+    "infoDescription": "These are some potential matches calculated based on your profile. You can use veto cards on candidates you're completely not interested in; vetoed users will not appear in your final match. Excessive vetoes may result in you being unmatched, so please use them wisely. Previews refresh every {{interval}} minutes.",
     "potentialMatches": "Potential Matches",
     "vetoedMatches": "Vetoed Matches",
     "noMatches": "No match previews available at this time",

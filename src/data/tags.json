@@ -1,0 +1,354 @@
+{
+  "sports": {
+    "name": {
+      "en": "Sports",
+      "zh": "运动"
+    }
+  },
+  "volleyball": {
+    "name": {
+      "en": "Volleyball🏐",
+      "zh": "排球🏐"
+    }
+  },
+  "basketball": {
+    "name": {
+      "en": "Basketball🏀",
+      "zh": "篮球🏀"
+    }
+  },
+  "soccer": {
+    "name": {
+      "en": "Soccer⚽",
+      "zh": "足球⚽"
+    }
+  },
+  "badminton": {
+    "name": {
+      "en": "Badminton🏸",
+      "zh": "羽毛球🏸"
+    }
+  },
+  "table_tennis": {
+    "name": {
+      "en": "Table Tennis🏓",
+      "zh": "乒乓球🏓"
+    }
+  },
+  "tennis": {
+    "name": {
+      "en": "Tennis/Squash🎾",
+      "zh": "网球/壁球🎾"
+    }
+  },
+  "running": {
+    "name": {
+      "en": "Running🏃",
+      "zh": "跑步🏃"
+    }
+  },
+  "wild": {
+    "name": {
+      "en": "Cycling🚴/Hiking🚶/Climbing⛰/Camping⛺/Rock Climbing🧗",
+      "zh": "骑行🚴/徒步🚶/登山⛰/露营⛺/攀岩🧗"
+    }
+  },
+  "yoga": {
+    "name": {
+      "en": "Yoga🧘",
+      "zh": "瑜伽🧘"
+    }
+  },
+  "martial_arts": {
+    "name": {
+      "en": "Martial Arts/Combat Sports🥋",
+      "zh": "武术/搏击🥋"
+    }
+  },
+  "dance": {
+    "name": {
+      "en": "Dance💃",
+      "zh": "舞蹈💃"
+    }
+  },
+  "ice_snow_sports": {
+    "name": {
+      "en": "Ice & Snow Sports⛷",
+      "zh": "冰雪运动⛷"
+    }
+  },
+  "water_sports": {
+    "name": {
+      "en": "Swimming🏊/Water Sports",
+      "zh": "游泳🏊/水上运动"
+    }
+  },
+  "desktop": {
+    "name": {
+      "en": "Desktop Activities",
+      "zh": "在桌面上的活动"
+    }
+  },
+  "board_games": {
+    "name": {
+      "en": "Board Games🐺/Card Games🃏/Chess♟",
+      "zh": "桌游🐺/牌类🃏/棋类♟"
+    }
+  },
+  "competitive_games": {
+    "name": {
+      "en": "Competitive Video Games🎮",
+      "zh": "竞技向电子游戏🎮"
+    }
+  },
+  "pc_fps": {
+    "name": {
+      "en": "PC FPS Games",
+      "zh": "PC端FPS"
+    },
+    "desc": {
+      "en": "Apex/PUBG/Valorant etc.",
+      "zh": "Apex/PUBG/Valorant等"
+    }
+  },
+  "moba": {
+    "name": {
+      "en": "MOBA Games",
+      "zh": "MOBA类游戏"
+    },
+    "desc": {
+      "en": "Dota2/LOL/Mobile Legends etc.",
+      "zh": "Dota2/LOL/王者等"
+    }
+  },
+  "mobile": {
+    "name": {
+      "en": "Mobile Games (excluding MOBA)",
+      "zh": "除MOBA外的各类手游"
+    }
+  },
+  "mind_challenging_games": {
+    "name": {
+      "en": "Mind-Challenging Video Games🎮",
+      "zh": "偏好智力挑战的电子游戏🎮"
+    },
+    "desc": {
+      "en": "Games that require thinking, puzzle-solving or completing challenges",
+      "zh": "需要开动脑筋，解决谜题或完成挑战的游戏"
+    }
+  },
+  "strategy_games": {
+    "name": {
+      "en": "Strategy Games",
+      "zh": "战略类游戏"
+    },
+    "desc": {
+      "en": "Turn-based (like Civilization) / Real-time (like StarCraft)",
+      "zh": "回合制(如文明)/即时制(如星际争霸)"
+    }
+  },
+  "simulation_games": {
+    "name": {
+      "en": "Simulation & Management Games",
+      "zh": "模拟经营类游戏"
+    },
+    "desc": {
+      "en": "Oxygen Not Included/Cities: Skylines etc.",
+      "zh": "缺氧/天际线等"
+    }
+  },
+  "sandbox_games": {
+    "name": {
+      "en": "Sandbox/Simulator Games",
+      "zh": "纯沙盒类/模拟器游戏"
+    },
+    "desc": {
+      "en": "Turing Complete/Roblox/Flight Simulator etc.",
+      "zh": "图灵完备/Roblox/模拟飞行等"
+    }
+  },
+  "music_games": {
+    "name": {
+      "en": "Rhythm Games & Technical Gameplay",
+      "zh": "音游和强技术性玩法的游戏"
+    },
+    "desc": {
+      "en": "Technical gameplay: speedrunning and other 'compete with yourself' gameplay",
+      "zh": "强技术性玩法：速通等\"与自己竞技\"的玩法"
+    }
+  },
+  "story_rich_games": {
+    "name": {
+      "en": "Story/Atmosphere-Rich Video Games🎮",
+      "zh": "偏好剧情/氛围的电子游戏🎮"
+    },
+    "desc": {
+      "en": "Games that focus more on immersion and storyline",
+      "zh": "更注重游戏沉浸性和故事情节的游戏"
+    }
+  },
+  "narrative_adventure": {
+    "name": {
+      "en": "RPG/Action Adventure Games",
+      "zh": "RPG/动作冒险游戏"
+    },
+    "desc": {
+      "en": "The Witcher/Elden Ring/Cyberpunk 2077 etc.",
+      "zh": "巫师/艾尔登法环/2077等大作"
+    }
+  },
+  "puzzle_games": {
+    "name": {
+      "en": "Immersive Puzzle/Indie/Creative Games",
+      "zh": "沉浸式解谜/精品独立/创意游戏"
+    },
+    "desc": {
+      "en": "Games with unique gameplay, art or narrative that bring distinctive emotional experiences, like Little Nightmares/Undertale/Outer Wilds/Celeste",
+      "zh": "玩法、美术或叙事独具匠心，能带来独特情感体验，如小小梦魇/Undertale/星际拓荒/Celeste"
+    }
+  },
+  "coop_party": {
+    "name": {
+      "en": "Co-op/Party Games",
+      "zh": "合作/派对游戏"
+    },
+    "desc": {
+      "en": "Games suitable for local or online play with friends, focusing on fun interaction, like It Takes Two, Overcooked, Mario Party, Stardew Valley",
+      "zh": "适合与朋友同屏或联机并主打欢乐互动的游戏，如双人成行、胡闹厨房、马力欧派对、星露谷"
+    }
+  },
+  "leisure": {
+    "name": {
+      "en": "Leisure Activities",
+      "zh": "休闲活动"
+    }
+  },
+  "singing": {
+    "name": {
+      "en": "Singing🎤",
+      "zh": "唱歌🎤"
+    }
+  },
+  "eu_us": {
+    "name": {
+      "en": "European/American Songs",
+      "zh": "欧美歌曲"
+    }
+  },
+  "japan_korea": {
+    "name": {
+      "en": "Japanese/Korean Songs",
+      "zh": "日韩歌曲"
+    }
+  },
+  "china": {
+    "name": {
+      "en": "Chinese Songs",
+      "zh": "华语歌曲"
+    }
+  },
+  "instruments": {
+    "name": {
+      "en": "Musical Instruments🎸🎹🎻🥁",
+      "zh": "乐器🎸🎹🎻🥁"
+    },
+    "desc": {
+      "en": "All kinds of instruments, exchange and communicate with each other",
+      "zh": "各种乐器都可以捏，互相交流"
+    }
+  },
+  "arts": {
+    "name": {
+      "en": "Creative Activities (Drawing🖊/Photography📸/Writing)",
+      "zh": "独立创作类活动(绘画🖊/摄影📸/写作)"
+    }
+  },
+  "crafts": {
+    "name": {
+      "en": "Crafts & DIY🧵/Baking/Cooking🍳",
+      "zh": "手工DIY🧵/烘焙/烹饪🍳"
+    }
+  },
+  "knowledge": {
+    "name": {
+      "en": "Knowledge-Based Activities",
+      "zh": "知识型活动"
+    }
+  },
+  "language_exchange": {
+    "name": {
+      "en": "Language Exchange🗣",
+      "zh": "语言交换🗣"
+    },
+    "desc": {
+      "en": "Come here if you love second languages",
+      "zh": "喜欢二外的友友快来"
+    }
+  },
+  "japanese": {
+    "name": {
+      "en": "Japanese🇯",
+      "zh": "日语🇯"
+    }
+  },
+  "spanish": {
+    "name": {
+      "en": "Spanish🇪",
+      "zh": "西班牙语🇪"
+    }
+  },
+  "korean": {
+    "name": {
+      "en": "Korean🇰",
+      "zh": "韩语🇰"
+    }
+  },
+  "french": {
+    "name": {
+      "en": "French🇫",
+      "zh": "法语🇫"
+    }
+  },
+  "german": {
+    "name": {
+      "en": "German🇩",
+      "zh": "德语🇩"
+    }
+  },
+  "russian": {
+    "name": {
+      "en": "Russian🇷",
+      "zh": "俄语🇷"
+    }
+  },
+  "study_together": {
+    "name": {
+      "en": "Study Together📚",
+      "zh": "双人自习📚"
+    },
+    "desc": {
+      "en": "Simply study together, supervise each other",
+      "zh": "简单地一起学习，互相监督"
+    }
+  },
+  "humanities_reading": {
+    "name": {
+      "en": "Humanities & Reading🧠",
+      "zh": "人文社科/读书分享🧠"
+    },
+    "desc": {
+      "en": "Reading clubs, film appreciation, historical and philosophical discussions, social issue discussions, etc.",
+      "zh": "读书会、电影鉴赏、历史哲学思辨、社会议题讨论等"
+    }
+  },
+  "tech_exchange": {
+    "name": {
+      "en": "Tech & Programming💻",
+      "zh": "研究计算机技术💻"
+    },
+    "desc": {
+      "en": "Programming development, algorithm research, etc.",
+      "zh": "装机、编程开发、算法研究等"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "emotionally_stable": {
+    "name": {
+      "en": "Emotionally stable, patient and calm",
+      "zh": "情绪稳定，耐心平和"
+    }
+  },
+  "humor": {
+    "name": {
+      "en": "Sense of humor",
+      "zh": "幽默感"
+    }
+  },
+  "curiosity": {
+    "name": {
+      "en": "Curious and eager to explore",
+      "zh": "好奇心强，乐于探索"
+    }
+  },
+  "reliable": {
+    "name": {
+      "en": "Super reliable, keeps promises",
+      "zh": "超级靠谱，言出必行"
+    }
+  },
+  "empathy": {
+    "name": {
+      "en": "Strong empathy, good listener",
+      "zh": "共情能力强，善于倾听"
+    }
+  },
+  "discipline": {
+    "name": {
+      "en": "Self-disciplined and goal-oriented",
+      "zh": "自律自驱，目标明确"
+    }
+  },
+  "life_ritualist": {
+    "name": {
+      "en": "Values life rituals and ceremonies",
+      "zh": "注重生活仪式感"
+    }
+  },
+  "explorer": {
+    "name": {
+      "en": "Loves adventure and challenges",
+      "zh": "热爱冒险，勇于挑战"
+    }
+  },
+  "sports_lover": {
+    "name": {
+      "en": "Enjoys sports, full of energy",
+      "zh": "享受运动，活力充沛"
+    }
+  },
+  "bookworm": {
+    "name": {
+      "en": "Loves reading and intellectual discussions",
+      "zh": "热爱阅读，享受思辨"
+    }
+  },
+  "optimistic": {
+    "name": {
+      "en": "Positive and optimistic",
+      "zh": "积极乐观"
+    }
+  },
+  "decisive": {
+    "name": {
+      "en": "Decisive with strong execution skills",
+      "zh": "果断行动，执行力强"
+    }
+  },
+  "imaginative": {
+    "name": {
+      "en": "Creative and unconventional",
+      "zh": "打破常规，富有创意"
+    }
+  }
+}

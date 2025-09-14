@@ -7,8 +7,8 @@ import {
 import { Button, Card, Modal, Tag } from "antd";
 import type React from "react";
 import { useTranslation } from "react-i18next";
-import { tagData } from "../data/tags";
 import type { VetoPreview } from "../lib/api";
+import { useTagTranslation } from "../utils/i18n-helpers";
 import { translateGrade } from "../utils/validation";
 
 interface MatchCardProps {
@@ -27,23 +27,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
   loading = false,
 }) => {
   const { t } = useTranslation();
-
-  const getTagName = (tagId: string): string => {
-    // Recursive function to search through nested tag structure
-    const searchTag = (tags: typeof tagData): string | null => {
-      for (const tag of tags) {
-        if (tag.id === tagId) return tag.name;
-        if (tag.children) {
-          const found = searchTag(tag.children);
-          if (found) return found;
-        }
-      }
-      return null;
-    };
-
-    const found = searchTag(tagData);
-    return found || tagId;
-  };
+  const { getTagName } = useTagTranslation();
 
   const handleVetoClick = () => {
     if (isVetoed) {

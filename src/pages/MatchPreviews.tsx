@@ -130,7 +130,10 @@ const MatchPreviews: React.FC = () => {
           {/* Info Alert */}
           <Alert
             message={t("previews.infoTitle")}
-            description={t("previews.infoDescription")}
+            description={t("previews.infoDescription", {
+              interval:
+                import.meta.env.VITE_MATCH_PREVIEW_INTERVAL_MINUTES || 10,
+            })}
             type="info"
             icon={<InfoCircleOutlined />}
             showIcon
