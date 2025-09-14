@@ -44,12 +44,14 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 
     // Validate file type with enhanced support
     if (!isSupportedImageFormat(file)) {
-      setError("Please select a valid image file (JPEG, PNG, WebP, or HEIC)");
+      setError(
+        "Please select a valid image file (JPEG, PNG, WebP, HEIC, HEIF)",
+      );
       return;
     }
 
     // Validate file size (before compression)
-    const maxOriginalSize = 50 * 1024 * 1024; // 50MB limit for original files
+    const maxOriginalSize = 30 * 1024 * 1024; // 30MB limit for original files
     if (file.size > maxOriginalSize) {
       setError(
         `Original file size must be less than ${maxOriginalSize / 1024 / 1024}MB`,

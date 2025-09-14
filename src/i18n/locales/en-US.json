@@ -1,8 +1,7 @@
 {
   "app": {
     "title": "Encontrar - Social Pairing",
-    "name": "Encontrar",
-    "tagline": "An Experimental Pairing Event"
+    "name": "Encontrar"
   },
   "hero": {
     "minititle": "An Experimental Pairing Event",
@@ -57,7 +56,8 @@
     "codeSentSuccess": "Verification code sent to your email",
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
-    "invalidCodeError": "Invalid verification code"
+    "invalidCodeError": "Invalid verification code",
+    "tagline": "Supported university emails listed on the homepage"
   },
   "dashboard": {
     "title": "Encontrar Dashboard",

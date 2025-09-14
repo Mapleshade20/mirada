@@ -24,9 +24,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import heroBackground from "../assets/hero-background.jpg";
 import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
 import { useDraftSaving } from "../hooks/useDraftSaving";
@@ -294,14 +294,7 @@ const ProfileForm: React.FC = () => {
   return (
     <div className="min-h-screen relative flex flex-col">
       {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBackground}
-          alt="Background"
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/90 to-background/95" />
-      </div>
+      <NovatrixBackground opacity={0.3} />
 
       <div className="relative z-10 p-4 py-8 flex-1">
         {/* Navigation and Language Switcher */}

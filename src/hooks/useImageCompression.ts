@@ -2,8 +2,8 @@ import { useCallback, useState } from "react";
 import type {
   CompressionOptions,
   CompressionResult,
-} from "../utils/imageCompression";
-import { ImageCompressionError } from "../utils/imageCompression";
+} from "../utils/imageCompressionTypes";
+import { ImageCompressionError } from "../utils/imageCompressionTypes";
 
 export interface CompressionState {
   isCompressing: boolean;

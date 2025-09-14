@@ -76,9 +76,9 @@ const AuthForm: React.FC = () => {
   return (
     <GlassCard className="w-full max-w-md mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold gradient-text mb-2">
+        <h2 className="text-2xl font-bold gradient-text mb-2">
           {t("auth.welcomeTitle")}
-        </h1>
+        </h2>
         <p className="text-muted-foreground">
           {isCodeSent ? t("auth.codePrompt") : t("auth.signInPrompt")}
         </p>

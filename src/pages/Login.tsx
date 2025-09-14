@@ -3,9 +3,9 @@ import type React from "react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import heroBackground from "../assets/hero-background.jpg";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { useAuthStore } from "../store/authStore";
 
 const Login: React.FC = () => {
@@ -25,14 +25,7 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
       {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBackground}
-          alt="Background"
-          className="w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/60 via-background/80 to-background/90" />
-      </div>
+      <NovatrixBackground opacity={0.9} />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md">
@@ -52,7 +45,7 @@ const Login: React.FC = () => {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">{t("app.tagline")}</p>
+          <p className="text-sm text-muted-foreground">{t("auth.tagline")}</p>
         </div>
       </div>
 

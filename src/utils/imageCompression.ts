@@ -4,30 +4,11 @@ import type {
   ProgressMessage,
   ResultMessage,
 } from "../workers/imageCompressionWorker";
-import heic2any from "heic2any";
-
-export interface CompressionOptions {
-  targetSizeBytes?: number;
-  maxDimension?: number;
-  onProgress?: (step: string, progress: number) => void;
-}
-
-export interface CompressionResult {
-  compressedFile: File;
-  originalSize: number;
-  compressedSize: number;
-  compressionRatio: number;
-}
-
-export class ImageCompressionError extends Error {
-  constructor(
-    message: string,
-    public readonly originalError?: unknown,
-  ) {
-    super(message);
-    this.name = "ImageCompressionError";
-  }
-}
+import type {
+  CompressionOptions,
+  CompressionResult,
+} from "./imageCompressionTypes";
+import { ImageCompressionError } from "./imageCompressionTypes";
 
 const SUPPORTED_FORMATS = [
   "image/jpeg",
@@ -68,7 +49,7 @@ export const validateImageFile = (file: File): void => {
 
   if (!isSupportedImageFormat(file)) {
     throw new ImageCompressionError(
-      `Unsupported file format. Supported formats: JPEG, PNG, WebP, HEIC`,
+      `Unsupported file format. Supported formats: JPEG, PNG, WebP, HEIC, HEIF`,
     );
   }
 
@@ -100,6 +81,8 @@ const convertHEICToJPEG = async (
   console.log("Converting HEIC to JPEG...");
   onProgress?.("Converting HEIC format...", 10);
 
+  // Dynamically import heic2any to avoid loading it unnecessarily
+  const heic2any = (await import("heic2any")).default;
   try {
     const result = await heic2any({
       blob: file,

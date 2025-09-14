@@ -22,10 +22,10 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import heroBackground from "../assets/hero-background.jpg";
 import FinalMatchCard from "../components/FinalMatchCard";
 import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { useImageCompression } from "../hooks/useImageCompression";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
@@ -318,14 +318,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen relative flex flex-col">
       {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBackground}
-          alt="Background"
-          className="w-full h-full object-cover opacity-10"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/95 to-background/98" />
-      </div>
+      <NovatrixBackground opacity={0.6} />
 
       <div className="relative z-10 flex-1">
         {/* Header */}
