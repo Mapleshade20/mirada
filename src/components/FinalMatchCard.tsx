@@ -11,16 +11,19 @@ import { useTranslation } from "react-i18next";
 import { tagData } from "../data/tags";
 import type { UserProfile } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
+import { translateGrade } from "../utils/validation";
 import AuthenticatedImage from "./AuthenticatedImage";
 
 interface FinalMatchCardProps {
   finalMatch: NonNullable<UserProfile["final_match"]>;
   showActions?: boolean;
+  showTitle?: boolean;
 }
 
 const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
   finalMatch,
   showActions = true,
+  showTitle = true,
 }) => {
   const { t } = useTranslation();
   const { acceptMatch, rejectMatch } = useAuthStore();
@@ -87,22 +90,26 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg">
-      <div className="text-center mb-6">
-        <div className="text-6xl mb-4">💕</div>
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">
-          {t("finalMatch.title")}
-        </h2>
-        <p className="text-gray-600">{t("finalMatch.subtitle")}</p>
-      </div>
+      {showTitle && (
+        <div className="text-center mb-6">
+          <div className="text-6xl mb-4">💕</div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            {t("finalMatch.title")}
+          </h2>
+          <p className="text-gray-600">{t("finalMatch.subtitle")}</p>
+        </div>
+      )}
 
-      <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-6 mb-6">
+      <div
+        className={`bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-6 ${showActions ? "mb-6" : "mb-0"}`}
+      >
         <div className="flex flex-col md:flex-row gap-6">
           {/* Content Section - Left 2/3 on desktop */}
           <div className="flex-1 md:flex-[2] order-2 md:order-1">
             <div className="flex items-center gap-2 mb-4">
               <UserOutlined className="text-blue-500" />
               <span className="font-medium">{finalMatch.email_domain}</span>
-              <Tag color="blue">{finalMatch.grade}</Tag>
+              <Tag color="blue">{translateGrade(finalMatch.grade, t)}</Tag>
             </div>
 
             {/* Self Introduction */}

@@ -28,13 +28,13 @@ import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
-import { getAllowedGrades } from "../utils/validation";
+import { getAllowedGrades, translateGrade } from "../utils/validation";
 
 const { Option } = Select;
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation();
-  const { user, logout, updateUserProfile } = useAuthStore();
+  const { user, logout, updateUserProfile, fetchUserProfile } = useAuthStore();
   const navigate = useNavigate();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(0);
@@ -48,6 +48,14 @@ const Dashboard: React.FC = () => {
       setShowOnboarding(true);
     }
   }, []);
+
+  useEffect(() => {
+    // Safety fallback: refresh user profile if data seems stale
+    // This prevents issues when user is redirected here after status changes
+    if (user && !user.status) {
+      fetchUserProfile();
+    }
+  }, [user, fetchUserProfile]);
 
   const getCurrentStep = () => {
     if (!user) return 0;
@@ -280,6 +288,7 @@ const Dashboard: React.FC = () => {
               <FinalMatchCard
                 finalMatch={user.final_match}
                 showActions={false}
+                showTitle={false}
               />
             )}
           </div>
@@ -434,7 +443,7 @@ const Dashboard: React.FC = () => {
             <Select placeholder={t("uploadModal.gradePlaceholder")}>
               {getAllowedGrades().map((grade) => (
                 <Option key={grade} value={grade}>
-                  {grade.charAt(0).toUpperCase() + grade.slice(1)}
+                  {translateGrade(grade, t)}
                 </Option>
               ))}
             </Select>

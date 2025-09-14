@@ -1,6 +1,6 @@
 import { KeyRound, Loader2, Mail } from "lucide-react";
 import type React from "react";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -21,6 +21,13 @@ const AuthForm: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const emailId = useId();
   const codeId = useId();
+  const codeInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isCodeSent && codeInputRef.current) {
+      codeInputRef.current.focus();
+    }
+  }, [isCodeSent]);
 
   const handleSendCode = async () => {
     if (!email) return;
@@ -116,6 +123,7 @@ const AuthForm: React.FC = () => {
             <div className="relative">
               <KeyRound className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
+                ref={codeInputRef}
                 id={codeId}
                 type="text"
                 placeholder={t("auth.codePlaceholder")}

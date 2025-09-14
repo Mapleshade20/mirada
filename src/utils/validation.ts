@@ -37,3 +37,10 @@ export const getAllowedGrades = (): string[] => {
     ]
   );
 };
+
+export const translateGrade = (
+  grade: string,
+  t: (key: string, fallback?: string) => string,
+): string => {
+  return t(`grades.${grade}`, grade);
+};

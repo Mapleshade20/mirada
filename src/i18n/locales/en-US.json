@@ -93,7 +93,7 @@
     },
     "verificationPending": {
       "title": "Verification Pending",
-      "description": "Your ID card is being reviewed by our team. This usually takes 24-48 hours."
+      "description": "Your ID card is being reviewed by our team. This usually takes 12-24 hours."
     },
     "profileForm": {
       "title": "Profile Form",
@@ -163,7 +163,7 @@
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you like, are familiar with, and would like to do together 🤩",
+        "label": "Things you like, are familiar with, and would like to do together with them 🤩 (no more than 10 total for both questions)",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
@@ -173,12 +173,12 @@
         "required": "Please select interests you want to try"
       },
       "selfTraits": {
-        "label": "Your Personality Traits 🤔",
+        "label": "Your Personality Traits 🤔 (no more than 3)",
         "placeholder": "Select your personality...",
         "required": "Please select your personality"
       },
       "idealTraits": {
-        "label": "Ideal partner traits 🤔",
+        "label": "Ideal partner traits 🤔 (no more than 3)",
         "placeholder": "Select ideal traits...",
         "required": "Please select ideal traits"
       },
@@ -206,6 +206,32 @@
       "idealTraitsLimit": "Ideal traits cannot exceed {{limit}}"
     },
     "submitButton": "Submit Profile",
+    "reviewModal": {
+      "title": "Final Review",
+      "warning": "! Once submitted, this form cannot be edited. Please review all information carefully.",
+      "sections": {
+        "personalInfo": "Personal Information",
+        "interests": "Interests",
+        "personality": "Personality",
+        "physicalBoundary": "Physical Boundaries",
+        "recentTopics": "Recent Topics",
+        "profilePhoto": "Profile Photo"
+      },
+      "physicalBoundaryScale": {
+        "1": "1 Conservative",
+        "2": "2 Somewhat Conservative",
+        "3": "3 Moderate",
+        "4": "4 Open"
+      },
+      "photoStatus": {
+        "uploaded": "✓ Photo uploaded",
+        "notUploaded": "No photo uploaded"
+      },
+      "actions": {
+        "editMore": "Edit More",
+        "submitFinal": "Submit Final"
+      }
+    },
     "submitSuccess": "Profile submitted successfully!",
     "submitError": "Failed to submit form",
     "photoUploadSuccess": "Photo uploaded successfully",
@@ -290,5 +316,9 @@
   },
   "footer": {
     "experimental": "Open source under the AGPL-3.0 license"
+  },
+  "grades": {
+    "undergraduate": "Undergraduate",
+    "graduate": "Graduate"
   }
 }

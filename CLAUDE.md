@@ -8,6 +8,8 @@ Encontrar (backend repo name "hilo" and frontend repo name "mirada") is a one-ti
 
 ## Development Commands
 
+When unsure about usage of an external component, use `context7` mcp tool to check out online docs.
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production (TypeScript check included)
 - `npx @biomejs/biome check --write` - Format, lint, and organize imports of all files
@@ -56,7 +58,7 @@ Users progress through these states (affects UI rendering):
 3. `verified` - Can fill a questionnaire form
 4. `form_completed` - Can view match previews and do veto
 5. `matched` - Assigned final match, can accept/reject
-6. `confirmed` - Both users accepted, WeChat IDs exchanged
+6. `confirmed` - Self has accepted, the partner may be deciding or confirmed
 
 ## Key API Endpoints (Backend)
 
@@ -81,8 +83,7 @@ See `docs/backend-docs.md`
 - ✅ **Internationalization**: react-i18next setup
 - ✅ **Form Handling**: React Hook Form + Zod validation
 - ✅ **Draft Saving**: Local storage for form data persistence
-- 🔄 **API Integration**: Basic structure, needs backend connection
-- 🔄 **Complete User Flow**: Pages exist but need full implementation
+- ✅ **API Integration**: Completed backend integration
 
 ## Design Principles
 

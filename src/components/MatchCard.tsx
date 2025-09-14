@@ -9,6 +9,7 @@ import type React from "react";
 import { useTranslation } from "react-i18next";
 import { tagData } from "../data/tags";
 import type { VetoPreview } from "../lib/api";
+import { translateGrade } from "../utils/validation";
 
 interface MatchCardProps {
   candidate: VetoPreview;
@@ -69,7 +70,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
           <div className="flex items-center gap-2">
             <UserOutlined className="text-blue-500" />
             <span>{candidate.email_domain}</span>
-            <Tag color="blue">{candidate.grade}</Tag>
+            <Tag color="blue">{translateGrade(candidate.grade, t)}</Tag>
           </div>
           {isVetoed && (
             <Tag color="red" icon={<CloseOutlined />}>

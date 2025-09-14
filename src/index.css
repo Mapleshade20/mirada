@@ -166,4 +166,28 @@
     background: linear-gradient(transparent 70%, var(--pefa-peach) 70%);
     padding: 0 4px;
   }
+
+  /* Physical Boundary Slider - Darker Styling */
+  .physical-boundary-slider .ant-slider-rail {
+    background-color: #d1d5db; /* gray-300 */
+  }
+
+  .physical-boundary-slider .ant-slider-track {
+    background-color: var(--pefa-orange); /* Darker orange color */
+  }
+
+  .physical-boundary-slider .ant-slider-handle {
+    border-color: var(--pefa-orange);
+    background-color: var(--pefa-orange);
+  }
+
+  .physical-boundary-slider .ant-slider-handle:hover {
+    border-color: #b45a38; /* Even darker on hover */
+    background-color: #b45a38;
+  }
+
+  .physical-boundary-slider .ant-slider-handle:focus {
+    border-color: #b45a38;
+    box-shadow: 0 0 0 5px rgba(211, 105, 70, 0.12);
+  }
 }

@@ -16,6 +16,14 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import heroBackground from "../assets/hero-background.jpg";
 import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -23,6 +31,7 @@ import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
 import { useDraftSaving } from "../hooks/useDraftSaving";
 import { apiService } from "../lib/api";
+import { useAuthStore } from "../store/authStore";
 import { getTagsLimit, getTraitsLimit } from "../utils/validation";
 
 interface FormData {
@@ -78,14 +87,40 @@ const convertTagsToTreeData = (tags: Tag[], excludedTags: string[] = []) => {
   });
 };
 
+// Helper function to get tag name by ID
+const getTagNameById = (tagId: string): string => {
+  const findTag = (tags: Tag[]): string | null => {
+    for (const tag of tags) {
+      if (tag.id === tagId) {
+        return tag.name;
+      }
+      if (tag.children) {
+        const found = findTag(tag.children);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+  return findTag(tagData) || tagId;
+};
+
+// Helper function to get trait name by ID
+const getTraitNameById = (traitId: string): string => {
+  const trait = traitData.find((t) => t.id === traitId);
+  return trait ? trait.name : traitId;
+};
+
 const ProfileForm: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { updateUserProfile } = useAuthStore();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedPhoto, setUploadedPhoto] = useState<string | null>(null);
   const [familiarTags, setFamiliarTags] = useState<string[]>([]);
   const [aspirationalTags, setAspirationalTags] = useState<string[]>([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewData, setReviewData] = useState<FormData | null>(null);
 
   // Use custom hook for draft saving
   const { saveDraft, loadDraft, clearDraft } = useDraftSaving("profile-form");
@@ -156,18 +191,31 @@ const ProfileForm: React.FC = () => {
   };
 
   const handleSubmit = async (values: FormData) => {
+    // Add uploaded photo filename to form data
+    if (uploadedPhoto) {
+      values.profile_photo_filename = uploadedPhoto;
+    }
+
+    // Store data for review and show modal
+    setReviewData(values);
+    setShowReviewModal(true);
+  };
+
+  const handleFinalSubmit = async () => {
+    if (!reviewData) return;
+
     setIsLoading(true);
+    setShowReviewModal(false);
 
     try {
-      // Add uploaded photo filename to form data
-      if (uploadedPhoto) {
-        values.profile_photo_filename = uploadedPhoto;
-      }
-
-      await apiService.submitForm(values);
+      await apiService.submitForm(reviewData);
 
       // Clear draft after successful submission
       clearDraft();
+
+      // Fetch updated user profile to ensure Dashboard shows correct step
+      const updatedProfile = await apiService.getProfile();
+      updateUserProfile(updatedProfile);
 
       message.success(t("profileForm.submitSuccess"));
       navigate("/dashboard");
@@ -525,6 +573,7 @@ const ProfileForm: React.FC = () => {
                       1: t("profileForm.fields.physicalBoundary.conservative"),
                       4: t("profileForm.fields.physicalBoundary.open"),
                     }}
+                    className="physical-boundary-slider"
                   />
                 </Form.Item>
               </div>
@@ -595,6 +644,194 @@ const ProfileForm: React.FC = () => {
       </div>
 
       <Footer />
+
+      {/* Review Modal */}
+      <Dialog open={showReviewModal} onOpenChange={setShowReviewModal}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{t("profileForm.reviewModal.title")}</DialogTitle>
+            <DialogDescription className="text-orange-600 font-medium">
+              {t("profileForm.reviewModal.warning")}
+            </DialogDescription>
+          </DialogHeader>
+
+          {reviewData && (
+            <div className="space-y-6">
+              {/* Personal Information */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <User className="h-5 w-5 text-blue-500" />
+                  {t("profileForm.reviewModal.sections.personalInfo")}
+                </h3>
+                <div className="space-y-2 ml-7">
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.wechatId.label")}:
+                    </span>{" "}
+                    {reviewData.wechat_id}
+                  </div>
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.gender.label")}:
+                    </span>{" "}
+                    {t(`profileForm.fields.gender.${reviewData.gender}`)}
+                  </div>
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.selfIntro.label")}:
+                    </span>
+                    <div className="mt-1 p-3 bg-gray-50 rounded text-sm">
+                      {reviewData.self_intro}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interests */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <Heart className="h-5 w-5 text-pink-500" />
+                  {t("profileForm.reviewModal.sections.interests")}
+                </h3>
+                <div className="space-y-3 ml-7">
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.familiarTags.label")}:
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {reviewData.familiar_tags?.map((tagId) => (
+                        <span
+                          key={tagId}
+                          className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                        >
+                          {getTagNameById(tagId)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.aspirationalTags.label")}:
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {reviewData.aspirational_tags?.map((tagId) => (
+                        <span
+                          key={tagId}
+                          className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                        >
+                          {getTagNameById(tagId)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Personality */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <MessageCircle className="h-5 w-5 text-purple-500" />
+                  {t("profileForm.reviewModal.sections.personality")}
+                </h3>
+                <div className="space-y-3 ml-7">
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.selfTraits.label")}:
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {reviewData.self_traits?.map((traitId) => (
+                        <span
+                          key={traitId}
+                          className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                        >
+                          {getTraitNameById(traitId)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <span className="font-medium">
+                      {t("profileForm.fields.idealTraits.label")}:
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {reviewData.ideal_traits?.map((traitId) => (
+                        <span
+                          key={traitId}
+                          className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm"
+                        >
+                          {getTraitNameById(traitId)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Physical Boundary */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">
+                  {t("profileForm.reviewModal.sections.physicalBoundary")}
+                </h3>
+                <div className="ml-7">
+                  <span className="font-medium">
+                    {t("profileForm.fields.physicalBoundary.label")}:
+                  </span>{" "}
+                  {t(
+                    `profileForm.reviewModal.physicalBoundaryScale.${reviewData.physical_boundary}`,
+                  )}
+                </div>
+              </div>
+
+              {/* Recent Topics */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">
+                  {t("profileForm.reviewModal.sections.recentTopics")}
+                </h3>
+                <div className="ml-7">
+                  <span className="font-medium">
+                    {t("profileForm.fields.recentTopics.label")}:
+                  </span>
+                  <div className="mt-1 p-3 bg-gray-50 rounded text-sm">
+                    {reviewData.recent_topics}
+                  </div>
+                </div>
+              </div>
+
+              {/* Profile Photo */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <Camera className="h-5 w-5 text-green-500" />
+                  {t("profileForm.reviewModal.sections.profilePhoto")}
+                </h3>
+                <div className="ml-7">
+                  {uploadedPhoto ? (
+                    <span className="text-green-600">
+                      {t("profileForm.reviewModal.photoStatus.uploaded")}
+                    </span>
+                  ) : (
+                    <span className="text-gray-500">
+                      {t("profileForm.reviewModal.photoStatus.notUploaded")}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <DialogFooter className="gap-3">
+            <Button onClick={() => setShowReviewModal(false)} className="mr-2">
+              {t("profileForm.reviewModal.actions.editMore")}
+            </Button>
+            <Button
+              type="primary"
+              onClick={handleFinalSubmit}
+              loading={isLoading}
+            >
+              {t("profileForm.reviewModal.actions.submitFinal")}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
