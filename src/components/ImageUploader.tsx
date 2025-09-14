@@ -1,6 +1,8 @@
 import { Image as ImageIcon, Upload, X } from "lucide-react";
 import type React from "react";
 import { useRef, useState } from "react";
+import { useImageCompression } from "../hooks/useImageCompression";
+import { isSupportedImageFormat } from "../utils/imageCompression";
 import { Button } from "./ui/glass-button";
 import { GlassCard } from "./ui/glass-card";
 
@@ -9,18 +11,27 @@ interface ImageUploaderProps {
   currentImage?: string;
   maxSizeMB?: number;
   acceptedTypes?: string[];
+  uploadEndpoint?: string;
 }
 
 export const ImageUploader: React.FC<ImageUploaderProps> = ({
   onImageUpload,
   currentImage,
-  maxSizeMB = 5,
-  acceptedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"],
+  acceptedTypes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/webp",
+    "image/heic",
+    "image/heif",
+  ],
+  uploadEndpoint = "/api/upload/profile-photo",
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { compressImage, state: compressionState } = useImageCompression();
 
   const handleFileSelect = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -31,34 +42,51 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     // Reset error
     setError(null);
 
-    // Validate file type
-    if (!acceptedTypes.includes(file.type)) {
-      setError("Please select a valid image file (JPEG, PNG, or WebP)");
+    // Validate file type with enhanced support
+    if (!isSupportedImageFormat(file)) {
+      setError("Please select a valid image file (JPEG, PNG, WebP, or HEIC)");
       return;
     }
 
-    // Validate file size
-    if (file.size > maxSizeMB * 1024 * 1024) {
-      setError(`File size must be less than ${maxSizeMB}MB`);
+    // Validate file size (before compression)
+    const maxOriginalSize = 50 * 1024 * 1024; // 50MB limit for original files
+    if (file.size > maxOriginalSize) {
+      setError(
+        `Original file size must be less than ${maxOriginalSize / 1024 / 1024}MB`,
+      );
       return;
     }
 
-    // Create preview
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setPreview(e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
+    // Create preview (for supported formats that browser can display)
+    if (file.type !== "image/heic" && file.type !== "image/heif") {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
 
-    // Upload file
+    // Compress and upload file
     setIsUploading(true);
     try {
-      // TODO: Replace with actual API call to your Rust backend
-      const formData = new FormData();
-      formData.append("file", file);
+      // Compress image to WebP format, ≤1MB, max 2160px
+      const compressedFile = await compressImage(file, {
+        targetSizeBytes: 1024 * 1024, // 1MB
+        maxDimension: 2160,
+      });
 
-      // Mock upload - replace with actual API call
-      const response = await fetch("/api/upload/profile-photo", {
+      // Create preview from compressed file
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(compressedFile);
+
+      // Upload compressed file
+      const formData = new FormData();
+      formData.append("file", compressedFile);
+
+      const response = await fetch(uploadEndpoint, {
         method: "POST",
         body: formData,
       });
@@ -71,7 +99,11 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       onImageUpload(result.filename);
     } catch (err) {
       console.error("Upload failed:", err);
-      setError("Failed to upload image. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to process and upload image. Please try again.",
+      );
       setPreview(null);
     } finally {
       setIsUploading(false);
@@ -124,7 +156,10 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                 Click to upload or drag and drop
               </p>
               <p className="text-sm text-muted-foreground">
-                JPEG, PNG or WebP up to {maxSizeMB}MB
+                JPEG, PNG, WebP, or HEIC up to 50MB
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Images will be automatically compressed to WebP format (≤1MB)
               </p>
             </div>
           </div>
@@ -173,9 +208,24 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       )}
 
       {/* Upload Status */}
-      {isUploading && (
-        <div className="text-sm text-primary text-center">
-          Uploading image...
+      {(isUploading || compressionState.isCompressing) && (
+        <div className="text-sm text-primary text-center space-y-2">
+          {compressionState.isCompressing ? (
+            <>
+              <div>Processing image... ({compressionState.progress}%)</div>
+              <div className="text-xs text-muted-foreground">
+                {compressionState.currentStep}
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-primary h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${compressionState.progress}%` }}
+                />
+              </div>
+            </>
+          ) : (
+            <div>Uploading compressed image...</div>
+          )}
         </div>
       )}
 
@@ -186,6 +236,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         accept={acceptedTypes.join(",")}
         onChange={handleFileSelect}
         className="hidden"
+        disabled={isUploading || compressionState.isCompressing}
       />
     </div>
   );

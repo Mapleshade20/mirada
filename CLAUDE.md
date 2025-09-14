@@ -39,6 +39,7 @@ Uses Biome for formatting with these key settings:
   - **Icons**: Lucide React + Ant Design Icons
   - **Internationalization**: react-i18next (configured, texts go in `src/i18n/locales/`)
   - **Form Handling**: React Hook Form with Zod validation
+- Note the "@" alias defined in `vite.config.ts` and `components.json`
 
 ### Backend Integration
 

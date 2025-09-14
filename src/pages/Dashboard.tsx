@@ -26,6 +26,7 @@ import heroBackground from "../assets/hero-background.jpg";
 import FinalMatchCard from "../components/FinalMatchCard";
 import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import { useImageCompression } from "../hooks/useImageCompression";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
 import { getAllowedGrades, translateGrade } from "../utils/validation";
@@ -40,6 +41,7 @@ const Dashboard: React.FC = () => {
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const { compressImage, state: compressionState } = useImageCompression();
 
   useEffect(() => {
     // Check if this is the first time visiting dashboard
@@ -107,6 +109,7 @@ const Dashboard: React.FC = () => {
 
   const handleUploadIdCard = async (values: {
     upload?: Array<{ originFileObj?: File; name?: string }>;
+    grade?: string;
   }) => {
     try {
       const file = values.upload?.[0]?.originFileObj || values.upload?.[0];
@@ -115,13 +118,25 @@ const Dashboard: React.FC = () => {
         return;
       }
 
-      const updatedProfile = await apiService.uploadIdCard(file, values.grade);
+      // Compress the image before uploading
+      const compressedFile = await compressImage(file, {
+        targetSizeBytes: 1024 * 1024, // 1MB
+        maxDimension: 2160,
+      });
+
+      const updatedProfile = await apiService.uploadIdCard(
+        compressedFile,
+        values.grade,
+      );
       updateUserProfile(updatedProfile);
       setUploadModalVisible(false);
       form.resetFields();
       message.success(t("uploadModal.uploadSuccess"));
-    } catch (_error) {
-      message.error(t("uploadModal.uploadError"));
+    } catch (error) {
+      console.error("ID card upload failed:", error);
+      message.error(
+        error instanceof Error ? error.message : t("uploadModal.uploadError"),
+      );
     }
   };
 
@@ -463,11 +478,37 @@ const Dashboard: React.FC = () => {
               return e?.fileList;
             }}
           >
-            <Upload maxCount={1} beforeUpload={() => false} accept="image/*">
-              <Button icon={<UploadOutlined />}>
+            <Upload
+              maxCount={1}
+              beforeUpload={() => false}
+              accept="image/jpeg,image/jpg,image/png,image/webp,image/heic,image/heif"
+              disabled={compressionState.isCompressing}
+            >
+              <Button
+                icon={<UploadOutlined />}
+                disabled={compressionState.isCompressing}
+              >
                 {t("uploadModal.selectImage")}
               </Button>
             </Upload>
+
+            {/* Compression Progress */}
+            {compressionState.isCompressing && (
+              <div className="mt-4 text-center">
+                <div className="text-sm text-blue-600 mb-2">
+                  Processing image... ({compressionState.progress}%)
+                </div>
+                <div className="text-xs text-gray-500 mb-2">
+                  {compressionState.currentStep}
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${compressionState.progress}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </Form.Item>
 
           <Form.Item>
@@ -475,8 +516,15 @@ const Dashboard: React.FC = () => {
               <Button onClick={() => setUploadModalVisible(false)}>
                 {t("uploadModal.cancel")}
               </Button>
-              <Button type="primary" htmlType="submit">
-                {t("uploadModal.upload")}
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={compressionState.isCompressing}
+                loading={compressionState.isCompressing}
+              >
+                {compressionState.isCompressing
+                  ? "Processing..."
+                  : t("uploadModal.upload")}
               </Button>
             </div>
           </Form.Item>

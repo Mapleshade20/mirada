@@ -12,6 +12,12 @@ export default defineConfig(({ mode }) => ({
   plugins: [react(), mode === "development" && componentTagger()].filter(
     Boolean,
   ),
+  optimizeDeps: {
+    exclude: ["@jsquash/webp", "@jsquash/jpeg", "@jsquash/png"],
+  },
+  worker: {
+    format: "es",
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

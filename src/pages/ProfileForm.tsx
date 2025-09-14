@@ -30,6 +30,7 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
 import { useDraftSaving } from "../hooks/useDraftSaving";
+import { useImageCompression } from "../hooks/useImageCompression";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
 import { getTagsLimit, getTraitsLimit } from "../utils/validation";
@@ -122,8 +123,9 @@ const ProfileForm: React.FC = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [reviewData, setReviewData] = useState<FormData | null>(null);
 
-  // Use custom hook for draft saving
+  // Use custom hooks
   const { saveDraft, loadDraft, clearDraft } = useDraftSaving("profile-form");
+  const { compressImage, state: compressionState } = useImageCompression();
 
   // Load existing form data or draft on mount
   useEffect(() => {
@@ -173,7 +175,13 @@ const ProfileForm: React.FC = () => {
 
   const handleUploadPhoto = async (file: File) => {
     try {
-      const response = await apiService.uploadProfilePhoto(file);
+      // Compress the image before uploading
+      const compressedFile = await compressImage(file, {
+        targetSizeBytes: 1024 * 1024, // 1MB
+        maxDimension: 2160,
+      });
+
+      const response = await apiService.uploadProfilePhoto(compressedFile);
       setUploadedPhoto(response.filename);
       form.setFieldValue("profile_photo_filename", response.filename);
 
@@ -184,8 +192,13 @@ const ProfileForm: React.FC = () => {
 
       message.success(t("profileForm.photoUploadSuccess"));
       return false; // Prevent default upload behavior
-    } catch (_error) {
-      message.error(t("profileForm.photoUploadError"));
+    } catch (error) {
+      console.error("Profile photo upload failed:", error);
+      message.error(
+        error instanceof Error
+          ? error.message
+          : t("profileForm.photoUploadError"),
+      );
       return false;
     }
   };
@@ -610,16 +623,42 @@ const ProfileForm: React.FC = () => {
                 <Upload
                   maxCount={1}
                   beforeUpload={handleUploadPhoto}
-                  accept="image/*"
+                  accept="image/jpeg,image/jpg,image/png,image/webp,image/heic,image/heif"
                   showUploadList={false}
+                  disabled={compressionState.isCompressing}
                 >
-                  <Button icon={<UploadOutlined />}>
-                    {uploadedPhoto
-                      ? t("profileForm.fields.profilePhoto.change")
-                      : t("profileForm.fields.profilePhoto.upload")}
+                  <Button
+                    icon={<UploadOutlined />}
+                    disabled={compressionState.isCompressing}
+                    loading={compressionState.isCompressing}
+                  >
+                    {compressionState.isCompressing
+                      ? "Processing..."
+                      : uploadedPhoto
+                        ? t("profileForm.fields.profilePhoto.change")
+                        : t("profileForm.fields.profilePhoto.upload")}
                   </Button>
                 </Upload>
-                {uploadedPhoto && (
+
+                {/* Compression Progress */}
+                {compressionState.isCompressing && (
+                  <div className="mt-4 text-center">
+                    <div className="text-sm text-blue-600 mb-2">
+                      Processing image... ({compressionState.progress}%)
+                    </div>
+                    <div className="text-xs text-gray-500 mb-2">
+                      {compressionState.currentStep}
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${compressionState.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {uploadedPhoto && !compressionState.isCompressing && (
                   <div className="mt-2 text-green-600">
                     {t("profileForm.fields.profilePhoto.success")}
                   </div>
@@ -631,11 +670,14 @@ const ProfileForm: React.FC = () => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isLoading}
+                  loading={isLoading || compressionState.isCompressing}
+                  disabled={compressionState.isCompressing}
                   size="large"
                   className="w-full"
                 >
-                  {t("profileForm.submitButton")}
+                  {compressionState.isCompressing
+                    ? "Processing image..."
+                    : t("profileForm.submitButton")}
                 </Button>
               </Form.Item>
             </Form>

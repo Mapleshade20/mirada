@@ -13,6 +13,9 @@
   "dependencies": {
     "@ant-design/icons": "^6.0.1",
     "@hookform/resolvers": "^3.10.0",
+    "@jsquash/jpeg": "^1.6.0",
+    "@jsquash/png": "^3.1.1",
+    "@jsquash/webp": "^1.5.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -48,6 +51,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
+    "heic2any": "^0.0.4",
     "i18next": "^25.5.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
