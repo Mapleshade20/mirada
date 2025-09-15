@@ -71,10 +71,9 @@ export const useImageCompression = (): UseImageCompressionReturn => {
         });
 
         console.log(`Image compression completed:`, {
-          originalSize: (result.originalSize / 1024 / 1024).toFixed(2) + "MB",
-          compressedSize:
-            (result.compressedSize / 1024 / 1024).toFixed(2) + "MB",
-          compressionRatio: result.compressionRatio.toFixed(2) + "x",
+          originalSize: `${(result.originalSize / 1024 / 1024).toFixed(2)}MB`,
+          compressedSize: `${(result.compressedSize / 1024 / 1024).toFixed(2)}MB`,
+          compressionRatio: `${result.compressionRatio.toFixed(2)}x`,
         });
 
         return result.compressedFile;

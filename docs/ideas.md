@@ -1,6 +1,6 @@
 Objective: To create a sleek, modern, and intuitive user interface for the Hilo social pairing application. The frontend will guide users through a multi-step process from registration to final matching, ensuring a smooth and engaging experience.
 
-Theme: 
+Theme:
 
 Tech Stack:
 

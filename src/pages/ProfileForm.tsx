@@ -256,10 +256,13 @@ const ProfileForm: React.FC = () => {
     }
 
     // If either tag field changed, manually validate both to refresh validation state
-    if (changedValues.familiar_tags !== undefined || changedValues.aspirational_tags !== undefined) {
+    if (
+      changedValues.familiar_tags !== undefined ||
+      changedValues.aspirational_tags !== undefined
+    ) {
       // Use setTimeout to ensure the form values are updated before validation
       setTimeout(() => {
-        form.validateFields(['familiar_tags', 'aspirational_tags']);
+        form.validateFields(["familiar_tags", "aspirational_tags"]);
       }, 0);
     }
 

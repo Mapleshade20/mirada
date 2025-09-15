@@ -18,7 +18,7 @@ When unsure about usage of an external component, use `context7` mcp tool to che
 ## Code Formatting
 
 Uses Biome for formatting with these key settings:
-- 2-space indentation  
+- 2-space indentation
 - Semicolons required
 - Trailing commas in arrays/objects
 - Arrow function parentheses always required
@@ -45,7 +45,7 @@ Uses Biome for formatting with these key settings:
 
 The frontend will integrate with an Rust-based backend providing:
 - JWT authentication with refresh tokens
-- Email verification (university domains only)  
+- Email verification (university domains only)
 - File uploads (ID cards, profile photos)
 - Multi-step user workflow: verification → form completion → match previews → final matching
 - Sophisticated matching algorithm with veto system
@@ -55,7 +55,7 @@ Development and production connect with different backend URLs (configured via e
 ## User Workflow States
 Users progress through these states (affects UI rendering):
 1. `unverified` - Email verified, awaiting ID card upload
-2. `verification_pending` - ID card uploaded, awaiting admin approval  
+2. `verification_pending` - ID card uploaded, awaiting admin approval
 3. `verified` - Can fill a questionnaire form
 4. `form_completed` - Can view match previews and do veto
 5. `matched` - Assigned final match, can accept/reject
@@ -79,7 +79,7 @@ See `docs/backend-docs.md`
 ## Current Implementation Status
 
 - ✅ **Authentication**: JWT-based auth with Zustand store
-- ✅ **Routing**: Protected routes based on user status  
+- ✅ **Routing**: Protected routes based on user status
 - ✅ **UI Framework**: shadcn/ui + Ant Design integration
 - ✅ **Internationalization**: react-i18next setup
 - ✅ **Form Handling**: React Hook Form + Zod validation
@@ -89,7 +89,7 @@ See `docs/backend-docs.md`
 ## Design Principles
 
 - **State-Driven UI**: User status determines available actions and views
-- **Responsive Design**: Desktop and mobile support  
+- **Responsive Design**: Desktop and mobile support
 - **Optimistic UI**: Immediate feedback for user actions
 - **Auto Token Refresh**: Frontend handles JWT expiration automatically
 - **Component Composition**: Prefer composition over large monolithic components

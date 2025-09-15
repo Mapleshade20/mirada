@@ -206,8 +206,8 @@ const AuthenticatedImage: React.FC<AuthenticatedImageProps> = ({
 
     return (
       <>
-        <div
-          role="button"
+        <button
+          type="button"
           tabIndex={0}
           className={`cursor-pointer ${className}`}
           onClick={handleImageClick}
@@ -215,7 +215,7 @@ const AuthenticatedImage: React.FC<AuthenticatedImageProps> = ({
           aria-label={`Preview ${alt}`}
         >
           <Avatar size={size} src={state.imageUrl} alt={alt} />
-        </div>
+        </button>
         {state.showPreview && (
           <div
             role="dialog"
@@ -264,12 +264,12 @@ const AuthenticatedImage: React.FC<AuthenticatedImageProps> = ({
 
   return (
     <>
-      <div
+      <button
         className={`cursor-pointer ${className}`}
         onClick={handleImageClick}
         onKeyDown={handleKeyDown}
         tabIndex={0}
-        role="button"
+        type="button"
         aria-label={`Preview ${alt}`}
       >
         <img
@@ -278,7 +278,7 @@ const AuthenticatedImage: React.FC<AuthenticatedImageProps> = ({
           className="w-full h-full object-cover"
           draggable={false}
         />
-      </div>
+      </button>
       {state.showPreview && (
         <div
           role="dialog"

@@ -32,5 +32,8 @@
         "noUnknownAtRules": "off"
       }
     }
+  },
+  "files": {
+    "includes": ["**", "!dist", "!node_modules", "!test"]
   }
 }

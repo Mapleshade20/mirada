@@ -40,7 +40,9 @@ export const getTranslatedTagName = (
   language: string,
 ): string => {
   const langKey = getLanguageKey(language);
-  const tagData = (tagsTranslations as Record<string, UnifiedTagTranslation>)[tagId];
+  const tagData = (tagsTranslations as Record<string, UnifiedTagTranslation>)[
+    tagId
+  ];
   return tagData?.name[langKey] || tagId;
 };
 
@@ -55,7 +57,9 @@ export const getTranslatedTagDesc = (
   language: string,
 ): string | undefined => {
   const langKey = getLanguageKey(language);
-  const tagData = (tagsTranslations as Record<string, UnifiedTagTranslation>)[tagId];
+  const tagData = (tagsTranslations as Record<string, UnifiedTagTranslation>)[
+    tagId
+  ];
   return tagData?.desc?.[langKey];
 };
 
@@ -70,7 +74,9 @@ export const getTranslatedTraitName = (
   language: string,
 ): string => {
   const langKey = getLanguageKey(language);
-  const traitData = (traitsTranslations as Record<string, UnifiedTraitTranslation>)[traitId];
+  const traitData = (
+    traitsTranslations as Record<string, UnifiedTraitTranslation>
+  )[traitId];
   return traitData?.name[langKey] || traitId;
 };
 

@@ -253,4 +253,3 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
   - Returns `200 OK` with image
 
 </details>
-
