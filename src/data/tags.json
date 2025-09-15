@@ -131,10 +131,6 @@
     "name": {
       "en": "Mind-Challenging Video Games🎮",
       "zh": "偏好智力挑战的电子游戏🎮"
-    },
-    "desc": {
-      "en": "Games that require thinking, puzzle-solving or completing challenges",
-      "zh": "需要开动脑筋，解决谜题或完成挑战的游戏"
     }
   },
   "strategy_games": {
@@ -144,7 +140,7 @@
     },
     "desc": {
       "en": "Turn-based (like Civilization) / Real-time (like StarCraft)",
-      "zh": "回合制(如文明)/即时制(如星际争霸)"
+      "zh": "回合制（如文明）/即时制（如星际争霸）"
     }
   },
   "simulation_games": {
@@ -181,10 +177,6 @@
     "name": {
       "en": "Story/Atmosphere-Rich Video Games🎮",
       "zh": "偏好剧情/氛围的电子游戏🎮"
-    },
-    "desc": {
-      "en": "Games that focus more on immersion and storyline",
-      "zh": "更注重游戏沉浸性和故事情节的游戏"
     }
   },
   "narrative_adventure": {
@@ -251,10 +243,6 @@
     "name": {
       "en": "Musical Instruments🎸🎹🎻🥁",
       "zh": "乐器🎸🎹🎻🥁"
-    },
-    "desc": {
-      "en": "All kinds of instruments, exchange and communicate with each other",
-      "zh": "各种乐器都可以捏，互相交流"
     }
   },
   "arts": {

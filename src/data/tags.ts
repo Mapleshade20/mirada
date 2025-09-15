@@ -108,7 +108,6 @@ export const tagData = [
       {
         id: "mind_challenging_games",
         name: "偏好智力挑战的电子游戏🎮",
-        desc: "需要开动脑筋，解决谜题或完成挑战的游戏",
         is_matchable: true,
         children: [
           {
@@ -134,13 +133,12 @@ export const tagData = [
       {
         id: "music_games",
         name: "音游和强技术性玩法的游戏",
-        desc: "强技术性玩法：速通等“与自己竞技”的玩法",
+        desc: "（强技术性玩法：速通等）",
         is_matchable: true,
       },
       {
         id: "story_rich_games",
-        name: "偏好剧情/氛围的电子游戏🎮",
-        desc: "更注重游戏沉浸性和故事情节的游戏",
+        name: "偏好故事情节或氛围的电子游戏🎮",
         is_matchable: true,
         children: [
           {
@@ -195,7 +193,6 @@ export const tagData = [
       {
         id: "instruments",
         name: "乐器🎸🎹🎻🥁",
-        desc: "各种乐器都可以捏，互相交流",
         is_matchable: true,
       },
       {

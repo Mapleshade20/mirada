@@ -13,6 +13,7 @@ import { useAuthStore } from "../store/authStore";
 import { useTagTranslation } from "../utils/i18n-helpers";
 import { translateGrade } from "../utils/validation";
 import AuthenticatedImage from "./AuthenticatedImage";
+import TagDescriptions from "./TagDescriptions";
 
 interface FinalMatchCardProps {
   finalMatch: NonNullable<UserProfile["final_match"]>;
@@ -113,13 +114,17 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
               <h4 className="text-sm font-medium text-gray-600 mb-2">
                 {t("finalMatch.familiarTags")}
               </h4>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1 mb-2">
                 {finalMatch.familiar_tags.map((tagId) => (
                   <Tag key={tagId} color="green">
                     {getTagName(tagId)}
                   </Tag>
                 ))}
               </div>
+              <TagDescriptions
+                tagIds={finalMatch.familiar_tags}
+                className="mt-2"
+              />
             </div>
 
             {/* Aspirational Tags */}
@@ -127,13 +132,17 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
               <h4 className="text-sm font-medium text-gray-600 mb-2">
                 {t("finalMatch.aspirationalTags")}
               </h4>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap gap-1 mb-2">
                 {finalMatch.aspirational_tags.map((tagId) => (
                   <Tag key={tagId} color="orange">
                     {getTagName(tagId)}
                   </Tag>
                 ))}
               </div>
+              <TagDescriptions
+                tagIds={finalMatch.aspirational_tags}
+                className="mt-2"
+              />
             </div>
           </div>
 

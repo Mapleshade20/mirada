@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import type { VetoPreview } from "../lib/api";
 import { useTagTranslation } from "../utils/i18n-helpers";
 import { translateGrade } from "../utils/validation";
+import TagDescriptions from "./TagDescriptions";
 
 interface MatchCardProps {
   candidate: VetoPreview;
@@ -93,13 +94,14 @@ const MatchCard: React.FC<MatchCardProps> = ({
           <h4 className="text-sm font-medium text-gray-600 mb-2">
             {t("previews.familiarTags")}
           </h4>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1 mb-2">
             {candidate.familiar_tags.map((tagId) => (
               <Tag key={tagId} color="green">
                 {getTagName(tagId)}
               </Tag>
             ))}
           </div>
+          <TagDescriptions tagIds={candidate.familiar_tags} className="mt-2" />
         </div>
 
         {/* Aspirational Tags */}
@@ -107,13 +109,17 @@ const MatchCard: React.FC<MatchCardProps> = ({
           <h4 className="text-sm font-medium text-gray-600 mb-2">
             {t("previews.aspirationalTags")}
           </h4>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1 mb-2">
             {candidate.aspirational_tags.map((tagId) => (
               <Tag key={tagId} color="orange">
                 {getTagName(tagId)}
               </Tag>
             ))}
           </div>
+          <TagDescriptions
+            tagIds={candidate.aspirational_tags}
+            className="mt-2"
+          />
         </div>
       </div>
     </Card>

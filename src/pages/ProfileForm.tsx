@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import TagDescriptions from "../components/TagDescriptions";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
@@ -489,6 +490,22 @@ const ProfileForm: React.FC = () => {
                       style={{ width: "100%" }}
                     />
                   </Form.Item>
+
+                  {/* Selected Tags Descriptions */}
+                  <div className="mt-6 space-y-4">
+                    <TagDescriptions
+                      tagIds={familiarTags}
+                      title={`${t("profileForm.fields.familiarTags.label")} - Descriptions`}
+                      className="mb-4"
+                    />
+                    <TagDescriptions
+                      tagIds={aspirationalTags}
+                      title={
+                        t("profileForm.fields.aspirationalTags.label") +
+                        " - Descriptions"
+                      }
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -748,6 +765,10 @@ const ProfileForm: React.FC = () => {
                         </span>
                       ))}
                     </div>
+                    <TagDescriptions
+                      tagIds={reviewData.familiar_tags || []}
+                      className="mt-3"
+                    />
                   </div>
                   <div>
                     <span className="font-medium">
@@ -763,6 +784,10 @@ const ProfileForm: React.FC = () => {
                         </span>
                       ))}
                     </div>
+                    <TagDescriptions
+                      tagIds={reviewData.aspirational_tags || []}
+                      className="mt-3"
+                    />
                   </div>
                 </div>
               </div>
