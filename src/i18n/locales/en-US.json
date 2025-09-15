@@ -34,8 +34,8 @@
       }
     },
     "cta": {
-      "title": "Ready to Find Your Perfect Match? 😄",
-      "subtitle": "Join our community of university students and discover meaningful connections that could last a lifetime.",
+      "title": "Event Inspiration",
+      "subtitle": "Encontrar is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices. This approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. Once matched, you could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
       "buttonText": "Start Your Journey"
     }
   },
@@ -53,7 +53,7 @@
     "resendIn": "Resend code in {{seconds}}s",
     "sendNewCode": "Send new code",
     "validEmailError": "Please enter a valid university email address",
-    "codeSentSuccess": "Verification code sent to your email",
+    "codeSentSuccess": "Verification code sent to your email (please check your spam folder)",
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code",
@@ -113,9 +113,9 @@
       "description": "Your final match awaits"
     },
     "confirmed": {
-      "mutualTitle": "Match Confirmed!",
-      "mutualDescription": "Both of you accepted the match. Here's their WeChat ID:",
-      "mutualFooter": "Start your conversation and enjoy getting to know each other!",
+      "mutualTitle": "Match Confirmed",
+      "mutualDescription": "You both accepted each other! Now, add them as a friend and start your story. Their WeChat ID is:",
+      "mutualFooter": "Be proactive to keep the story going~ You might start with a simple 'Hi', then talk about things you're both interested in. Enjoy your conversation!",
       "waitingTitle": "Waiting for Response",
       "waitingDescription": "You've accepted the match! Waiting for them to respond.",
       "waitingFooter": "Check back later for the result.",
@@ -273,7 +273,7 @@
     }
   },
   "finalMatch": {
-    "title": "A new friend!",
+    "title": "Match Found!",
     "subtitle": "We found someone special for you. Review their profile and decide.",
     "selfIntro": "About them",
     "familiarTags": "They like and are familiar with",

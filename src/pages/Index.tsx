@@ -10,6 +10,7 @@ const Index = () => {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const howItWorksId = useId();
+  const paragraphId = useId();
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
@@ -165,9 +166,15 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl pefa-heading mb-4">
             {t("homepage.cta.title")}
           </h2>
-          <p className="text-lg pefa-text max-w-2xl mx-auto mb-8">
-            {t("homepage.cta.subtitle")}
-          </p>
+          <div className="text-lg pefa-text max-w-2xl mx-auto mb-8 text-left">
+            {t("homepage.cta.subtitle")
+              .split("\n")
+              .map((paragraph, _) => (
+                <p key={paragraphId} className="mb-4 last:mb-0 text-justify">
+                  {paragraph}
+                </p>
+              ))}
+          </div>
           <button
             type="button"
             onClick={handleGetStarted}

@@ -290,7 +290,7 @@ const Dashboard: React.FC = () => {
                     <strong>{user.final_match.wechat_id}</strong>
                   </div>
                 )}
-                <p className="text-sm text-gray-500">
+                <p className="text-gray-600">
                   {bothConfirmed
                     ? t("steps.confirmed.mutualFooter")
                     : t("steps.confirmed.waitingFooter")}
