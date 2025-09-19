@@ -1,7 +1,7 @@
 import { ArrowRight, Heart } from "lucide-react";
 import { useEffect, useId } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useAuthStore } from "../store/authStore";
 
@@ -196,10 +196,24 @@ const Index = () => {
               Contigo
             </span>
           </div>
-          <p className="pefa-text">
+          <p className="pefa-text mb-4">
             {"© "}
             {currentYear} {t("hero.copyright")}
           </p>
+          <div className="pefa-text flex items-center justify-center gap-6">
+            <Link
+              to="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("footer.privacyPolicy")}
+            </Link>
+            <Link
+              to="/terms"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("footer.termsOfService")}
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

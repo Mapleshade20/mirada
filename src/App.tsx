@@ -11,7 +11,9 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import MatchPreviews from "./pages/MatchPreviews";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ProfileForm from "./pages/ProfileForm";
+import TermsOfService from "./pages/TermsOfService";
 import { useAuthStore } from "./store/authStore";
 
 const queryClient = new QueryClient();
@@ -65,6 +67,8 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
