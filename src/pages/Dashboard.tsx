@@ -40,6 +40,7 @@ const Dashboard: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
+  const [nextMatchTime, setNextMatchTime] = useState<string | null>(null);
   const [form] = Form.useForm();
   const { compressImage, state: compressionState } = useImageCompression();
 
@@ -58,6 +59,20 @@ const Dashboard: React.FC = () => {
       fetchUserProfile();
     }
   }, [user, fetchUserProfile]);
+
+  useEffect(() => {
+    // Fetch next match time on component mount
+    const fetchNextMatchTime = async () => {
+      try {
+        const response = await apiService.getNextMatchTime();
+        setNextMatchTime(response.next);
+      } catch (error) {
+        console.error("Failed to fetch next match time:", error);
+      }
+    };
+
+    fetchNextMatchTime();
+  }, []);
 
   const getCurrentStep = () => {
     if (!user) return 0;
@@ -105,6 +120,18 @@ const Dashboard: React.FC = () => {
   const handleLogout = () => {
     logout();
     navigate("/");
+  };
+
+  const formatMatchTime = (timeString: string | null) => {
+    if (!timeString) return null;
+
+    try {
+      const date = new Date(timeString);
+      return date.toLocaleString("zh-CN");
+    } catch (error) {
+      console.error("Failed to format match time:", error);
+      return null;
+    }
   };
 
   const handleUploadIdCard = async (values: {
@@ -332,6 +359,14 @@ const Dashboard: React.FC = () => {
                 {t("dashboard.welcome", { email: user?.email })}
               </p>
             </div>
+            {nextMatchTime && (
+              <div className="mt-2 px-3 py-1 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-s text-blue-400">
+                  <strong>{t("dashboard.nextMatch")}</strong>{" "}
+                  {formatMatchTime(nextMatchTime)}
+                </p>
+              </div>
+            )}
             <div className="flex items-center gap-4">
               <Button
                 icon={<HomeOutlined />}

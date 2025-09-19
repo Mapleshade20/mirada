@@ -62,15 +62,17 @@ Veto means rejection.
 
 ### Part IV. Final Matching & Results
 
-1. **Admin Trigger**: Administrators initiate the final matching process:
-   - Only users with `form_completed` status are included, after this matched users' status is updated to `matched`
+1. **Admin Schedule**: Administrators can schedule final matches or manually trigger the final matching process:
+   - A final match will be automatically executed at each scheduled timestamp. Users can use API to get the next timestamp.
+   - Only users with `form_completed` status are included, after this their status becomes updated to `matched` (unless unmatched)
    - Vetoes are considered to exclude incompatible pairs
    - Algorithm: **Greedy**
 
 2. **Match Results**: Users receive their final match information and decide if their accept it:
-   - Displayed info: `familiar_tags`, `aspirational_tags`, `self_intro`, `email_domain`, `grade`, profile photo (if any)
-   - Once both users accepted the match, `wechat_id` is displayed, and status becomes `confirmed`
-   - A rejection from either side will revert both users' status to `form_completed`. Admin can trigger new final matching after a period of time, and only unmatched users will be included in this round.
+   - Displayed info: `familiar_tags`, `aspirational_tags`, `recent_topics`, `self_intro`, `email_domain`, `grade`, profile photo (if any)
+   - A user's status becomes `confirmed` when they accept the match. Once both users accepted the match, `wechat_id` is displayed.
+   - Matches that are not rejected or mutually confirmed will be auto-confirmed 24 hours after its creation.
+   - A rejection from either side will revert both users' status to `form_completed`. They will participate in the next round of final match.
 
 ## API Documentation
 
@@ -136,6 +138,7 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
       "grade": "undergraduate",
       "familiar_tags": ["pc_fps", "spanish"],
       "aspirational_tags": ["volleyball", "creative_games"],
+      "recent_topics": "I've been reading Harry Potter",
       "self_intro": "Hello world",
       "photo_url": "/api/images/partner/91f4cf07-b2b4-4c05-a31e-9ed524c936ee.jpg",
       "wechat_id": null
@@ -243,6 +246,9 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
 - `GET /api/vetoes` - Get casted vetoes
   - Returns `200 OK` with a list of UUIDs of casted vetoes
   - Response: `["3bc5b542-36f2-41d8-8c63-f252f0eb438c", "47c361f7-d828-4015-892d-bd842bd5b7d7"]`
+
+- `GET /api/final-match/time` - Get next scheduled final match time
+  - Response: `{"next": null}` or `{"next": "2025-09-17T13:00:59Z"}`
 
 - `POST /api/final-match/accept`, `POST /api/final-match/reject` - Decide on final match
   - Returns `200 OK` with updated profile

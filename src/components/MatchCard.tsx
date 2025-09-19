@@ -2,6 +2,8 @@ import {
   BookOutlined,
   CloseOutlined,
   HeartOutlined,
+  SmileOutlined,
+  UpCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Card, Modal, Tag } from "antd";
@@ -81,8 +83,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
         {/* Recent Topics */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-1">
-            <BookOutlined />
-            {t("previews.recentTopics")}
+            <BookOutlined /> {t("previews.recentTopics")}
           </h4>
           <p className="text-gray-800 bg-gray-50 p-3 rounded-lg">
             {candidate.recent_topics}
@@ -92,7 +93,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
         {/* Familiar Tags */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-2">
-            {t("previews.familiarTags")}
+            <SmileOutlined /> {t("previews.familiarTags")}
           </h4>
           <div className="flex flex-wrap gap-1 mb-2">
             {candidate.familiar_tags.map((tagId) => (
@@ -107,7 +108,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
         {/* Aspirational Tags */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-2">
-            {t("previews.aspirationalTags")}
+            <UpCircleOutlined /> {t("previews.aspirationalTags")}
           </h4>
           <div className="flex flex-wrap gap-1 mb-2">
             {candidate.aspirational_tags.map((tagId) => (

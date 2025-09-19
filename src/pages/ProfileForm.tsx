@@ -598,8 +598,10 @@ const ProfileForm: React.FC = () => {
                     max={4}
                     step={1}
                     marks={{
-                      1: t("profileForm.fields.physicalBoundary.conservative"),
-                      4: t("profileForm.fields.physicalBoundary.open"),
+                      1: t("profileForm.fields.physicalBoundary.first"),
+                      2: t("profileForm.fields.physicalBoundary.second"),
+                      3: t("profileForm.fields.physicalBoundary.third"),
+                      4: t("profileForm.fields.physicalBoundary.fourth"),
                     }}
                     className="physical-boundary-slider"
                   />
@@ -632,7 +634,11 @@ const ProfileForm: React.FC = () => {
                 <div className="flex items-center gap-2 mb-4">
                   <Camera className="h-5 w-5 text-green-500" />
                   <span className="font-medium">
-                    {t("profileForm.fields.profilePhoto.label")}
+                    {t("profileForm.fields.profilePhoto.label")
+                      .split("\n")
+                      .map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
                   </span>
                 </div>
                 <Upload
@@ -735,7 +741,7 @@ const ProfileForm: React.FC = () => {
                   </div>
                   <div>
                     <span className="font-medium">
-                      {t("profileForm.fields.selfIntro.label")}:
+                      {t("profileForm.fields.selfIntro.label")}
                     </span>
                     <div className="mt-1 p-3 bg-gray-50 rounded text-sm">
                       {reviewData.self_intro}
@@ -839,11 +845,14 @@ const ProfileForm: React.FC = () => {
                 </h3>
                 <div className="ml-7">
                   <span className="font-medium">
-                    {t("profileForm.fields.physicalBoundary.label")}:
-                  </span>{" "}
-                  {t(
-                    `profileForm.reviewModal.physicalBoundaryScale.${reviewData.physical_boundary}`,
-                  )}
+                    {t("profileForm.fields.physicalBoundary.label")}
+                  </span>
+                  {":  "}
+                  <span className="font-bold">
+                    {t(
+                      `profileForm.reviewModal.physicalBoundaryScale.${reviewData.physical_boundary}`,
+                    )}
+                  </span>
                 </div>
               </div>
 

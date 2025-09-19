@@ -5,7 +5,7 @@
   },
   "hero": {
     "minititle": "An Experimental Pairing Event",
-    "subtitle": "A dating experience matching event designed for university students to connect through interest-based matching and meaningful conversations.",
+    "subtitle": "A special event designed for university students to connect through interest-based matching and meaningful conversations.",
     "getStarted": "Get Started",
     "goToDashboard": "Go to Dashboard",
     "learnMore": "Learn More",
@@ -17,7 +17,7 @@
     },
     "howItWorks": {
       "title": "How It Works",
-      "subtitle": "Getting matched is simple and secure. Follow these steps to find your perfect connection.",
+      "subtitle": "Follow these steps to find your perfect connection.",
       "steps": {
         "signUp": {
           "title": "Sign Up & Verify",
@@ -35,7 +35,7 @@
     },
     "cta": {
       "title": "Event Inspiration",
-      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices. This approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. Once matched, you could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
+      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices. This approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
       "buttonText": "Start Your Journey"
     }
   },
@@ -63,6 +63,7 @@
     "title": "Contigo Dashboard",
     "welcome": "Welcome back, {{email}}",
     "privacyHints": "Privacy Hints",
+    "nextMatch": "Next Match At: ",
     "logout": "Logout",
     "onboarding": {
       "title": "Privacy Hints",
@@ -118,7 +119,7 @@
       "mutualFooter": "Be proactive to keep the story going~ You might start with a simple 'Hi', then talk about things you're both interested in. Enjoy your conversation!",
       "waitingTitle": "Waiting for Response",
       "waitingDescription": "You've accepted the match! Waiting for them to respond.",
-      "waitingFooter": "Check back later for the result.",
+      "waitingFooter": "Check back later for the result :D",
       "wechatId": "WeChat ID: {{wechatId}}"
     }
   },
@@ -158,8 +159,8 @@
         "female": "Female"
       },
       "selfIntro": {
-        "label": "Self Introduction (brief)",
-        "placeholder": "Leave a first impression about yourself...",
+        "label": "How would you introduce yourself to a new friend?",
+        "placeholder": "Present your highlight in two or three sentences",
         "required": "Please introduce yourself"
       },
       "familiarTags": {
@@ -183,9 +184,11 @@
         "required": "Please select ideal traits"
       },
       "physicalBoundary": {
-        "label": "Your physical boundaries in dating (e.g. holding hands, hugging, kissing, etc., 1-4 scale)",
-        "conservative": "Conservative",
-        "open": "Open"
+        "label": "If you both find each other nice, what level of relationship do you expect?",
+        "first": "Just friends",
+        "second": "Accept a bit of flirtation",
+        "third": "Some intimacy",
+        "fourth": "Romantic relationship"
       },
       "recentTopics": {
         "label": "Topics you've been interested in, thinking about, or discussing recently, or interesting things you've been doing lately (can be from any aspect)",
@@ -193,7 +196,7 @@
         "required": "Please describe recent topics"
       },
       "profilePhoto": {
-        "label": "Profile Photo (Optional)",
+        "label": "Upload a photo of yourself!\n(Side, back view, or partial face is fine, as long as you think it does give them an impression of you)",
         "upload": "Upload Photo",
         "change": "Change Photo",
         "success": "✓ Photo uploaded successfully"
@@ -225,7 +228,7 @@
       },
       "photoStatus": {
         "uploaded": "✓ Photo uploaded",
-        "notUploaded": "No photo uploaded"
+        "notUploaded": "No photo uploaded (not recommended)"
       },
       "actions": {
         "editMore": "Edit More",
@@ -274,8 +277,9 @@
   },
   "finalMatch": {
     "title": "Match Found!",
-    "subtitle": "We found someone special for you. Review their profile and decide.",
+    "subtitle": "Would you like to start a new chapter together?",
     "selfIntro": "About them",
+    "recentTopics": "What they've been interested in lately",
     "familiarTags": "They like and are familiar with",
     "aspirationalTags": "They want to try",
     "acceptButton": "Accept Match",

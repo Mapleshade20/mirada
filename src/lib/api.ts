@@ -27,6 +27,7 @@ interface UserProfile {
     grade: string;
     familiar_tags: string[];
     aspirational_tags: string[];
+    recent_topics: string;
     self_intro: string;
     photo_url: string | null;
     wechat_id: string | null;
@@ -57,6 +58,10 @@ interface VetoPreview {
   recent_topics: string;
   email_domain: string;
   grade: string;
+}
+
+interface NextMatchTimeResponse {
+  next: string | null;
 }
 
 class ApiService {
@@ -309,6 +314,15 @@ class ApiService {
   }
 
   // Match methods
+  async getNextMatchTime(): Promise<NextMatchTimeResponse> {
+    return this.retryRequest(async () => {
+      const response = await this.api.get<NextMatchTimeResponse>(
+        "/api/final-match/time",
+      );
+      return response.data;
+    }, "/api/final-match/time");
+  }
+
   async acceptMatch(): Promise<UserProfile> {
     const response = await this.api.post<UserProfile>(
       "/api/final-match/accept",
@@ -336,4 +350,10 @@ class ApiService {
 }
 
 export const apiService = new ApiService();
-export type { UserProfile, FormData, VetoPreview, TokenResponse };
+export type {
+  UserProfile,
+  FormData,
+  VetoPreview,
+  TokenResponse,
+  NextMatchTimeResponse,
+};

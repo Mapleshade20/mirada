@@ -1,7 +1,10 @@
 import {
   BookOutlined,
+  ClockCircleOutlined,
   CloseOutlined,
   HeartOutlined,
+  SmileOutlined,
+  UpCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Card, Modal, message, Tag } from "antd";
@@ -101,18 +104,27 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
             {/* Self Introduction */}
             <div className="mb-4">
               <h4 className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-1">
-                <BookOutlined />
-                {t("finalMatch.selfIntro")}
+                <BookOutlined /> {t("finalMatch.selfIntro")}
               </h4>
               <p className="text-gray-800 bg-white p-3 rounded-lg border border-gray-200">
                 {finalMatch.self_intro}
               </p>
             </div>
 
+            {/* Recent Topics */}
+            <div className="mb-4">
+              <h4 className="text-sm font-medium text-gray-600 mb-2">
+                <ClockCircleOutlined /> {t("finalMatch.recentTopics")}
+              </h4>
+              <p className="text-gray-800 bg-white p-3 rounded-lg border border-gray-200">
+                {finalMatch.recent_topics}
+              </p>
+            </div>
+
             {/* Familiar Tags */}
             <div className="mb-4">
               <h4 className="text-sm font-medium text-gray-600 mb-2">
-                {t("finalMatch.familiarTags")}
+                <SmileOutlined /> {t("finalMatch.familiarTags")}
               </h4>
               <div className="flex flex-wrap gap-1 mb-2">
                 {finalMatch.familiar_tags.map((tagId) => (
@@ -130,7 +142,7 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
             {/* Aspirational Tags */}
             <div>
               <h4 className="text-sm font-medium text-gray-600 mb-2">
-                {t("finalMatch.aspirationalTags")}
+                <UpCircleOutlined /> {t("finalMatch.aspirationalTags")}
               </h4>
               <div className="flex flex-wrap gap-1 mb-2">
                 {finalMatch.aspirational_tags.map((tagId) => (

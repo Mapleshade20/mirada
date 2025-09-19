@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { compressImage as compress } from "../utils/imageCompression";
 import type {
   CompressionOptions,
   CompressionResult,
@@ -46,10 +47,6 @@ export const useImageCompression = (): UseImageCompressionReturn => {
       });
 
       try {
-        const { compressImage: compress } = await import(
-          "../utils/imageCompression"
-        );
-
         const onProgress = (step: string, progress: number) => {
           setState((prev) => ({
             ...prev,
