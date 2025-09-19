@@ -39,9 +39,7 @@ const Index = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Heart className="h-8 w-8 text-pefa-peach" />
-            <h1 className="text-2xl font-semibold text-foreground">
-              Encontrar
-            </h1>
+            <h1 className="text-2xl font-semibold text-foreground">Contigo</h1>
           </div>
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
@@ -196,7 +194,7 @@ const Index = () => {
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Heart className="h-6 w-6 text-pefa-peach" />
             <span className="text-lg font-semibold text-foreground">
-              Encontrar
+              Contigo
             </span>
           </div>
           <p className="pefa-text">

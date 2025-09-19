@@ -1,6 +1,6 @@
-# Project Encontrar: Backend 'hilo' documentation
+# Project Contigo: Backend 'hilo' documentation
 
-**Encontrar** is a one-time social pairing event that matches university students (1 female - 1 male) based on their interests, traits, and preferences.
+**Contigo** is a one-time social pairing event that matches university students (1 female - 1 male) based on their interests, traits, and preferences.
 
 The backend system uses email verification with university domains, collects detailed user questionnaires, and employs a sophisticated matching algorithm to pair compatible users.
 
@@ -123,8 +123,8 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
 
 #### Profile Management
 
-- `GET /api/profile` - Get current user profile information with final match result, if any.
-  - If the user doesn't have a final match partner the final result field will be null; wechat_id becomes not null once both sides have accepted the result
+- `GET /api/profile` - Get current user profile with their final match partner information if any
+  - If the user doesn't have a final match partner, the final result field will be null; wechat_id becomes not null once both sides have accepted the result
 
   ```json
   {
@@ -151,7 +151,7 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
 #### Form Management
 
 - `POST /api/form` - Submit or update user form
-  - Only accessible to verified users
+  - Only accessible to verified users; once submitted, it cannot be changed
   - Returns `200 OK` with partial submitted form data (without wechat_id field), see `GET /api/form` response
   - JSON request body:
 
@@ -208,7 +208,7 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
 
 #### Matching System
 
-- `GET /api/veto/previews` - Get current match previews for user to decide on giving vetos
+- `GET /api/veto/previews` - Get current match previews for user to decide who to give veto
   - Response:
 
   ```json

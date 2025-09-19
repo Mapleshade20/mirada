@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     <footer className="mt-auto py-2 px-6 border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-s text-muted-foreground/60">
         <div className="text-center sm:text-left">
-          © {currentYear} Encontrar. {t("footer.experimental")}
+          © {currentYear} Contigo. {t("footer.experimental")}
         </div>
 
         <div className="flex items-center gap-4">

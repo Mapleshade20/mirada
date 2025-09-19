@@ -1,6 +1,6 @@
 # Mirada
 
-Frontend for Encontrar - a one-time social pairing application that matches university students based on interests, traits, and preferences.
+Frontend for Contigo - a one-time social pairing application that matches university students based on interests, traits, and preferences.
 
 ## Tech Stack
 

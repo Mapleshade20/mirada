@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Encontrar (backend repo name "hilo" and frontend repo name "mirada") is a one-time social pairing application that matches university students (1 female - 1 male) based on interests, traits, and preferences. This is a React frontend that will communicate with the existing fully-featured Rust backend.
+Contigo (backend repo name "hilo" and frontend repo name "mirada") is a one-time social pairing application that matches university students (1 female - 1 male) based on interests, traits, and preferences. This is a React frontend that will communicate with the existing fully-featured Rust backend.
 
 ## Development Commands
 
@@ -63,7 +63,7 @@ Users progress through these states (affects UI rendering):
 
 ## Key API Endpoints (Backend)
 
-See `docs/backend-docs.md`
+See `docs/api.md`
 
 ## Project Structure
 
