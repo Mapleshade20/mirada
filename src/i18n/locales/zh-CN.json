@@ -57,7 +57,7 @@
     "sendCodeError": "发送验证码失败（操作频繁或后端离线）",
     "loginSuccess": "登录成功",
     "invalidCodeError": "验证码无效",
-    "tagline": "支持的学校邮箱详见首页"
+    "tagline": "支持的学校邮箱详见首页；注册即表示同意服务条款和隐私政策。"
   },
   "dashboard": {
     "title": "Contigo Dashboard",
@@ -72,7 +72,7 @@
       "ok": "确定",
       "dataProtection": {
         "title": "我们对你的信息负责",
-        "description": "你提交的一切信息被安全存储于后端服务器上，仅用于匹配目的，不会与任何第三方共享，且会在活动开始后的20-28天期间被永久删除。如你需要在活动结束前删除你的数据，请向<maple@maplewrt.com>发送请求。"
+        "description": "你提交的一切信息被安全存储于后端服务器上，仅用于匹配目的，不会与任何第三方共享，且会在活动结束后的30日内被永久删除。如你需要在活动结束前删除你的数据，请向<maple@maplewrt.com>发送请求。"
       },
       "systemPrivacy": {
         "title": "系统保护你的隐私",
@@ -319,7 +319,9 @@
     "dashboard": "仪表盘"
   },
   "footer": {
-    "experimental": "以AGPL-3.0许可证开源"
+    "experimental": "以AGPL-3.0许可证开源",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款"
   },
   "grades": {
     "undergraduate": "本科生",

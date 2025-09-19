@@ -2,7 +2,7 @@ import { Home } from "lucide-react";
 import type React from "react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
@@ -44,8 +44,23 @@ const Login: React.FC = () => {
         <AuthForm />
 
         {/* Footer */}
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-center space-y-4">
           <p className="text-sm text-muted-foreground">{t("auth.tagline")}</p>
+          <div className="flex justify-center items-center gap-4 text-xs text-muted-foreground/60">
+            <Link
+              to="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("footer.privacyPolicy")}
+            </Link>
+            <span>•</span>
+            <Link
+              to="/terms"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("footer.termsOfService")}
+            </Link>
+          </div>
         </div>
       </div>
 

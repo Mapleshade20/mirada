@@ -57,7 +57,7 @@
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code",
-    "tagline": "Supported university emails listed on the homepage"
+    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy."
   },
   "dashboard": {
     "title": "Contigo Dashboard",
@@ -72,7 +72,7 @@
       "ok": "OK",
       "dataProtection": {
         "title": "Data Protection",
-        "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 20-28 days after the event starts. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>"
+        "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 30 days after the conclusion of the event. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>"
       },
       "systemPrivacy": {
         "title": "The System Protects Your Privacy",
@@ -319,7 +319,9 @@
     "dashboard": "Dashboard"
   },
   "footer": {
-    "experimental": "Open source under the AGPL-3.0 license"
+    "experimental": "Open source under the AGPL-3.0 license",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "grades": {
     "undergraduate": "Undergraduate",
