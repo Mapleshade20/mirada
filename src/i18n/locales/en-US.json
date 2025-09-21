@@ -5,11 +5,11 @@
   },
   "hero": {
     "minititle": "An Experimental Pairing Event",
-    "subtitle": "A special event designed for university students to connect through interest-based matching and meaningful conversations.",
+    "subtitle": "A special event designed for university students to connect through interest-based matching and meaningful conversations. ✨",
     "getStarted": "Get Started",
     "goToDashboard": "Go to Dashboard",
     "learnMore": "Learn More",
-    "copyright": "Contigo. Experimental social pairing for the next generation."
+    "copyright": "Contigo. An experimental pairing event."
   },
   "homepage": {
     "header": {
@@ -186,8 +186,8 @@
       "physicalBoundary": {
         "label": "If you both find each other nice, what level of relationship do you expect?",
         "first": "Just friends",
-        "second": "Accept a bit of flirtation",
-        "third": "Some intimacy",
+        "second": "Flirt a bit",
+        "third": "More intimate",
         "fourth": "Romantic relationship"
       },
       "recentTopics": {

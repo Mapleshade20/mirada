@@ -96,31 +96,43 @@ const MatchPreviews: React.FC = () => {
       <div className="relative z-10 flex-1">
         {/* Header */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                <EyeOutlined className="text-purple-500" />
-                {t("previews.title")}
-              </h1>
-              <p className="text-gray-600">{t("previews.subtitle")}</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button
-                icon={<HomeOutlined />}
-                onClick={() => navigate("/dashboard")}
-                type="text"
-              >
-                {t("common.dashboard")}
-              </Button>
-              <LanguageSwitcher />
-              <Button
-                icon={<ReloadOutlined />}
-                onClick={handleRefresh}
-                loading={loading}
-                type="text"
-              >
-                {t("previews.refresh")}
-              </Button>
+          <div className="max-w-6xl mx-auto px-4 py-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <div className="flex-1">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2">
+                  <EyeOutlined className="text-purple-500" />
+                  {t("previews.title")}
+                </h1>
+                <p className="text-sm sm:text-base text-gray-600">
+                  {t("previews.subtitle")}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <Button
+                  icon={<HomeOutlined />}
+                  onClick={() => navigate("/dashboard")}
+                  type="text"
+                  size="small"
+                  className="flex items-center"
+                >
+                  <span className="hidden sm:inline ml-1">
+                    {t("common.dashboard")}
+                  </span>
+                </Button>
+                <LanguageSwitcher />
+                <Button
+                  icon={<ReloadOutlined />}
+                  onClick={handleRefresh}
+                  loading={loading}
+                  type="text"
+                  size="small"
+                  className="flex items-center"
+                >
+                  <span className="hidden sm:inline ml-1">
+                    {t("previews.refresh")}
+                  </span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

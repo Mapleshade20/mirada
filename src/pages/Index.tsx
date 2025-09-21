@@ -66,16 +66,20 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pefa-section py-20">
         <div className="pefa-container">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-6">
             {/* Left 1/3 - Image */}
-            <div className="w-full lg:w-1/3">
-              <div className="aspect-square bg-gradient-to-br from-pefa-peach/20 to-pefa-orange/20 rounded-3xl flex items-center justify-center">
-                <Heart className="h-32 w-32 text-pefa-peach opacity-60" />
+            <div className="w-full lg:w-1/3 flex-shrink-0">
+              <div className="flex justify-center">
+                <img
+                  src="/home.svg"
+                  alt="Contigo homepage illustration"
+                  className="max-w-[200px] h-auto"
+                />
               </div>
             </div>
 
             {/* Right 2/3 - Content */}
-            <div className="w-full lg:w-2/3 text-center lg:text-left">
+            <div className="w-full lg:w-2/3 text-center lg:text-left lg:max-w-none max-w-2xl mx-auto lg:mx-0">
               <div className="tagline mb-4">{t("hero.minititle")}</div>
               <h1 className="heading-jumbo mb-6">
                 {"Meeting you was fate, becoming your friend was "}
@@ -89,7 +93,7 @@ const Index = () => {
                 <button
                   type="button"
                   onClick={handleGetStarted}
-                  className="pefa-button inline-flex items-center space-x-2"
+                  className="pefa-button inline-flex items-center justify-center space-x-2"
                 >
                   <span>
                     {isAuthenticated
@@ -166,11 +170,33 @@ const Index = () => {
           <div className="text-lg pefa-text max-w-2xl mx-auto mb-8 text-left">
             {t("homepage.cta.subtitle")
               .split("\n")
-              .map((paragraph) => (
-                <p key={paragraph} className="mb-4 last:mb-0 text-justify">
-                  {paragraph}
-                </p>
-              ))}
+              .map((paragraph) => {
+                const emailRegex = /<([^>]+@[^>]+)>/g;
+                const parts = paragraph.split(emailRegex);
+
+                return (
+                  <p key={paragraph} className="mb-4 last:mb-0 text-justify">
+                    {parts.map((part) => {
+                      if (
+                        part.includes("@") &&
+                        !part.includes("<") &&
+                        !part.includes(">")
+                      ) {
+                        return (
+                          <a
+                            key={part}
+                            href={`mailto:${part}`}
+                            className="text-pefa-peach hover:text-pefa-orange transition-colors underline"
+                          >
+                            {part}
+                          </a>
+                        );
+                      }
+                      return part;
+                    })}
+                  </p>
+                );
+              })}
           </div>
           <button
             type="button"
@@ -197,8 +223,7 @@ const Index = () => {
             </span>
           </div>
           <p className="pefa-text mb-4">
-            {"© "}
-            {currentYear} {t("hero.copyright")}
+            © Copyleft {currentYear} {t("hero.copyright")}
           </p>
           <div className="pefa-text flex items-center justify-center gap-6">
             <Link

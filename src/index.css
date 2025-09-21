@@ -93,6 +93,7 @@
     padding: var(--button-padding);
     font-size: var(--button-font-size);
     font-weight: 600;
+    text-align: center;
     transition: var(--pefa-transition);
     cursor: pointer;
     box-shadow: var(--pefa-shadow);
@@ -112,6 +113,7 @@
     padding: var(--button-padding);
     font-size: var(--button-font-size);
     font-weight: 600;
+    text-align: center;
     transition: var(--pefa-transition);
     cursor: pointer;
   }
@@ -134,7 +136,7 @@
   }
 
   .pefa-section {
-    padding: 60px 0;
+    padding: 45px 0;
   }
 
   .pefa-container {

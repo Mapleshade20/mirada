@@ -1,80 +1,80 @@
 {
   "emotionally_stable": {
     "name": {
-      "en": "Emotionally stable, patient and calm",
-      "zh": "情绪稳定，耐心平和"
+      "en": "Emotionally stable and calm",
+      "zh": "情绪稳定 持续平和"
     }
   },
   "humor": {
     "name": {
       "en": "Sense of humor",
-      "zh": "幽默感"
+      "zh": "自带幽默感"
     }
   },
   "curiosity": {
     "name": {
       "en": "Curious and eager to explore",
-      "zh": "好奇心强，乐于探索"
+      "zh": "心态开放 热衷于解锁新领域"
     }
   },
   "reliable": {
     "name": {
       "en": "Super reliable, keeps promises",
-      "zh": "超级靠谱，言出必行"
+      "zh": "超靠谱 说到做到"
     }
   },
   "empathy": {
     "name": {
       "en": "Strong empathy, good listener",
-      "zh": "共情能力强，善于倾听"
+      "zh": "共情能力强 你的情绪我能get"
     }
   },
   "discipline": {
     "name": {
       "en": "Self-disciplined and goal-oriented",
-      "zh": "自律自驱，目标明确"
+      "zh": "生活自律 默默努力的狠角色"
     }
   },
   "life_ritualist": {
     "name": {
       "en": "Values life rituals and ceremonies",
-      "zh": "注重生活仪式感"
+      "zh": "生活仪式感 把日子过成诗"
     }
   },
   "explorer": {
     "name": {
       "en": "Loves adventure and challenges",
-      "zh": "热爱冒险，勇于挑战"
+      "zh": "生命在于折腾 做很酷很好玩的事"
     }
   },
   "sports_lover": {
     "name": {
-      "en": "Enjoys sports, full of energy",
-      "zh": "享受运动，活力充沛"
+      "en": "Enjoys sports",
+      "zh": "生命在于运动 燃烧卡路里"
     }
   },
   "bookworm": {
     "name": {
       "en": "Loves reading and intellectual discussions",
-      "zh": "热爱阅读，享受思辨"
+      "zh": "用阅读对抗平庸 热爱思辨"
     }
   },
   "optimistic": {
     "name": {
       "en": "Positive and optimistic",
-      "zh": "积极乐观"
+      "zh": "积极乐观 人间小太阳"
     }
   },
   "decisive": {
     "name": {
       "en": "Decisive with strong execution skills",
-      "zh": "果断行动，执行力强"
+      "zh": "行动派 不做精神内耗"
     }
   },
   "imaginative": {
     "name": {
-      "en": "Creative and unconventional",
-      "zh": "打破常规，富有创意"
+      "en": "Always come up with creative ideas",
+      "zh": "经常蹦出奇思妙想 不按常理出牌"
     }
   }
 }

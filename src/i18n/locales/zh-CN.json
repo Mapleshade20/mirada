@@ -5,11 +5,11 @@
   },
   "hero": {
     "minititle": "一场实验性的配对活动",
-    "subtitle": "为大学生设计的配对体验活动，通过兴趣匹配和有意义的交流建立联系。",
+    "subtitle": "为大学生设计的社交配对活动，通过兴趣匹配和有意义的交流建立联系✨",
     "getStarted": "开始使用",
     "goToDashboard": "前往仪表盘",
     "learnMore": "了解更多",
-    "copyright": "Contigo. 为下一代打造的实验性社交配对"
+    "copyright": "Contigo. 一场实验性的社交配对活动"
   },
   "homepage": {
     "header": {
@@ -185,8 +185,8 @@
       },
       "physicalBoundary": {
         "label": "如果你们觉得对方都很不错，你预期这段关系是怎样的",
-        "first": "最好只是纯朋友",
-        "second": "可以接受一点暧昧",
+        "first": "只能纯朋友",
+        "second": "可接受一点暧昧",
         "third": "倾向于更亲密",
         "fourth": "最好是恋爱"
       },
@@ -222,7 +222,7 @@
       },
       "physicalBoundaryScale": {
         "1": "1 纯朋友",
-        "2": "2 可以接受一点暧昧",
+        "2": "2 可接受一点暧昧",
         "3": "3 倾向于更亲密",
         "4": "4 恋爱"
       },

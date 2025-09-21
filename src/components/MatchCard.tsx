@@ -53,30 +53,38 @@ const MatchCard: React.FC<MatchCardProps> = ({
         isVetoed ? "opacity-60 border-red-300 bg-red-50" : "hover:shadow-md"
       }`}
       title={
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <UserOutlined className="text-blue-500" />
-            <span>{candidate.email_domain}</span>
-            <Tag color="blue">{translateGrade(candidate.grade, t)}</Tag>
-          </div>
-          {isVetoed && (
-            <Tag color="red" icon={<CloseOutlined />}>
-              {t("previews.vetoed")}
+        <div className="flex items-center justify-between gap-1">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <UserOutlined className="text-blue-500 flex-shrink-0" />
+            <span className="truncate">{candidate.email_domain}</span>
+            <Tag color="blue" className="flex-shrink-0">
+              {translateGrade(candidate.grade, t)}
             </Tag>
-          )}
+            {isVetoed && (
+              <Tag
+                color="red"
+                icon={<CloseOutlined />}
+                className="ml-1 flex-shrink-0"
+              >
+                {t("previews.vetoed")}
+              </Tag>
+            )}
+          </div>
+          <div className="flex-shrink-0 ml-2">
+            <Button
+              type={isVetoed ? "default" : "primary"}
+              danger={!isVetoed}
+              icon={isVetoed ? <HeartOutlined /> : <CloseOutlined />}
+              onClick={handleVetoClick}
+              loading={loading}
+              size="small"
+            >
+              <span className="hidden sm:inline ml-1">
+                {isVetoed ? t("previews.approve") : t("previews.veto")}
+              </span>
+            </Button>
+          </div>
         </div>
-      }
-      extra={
-        <Button
-          type={isVetoed ? "default" : "primary"}
-          danger={!isVetoed}
-          icon={isVetoed ? <HeartOutlined /> : <CloseOutlined />}
-          onClick={handleVetoClick}
-          loading={loading}
-          size="small"
-        >
-          {isVetoed ? t("previews.approve") : t("previews.veto")}
-        </Button>
       }
     >
       <div className="space-y-4">

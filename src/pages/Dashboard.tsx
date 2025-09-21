@@ -350,50 +350,66 @@ const Dashboard: React.FC = () => {
       <div className="relative z-10 flex-1">
         {/* Header */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">
-                {t("dashboard.title")}
-              </h1>
-              <p className="text-gray-600">
-                {t("dashboard.welcome", { email: user?.email })}
-              </p>
-            </div>
-            {nextMatchTime && (
-              <div className="mt-2 px-3 py-1 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-s text-blue-400">
-                  <strong>{t("dashboard.nextMatch")}</strong>{" "}
-                  {formatMatchTime(nextMatchTime)}
+          <div className="max-w-6xl mx-auto px-4 py-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <div className="flex-1">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
+                  {t("dashboard.title")}
+                </h1>
+                <p className="text-sm sm:text-base text-gray-600">
+                  {t("dashboard.welcome", { email: user?.email })}
                 </p>
               </div>
-            )}
-            <div className="flex items-center gap-4">
-              <Button
-                icon={<HomeOutlined />}
-                onClick={() => navigate("/")}
-                type="text"
-              >
-                {t("common.home")}
-              </Button>
-              <LanguageSwitcher />
-              <Button
-                icon={<InfoCircleOutlined />}
-                onClick={() => {
-                  setOnboardingStep(0);
-                  setShowOnboarding(true);
-                }}
-                type="text"
-              >
-                {t("dashboard.privacyHints")}
-              </Button>
-              <Button
-                icon={<LogoutOutlined />}
-                onClick={handleLogout}
-                type="text"
-                danger
-              >
-                {t("dashboard.logout")}
-              </Button>
+
+              {nextMatchTime && (
+                <div className="order-3 sm:order-2 px-3 py-1 bg-blue-50 rounded-lg border border-blue-200 self-start sm:self-center">
+                  <p className="text-xs sm:text-sm text-blue-400">
+                    <strong>{t("dashboard.nextMatch")}</strong>{" "}
+                    {formatMatchTime(nextMatchTime)}
+                  </p>
+                </div>
+              )}
+
+              <div className="order-2 sm:order-3 flex items-center gap-2 flex-wrap">
+                <Button
+                  icon={<HomeOutlined />}
+                  onClick={() => navigate("/")}
+                  type="text"
+                  size="small"
+                  className="flex items-center"
+                >
+                  <span className="hidden sm:inline ml-1">
+                    {t("common.home")}
+                  </span>
+                </Button>
+                <LanguageSwitcher />
+                <Button
+                  icon={<InfoCircleOutlined />}
+                  onClick={() => {
+                    setOnboardingStep(0);
+                    setShowOnboarding(true);
+                  }}
+                  type="text"
+                  size="small"
+                  className="flex items-center"
+                >
+                  <span className="hidden sm:inline ml-1">
+                    {t("dashboard.privacyHints")}
+                  </span>
+                </Button>
+                <Button
+                  icon={<LogoutOutlined />}
+                  onClick={handleLogout}
+                  type="text"
+                  size="small"
+                  danger
+                  className="flex items-center"
+                >
+                  <span className="hidden sm:inline ml-1">
+                    {t("dashboard.logout")}
+                  </span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
