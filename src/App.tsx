@@ -1,4 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ConfigProvider } from "antd";
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -17,6 +19,15 @@ import TermsOfService from "./pages/TermsOfService";
 import { useAuthStore } from "./store/authStore";
 
 const queryClient = new QueryClient();
+
+function VercelInsights() {
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+    </>
+  );
+}
 
 const App = () => {
   const { initializeAuth } = useAuthStore();
@@ -41,6 +52,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <VercelInsights />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route
