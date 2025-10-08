@@ -45,7 +45,15 @@ const Login: React.FC = () => {
 
         {/* Footer */}
         <div className="mt-8 text-center space-y-4">
-          <p className="text-sm text-muted-foreground">{t("auth.tagline")}</p>
+          <div className="text-sm text-muted-foreground">
+            {t("auth.tagline")
+              .split("\n")
+              .map((paragraph) => (
+                <p key={paragraph} className="m-2">
+                  {paragraph}
+                </p>
+              ))}
+          </div>
           <div className="flex justify-center items-center gap-4 text-xs text-muted-foreground/60">
             <Link
               to="/privacy"

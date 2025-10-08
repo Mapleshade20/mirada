@@ -35,7 +35,7 @@
     },
     "cta": {
       "title": "Event Inspiration",
-      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices. This approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
+      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices, including whether you want it to be a friendship or a romantic relationship. The system is almost fully automated, so this approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
       "buttonText": "Start Your Journey"
     }
   },
@@ -57,7 +57,7 @@
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code",
-    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy."
+    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy.\nAccess is only supported from within mainland China."
   },
   "dashboard": {
     "title": "Contigo Dashboard",
@@ -75,26 +75,26 @@
         "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 30 days after the conclusion of the event. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>"
       },
       "systemPrivacy": {
-        "title": "The System Protects Your Privacy",
-        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Non-text fields in your profile will be used for matching calculations and, along with some text fields, for the veto system to be shown to other users; personal life photos will be shared with the other party after the final match is made, and WeChat IDs will only be shared after mutual match confirmation."
+        "title": "Our System Protects Your Privacy",
+        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Personal life photos will be shared with the other party after the final match is made, and WeChat IDs will only be shared after mutual match confirmation."
       },
       "qualityConnections": {
-        "title": "Quality Connections",
-        "description": "We focus on meaningful relationships with verified university students in your area."
+        "title": "Genuine Connections",
+        "description": "The event aims to help you establish meaningful connections with verified university students in the area. We encourage you to fill out your profile seriously and participate in the matching process. If the other party happens to be someone you accept and appreciate, you can build a healthy new relationship with them. Due to the limitations of the matching algorithm, the system does not guarantee that your hobbies will be highly matched, and there is even a small probability of significant differences. However, keep in mind that the development of a real relationship does not depend on the system's algorithm but on the mutual effort and exploration of both parties."
       }
     }
   },
   "steps": {
     "idVerification": {
       "title": "ID Verification",
-      "description": "Upload your student ID card",
-      "uploadTitle": "Upload Student ID Card",
-      "uploadDescription": "Please upload your student ID card for verification",
-      "uploadButton": "Upload ID Card"
+      "description": "Upload your student ID",
+      "uploadTitle": "Upload Student ID",
+      "uploadDescription": "To ensure the authenticity of each participant, please upload your student ID card or equivalent document for verification",
+      "uploadButton": "Upload Student ID"
     },
     "verificationPending": {
       "title": "Verification Pending",
-      "description": "Your ID card is being reviewed by our team. This usually takes 12-24 hours."
+      "description": "Your ID is being reviewed by our team. This may take 12-24 hours."
     },
     "profileForm": {
       "title": "Profile Form",
@@ -186,7 +186,7 @@
       "physicalBoundary": {
         "label": "If you both find each other nice, what level of relationship do you expect?",
         "first": "Just friends",
-        "second": "Flirt a bit",
+        "second": "Somewhat casual",
         "third": "More intimate",
         "fourth": "Romantic relationship"
       },
@@ -216,15 +216,15 @@
         "personalInfo": "Personal Information",
         "interests": "Interests",
         "personality": "Personality",
-        "physicalBoundary": "Physical Boundaries",
+        "physicalBoundary": "Expected Relationship",
         "recentTopics": "Recent Topics",
         "profilePhoto": "Profile Photo"
       },
       "physicalBoundaryScale": {
-        "1": "1 Conservative",
-        "2": "2 Somewhat Conservative",
-        "3": "3 Moderate",
-        "4": "4 Open"
+        "1": "1 Just Friends",
+        "2": "2 Somewhat Casual",
+        "3": "3 More Intimate",
+        "4": "4 Romantic Relationship"
       },
       "photoStatus": {
         "uploaded": "✓ Photo uploaded",

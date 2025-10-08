@@ -66,14 +66,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="pefa-section py-20">
         <div className="pefa-container">
-          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-6">
+          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-16">
             {/* Left 1/3 - Image */}
             <div className="w-full lg:w-1/3 flex-shrink-0">
               <div className="flex justify-center">
                 <img
-                  src="/home.svg"
+                  src="/home.webp"
                   alt="Contigo homepage illustration"
-                  className="max-w-[200px] h-auto"
+                  className="max-w-[400px] h-auto"
                 />
               </div>
             </div>
@@ -238,6 +238,34 @@ const Index = () => {
             >
               {t("footer.termsOfService")}
             </Link>
+            <a
+              href="https://github.com/Mapleshade20/hilo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-foreground transition-colors"
+            >
+              <img
+                height="16"
+                width="16"
+                alt="Rust"
+                src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/rust.svg"
+              />
+              <span>hilo</span>
+            </a>
+            <a
+              href="https://github.com/Mapleshade20/mirada"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-foreground transition-colors"
+            >
+              <img
+                height="16"
+                width="16"
+                alt="React"
+                src="https://cdn.jsdelivr.net/npm/simple-icons@v15/icons/react.svg"
+              />
+              <span>mirada</span>
+            </a>
           </div>
         </div>
       </footer>
