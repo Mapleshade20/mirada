@@ -1,8 +1,268 @@
 {
-  "sports": {
+  "mental_shelter": {
     "name": {
-      "en": "Sports",
-      "zh": "运动"
+      "en": "Mental Corner",
+      "zh": "「精神角落」"
+    }
+  },
+  "gaming": {
+    "name": {
+      "en": "Gaming Life🎮",
+      "zh": "游戏人生🎮"
+    }
+  },
+  "competitive_games": {
+    "name": {
+      "en": "Competitive Player",
+      "zh": "竞技向玩家"
+    }
+  },
+  "pc_fps": {
+    "name": {
+      "en": "PC FPS",
+      "zh": "PC端FPS"
+    },
+    "desc": {
+      "en": "e.g., Apex/PUBG/Valorant",
+      "zh": "Apex/PUBG/Valorant等"
+    }
+  },
+  "moba": {
+    "name": {
+      "en": "MOBA",
+      "zh": "MOBA"
+    },
+    "desc": {
+      "en": "e.g., Dota2/LOL/Honor of Kings",
+      "zh": "Dota2/LOL/王者等"
+    }
+  },
+  "mobile_games": {
+    "name": {
+      "en": "Other Mobile Games",
+      "zh": "其余各类手游"
+    }
+  },
+  "story_rich_games": {
+    "name": {
+      "en": "Story-Driven Player",
+      "zh": "偏好剧情体验的玩家"
+    },
+    "desc": {
+      "en": "Focuses more on game immersion and storyline",
+      "zh": "更注重游戏沉浸性和故事情节"
+    }
+  },
+  "rpg_games": {
+    "name": {
+      "en": "RPG/Action-Adventure",
+      "zh": "RPG/动作冒险"
+    },
+    "desc": {
+      "en": "Masterpieces like The Witcher/Elden Ring/Cyberpunk 2077",
+      "zh": "巫师/艾尔登法环/2077等大作"
+    }
+  },
+  "puzzle_games": {
+    "name": {
+      "en": "Immersive Puzzle / Indie Gems",
+      "zh": "沉浸式解谜/精品独立游戏"
+    },
+    "desc": {
+      "en": "Unique gameplay, art, or narrative that brings a special emotional experience, like Little Nightmares/Undertale/Outer Wilds/Celeste",
+      "zh": "玩法、美术或叙事独具匠心，能带来独特情感体验，如小小梦魇/Undertale/星际拓荒/Celeste"
+    }
+  },
+  "strategy_games": {
+    "name": {
+      "en": "Strategy Game Mastermind",
+      "zh": "战略类游戏的甲级战犯"
+    },
+    "desc": {
+      "en": "Turn-based (e.g., Civilization) / Real-time (e.g., StarCraft)",
+      "zh": "回合制(如文明)/即时制(如星际争霸)"
+    }
+  },
+  "simulation_games": {
+    "name": {
+      "en": "Chill Simulation Gamer",
+      "zh": "模拟经营佛系玩家"
+    },
+    "desc": {
+      "en": "Simulation or sandbox games like Oxygen Not Included/Cities: Skylines/Turing Complete/Microsoft Flight Simulator",
+      "zh": "缺氧/天际线/图灵完备/模拟飞行等模拟或沙盒"
+    }
+  },
+  "music_games": {
+    "name": {
+      "en": "Rhythm Gamer",
+      "zh": "音游人"
+    }
+  },
+  "party_games": {
+    "name": {
+      "en": "Party Game Enthusiast",
+      "zh": "派对游戏爱好者"
+    },
+    "desc": {
+      "en": "Games for local or online play with friends, focusing on fun and interaction, like It Takes Two, Overcooked, Mario Party, Fall Guys",
+      "zh": "适合与朋友同屏或联机并主打欢乐互动的游戏，如双人成行、胡闹厨房、马力欧派对、糖豆人"
+    }
+  },
+  "art_perception": {
+    "name": {
+      "en": "Art & Perception 👀",
+      "zh": "艺术感知 👀"
+    }
+  },
+  "acg": {
+    "name": {
+      "en": "ACG Universe🌌",
+      "zh": "ACG 异次元🌌"
+    },
+    "desc": {
+      "en": "Anime, Comics, Games, and ACG culture",
+      "zh": "动漫，二次元文化认同"
+    }
+  },
+  "film_enthusiast": {
+    "name": {
+      "en": "Film Connoisseur🎬",
+      "zh": "电影阅片家🎬"
+    },
+    "desc": {
+      "en": "Not just watching movies, but loves analyzing, discussing, and reviewing them",
+      "zh": "不只看电影，还热爱分析、讨论、影评"
+    }
+  },
+  "livehouse_fan": {
+    "name": {
+      "en": "Livehouse Regular🎸",
+      "zh": "Livehouse 常客🎸"
+    },
+    "desc": {
+      "en": "Addicted to the atmosphere and experience of live music",
+      "zh": "沉迷现场音乐的氛围和体验"
+    }
+  },
+  "karaoke": {
+    "name": {
+      "en": "Karaoke King/Queen in Training🎤",
+      "zh": "预备役KTV麦霸🎤"
+    },
+    "desc": {
+      "en": "Feels the urge to sing along impromptu, maybe can even play and sing",
+      "zh": "听着歌即兴就想唱出来，或许还能弹唱"
+    }
+  },
+  "karaoke_western": {
+    "name": {
+      "en": "🎤Western Pop",
+      "zh": "🎤欧美"
+    }
+  },
+  "karaoke_chinese": {
+    "name": {
+      "en": "🎤Chinese Pop",
+      "zh": "🎤华语"
+    }
+  },
+  "karaoke_jp_kr": {
+    "name": {
+      "en": "🎤J-Pop/K-Pop",
+      "zh": "🎤日韩"
+    }
+  },
+  "lifestyle": {
+    "name": {
+      "en": "Lifestyle & Aesthetics",
+      "zh": "生活美学"
+    }
+  },
+  "pet_lover": {
+    "name": {
+      "en": "Cat/Dog Person🐾",
+      "zh": "猫奴/狗奴🐾"
+    },
+    "desc": {
+      "en": "Has a lot of love and affection for pets",
+      "zh": "对宠物有很多的爱和亲切感"
+    }
+  },
+  "fashion_artist": {
+    "name": {
+      "en": "Fashion Artist👕",
+      "zh": "穿搭艺术家👕"
+    },
+    "desc": {
+      "en": "Always in pursuit of fashion and personal style",
+      "zh": "始终追求时尚和个人风格"
+    }
+  },
+  "home_chef": {
+    "name": {
+      "en": "Home Cooking Master🍳",
+      "zh": "人间烟火厨神🍳"
+    },
+    "desc": {
+      "en": "Enjoys the fun and sense of accomplishment from cooking",
+      "zh": "享受自己动手做饭或烹饪的乐趣和成就感"
+    }
+  },
+  "diy_creator": {
+    "name": {
+      "en": "DIY Creator🛠",
+      "zh": "DIY 创造者🛠"
+    },
+    "desc": {
+      "en": "Loves crafts, journaling, knitting, etc.",
+      "zh": "喜欢手工、手帐、编织等"
+    }
+  },
+  "board_gamer": {
+    "name": {
+      "en": "Board Game Crew🎲",
+      "zh": "线下桌游气氛组🎲"
+    },
+    "desc": {
+      "en": "Loves offline social games like board games, murder mystery games, etc.",
+      "zh": "喜欢桌游、剧本杀等线下社交游戏"
+    }
+  },
+  "painter": {
+    "name": {
+      "en": "Impromptu Artist🎨",
+      "zh": "即兴画手🎨"
+    },
+    "desc": {
+      "en": "Digital art, watercolor, sketching, manga/comics",
+      "zh": "板绘、水彩、速写、漫画"
+    }
+  },
+  "photographer": {
+    "name": {
+      "en": "Photography Enthusiast / Street Photographer📷",
+      "zh": "摄影爱好者/扫街派📷"
+    },
+    "desc": {
+      "en": "Observing the world through a lens, exploring the surprises in street corners and alleys",
+      "zh": "从镜头中观察世界，探索街角小巷的惊喜"
+    }
+  },
+  "foodie": {
+    "name": {
+      "en": "Foodie Explorer🍜",
+      "zh": "美食探店家🍜"
+    },
+    "desc": {
+      "en": "Passionate about food, enthusiastic about discovering and trying various restaurants",
+      "zh": "对美食有热情，热衷于发现和品尝各种餐厅"
+    }
+  },
+  "physical_activity": {
+    "name": {
+      "en": "Forever Active",
+      "zh": "「永远鲜活」"
     }
   },
   "volleyball": {
@@ -49,26 +309,8 @@
   },
   "wild": {
     "name": {
-      "en": "Cycling🚴/Hiking🚶/Climbing⛰/Camping⛺/Rock Climbing🧗",
-      "zh": "骑行🚴/徒步🚶/登山⛰/露营⛺/攀岩🧗"
-    }
-  },
-  "yoga": {
-    "name": {
-      "en": "Yoga🧘",
-      "zh": "瑜伽🧘"
-    }
-  },
-  "martial_arts": {
-    "name": {
-      "en": "Martial Arts/Combat Sports🥋",
-      "zh": "武术/搏击🥋"
-    }
-  },
-  "dance": {
-    "name": {
-      "en": "Dance💃",
-      "zh": "舞蹈💃"
+      "en": "Outdoors⛰(Hiking/Trekking/Camping)",
+      "zh": "山野⛰(登山/远足/露营)"
     }
   },
   "ice_snow_sports": {
@@ -79,198 +321,50 @@
   },
   "water_sports": {
     "name": {
-      "en": "Swimming🏊/Water Sports",
-      "zh": "游泳🏊/水上运动"
+      "en": "Swimming/Water Sports🏊",
+      "zh": "游泳/水上运动🏊"
     }
   },
-  "desktop": {
+  "fitness": {
     "name": {
-      "en": "Desktop Activities",
-      "zh": "在桌面上的活动"
+      "en": "Fitness & Body Sculpting💪",
+      "zh": "塑形健身💪"
     }
   },
-  "board_games": {
+  "intellectual": {
     "name": {
-      "en": "Board Games🐺/Card Games🃏/Chess♟",
-      "zh": "桌游🐺/牌类🃏/棋类♟"
+      "en": "Clash of Minds",
+      "zh": "「思想碰撞」"
     }
   },
-  "competitive_games": {
+  "tech_geek": {
     "name": {
-      "en": "Competitive Video Games🎮",
-      "zh": "竞技向电子游戏🎮"
-    }
-  },
-  "pc_fps": {
-    "name": {
-      "en": "PC FPS Games",
-      "zh": "PC端FPS"
+      "en": "Tech Geek💻",
+      "zh": "技术宅Geek💻"
     },
     "desc": {
-      "en": "Apex/PUBG/Valorant etc.",
-      "zh": "Apex/PUBG/Valorant等"
+      "en": "Strong interest in programming, digital gadgets, and hardcore technology",
+      "zh": "对编程、数码产品、硬核科技有浓厚兴趣"
     }
   },
-  "moba": {
+  "literary_creation": {
     "name": {
-      "en": "MOBA Games",
-      "zh": "MOBA类游戏"
+      "en": "Literary Creator🖊",
+      "zh": "文学创作党🖊"
     },
     "desc": {
-      "en": "Dota2/LOL/Mobile Legends etc.",
-      "zh": "Dota2/LOL/王者等"
-    }
-  },
-  "mobile": {
-    "name": {
-      "en": "Mobile Games (excluding MOBA)",
-      "zh": "除MOBA外的各类手游"
-    }
-  },
-  "mind_challenging_games": {
-    "name": {
-      "en": "Mind-Challenging Video Games🎮",
-      "zh": "偏好智力挑战的电子游戏🎮"
-    }
-  },
-  "strategy_games": {
-    "name": {
-      "en": "Strategy Games",
-      "zh": "战略类游戏"
-    },
-    "desc": {
-      "en": "Turn-based (like Civilization) / Real-time (like StarCraft)",
-      "zh": "回合制（如文明）/即时制（如星际争霸）"
-    }
-  },
-  "simulation_games": {
-    "name": {
-      "en": "Simulation & Management Games",
-      "zh": "模拟经营类游戏"
-    },
-    "desc": {
-      "en": "Oxygen Not Included/Cities: Skylines etc.",
-      "zh": "缺氧/天际线等"
-    }
-  },
-  "sandbox_games": {
-    "name": {
-      "en": "Sandbox/Simulator Games",
-      "zh": "纯沙盒类/模拟器游戏"
-    },
-    "desc": {
-      "en": "Turing Complete/Roblox/Flight Simulator etc.",
-      "zh": "图灵完备/Roblox/模拟飞行等"
-    }
-  },
-  "music_games": {
-    "name": {
-      "en": "Rhythm Games & Technical Gameplay",
-      "zh": "音游和强技术性玩法的游戏"
-    },
-    "desc": {
-      "en": "Technical gameplay: speedrunning and other 'compete with yourself' gameplay",
-      "zh": "强技术性玩法：速通等\"与自己竞技\"的玩法"
-    }
-  },
-  "story_rich_games": {
-    "name": {
-      "en": "Story/Atmosphere-Rich Video Games🎮",
-      "zh": "偏好剧情/氛围的电子游戏🎮"
-    }
-  },
-  "narrative_adventure": {
-    "name": {
-      "en": "RPG/Action Adventure Games",
-      "zh": "RPG/动作冒险游戏"
-    },
-    "desc": {
-      "en": "The Witcher/Elden Ring/Cyberpunk 2077 etc.",
-      "zh": "巫师/艾尔登法环/2077等大作"
-    }
-  },
-  "puzzle_games": {
-    "name": {
-      "en": "Immersive Puzzle/Indie/Creative Games",
-      "zh": "沉浸式解谜/精品独立/创意游戏"
-    },
-    "desc": {
-      "en": "Games with unique gameplay, art or narrative that bring distinctive emotional experiences, like Little Nightmares/Undertale/Outer Wilds/Celeste",
-      "zh": "玩法、美术或叙事独具匠心，能带来独特情感体验，如小小梦魇/Undertale/星际拓荒/Celeste"
-    }
-  },
-  "coop_party": {
-    "name": {
-      "en": "Co-op/Party Games",
-      "zh": "合作/派对游戏"
-    },
-    "desc": {
-      "en": "Games suitable for local or online play with friends, focusing on fun interaction, like It Takes Two, Overcooked, Mario Party, Stardew Valley",
-      "zh": "适合与朋友同屏或联机并主打欢乐互动的游戏，如双人成行、胡闹厨房、马力欧派对、星露谷"
-    }
-  },
-  "leisure": {
-    "name": {
-      "en": "Leisure Activities",
-      "zh": "休闲活动"
-    }
-  },
-  "singing": {
-    "name": {
-      "en": "Singing🎤",
-      "zh": "唱歌🎤"
-    }
-  },
-  "eu_us": {
-    "name": {
-      "en": "European/American Songs",
-      "zh": "欧美歌曲"
-    }
-  },
-  "japan_korea": {
-    "name": {
-      "en": "Japanese/Korean Songs",
-      "zh": "日韩歌曲"
-    }
-  },
-  "china": {
-    "name": {
-      "en": "Chinese Songs",
-      "zh": "华语歌曲"
-    }
-  },
-  "instruments": {
-    "name": {
-      "en": "Musical Instruments🎸🎹🎻🥁",
-      "zh": "乐器🎸🎹🎻🥁"
-    }
-  },
-  "arts": {
-    "name": {
-      "en": "Creative Activities (Drawing🖊/Photography📸/Writing)",
-      "zh": "独立创作类活动(绘画🖊/摄影📸/写作)"
-    }
-  },
-  "crafts": {
-    "name": {
-      "en": "Crafts & DIY🧵/Baking/Cooking🍳",
-      "zh": "手工DIY🧵/烘焙/烹饪🍳"
-    }
-  },
-  "knowledge": {
-    "name": {
-      "en": "Knowledge-Based Activities",
-      "zh": "知识型活动"
+      "en": "Novels, poetry, essays, fan fiction... building worlds and healing oneself with words",
+      "zh": "小说、诗歌、随笔、同人文……用文字构建世界和疗愈自身"
     }
   },
   "language_exchange": {
     "name": {
-      "en": "Language Exchange🗣",
-      "zh": "语言交换🗣"
+      "en": "Language Exchange Partner🌐",
+      "zh": "语言交换搭子🌐"
     },
     "desc": {
-      "en": "Come here if you love second languages",
-      "zh": "喜欢二外的友友快来"
+      "en": "Enthusiastic about learning foreign languages and looking for people to practice with",
+      "zh": "热衷于学习外语，并希望与人练习"
     }
   },
   "japanese": {
@@ -309,34 +403,14 @@
       "zh": "俄语🇷"
     }
   },
-  "study_together": {
+  "deep_thinker": {
     "name": {
-      "en": "Study Together📚",
-      "zh": "双人自习📚"
+      "en": "Deep Thinker / Debater🤔",
+      "zh": "沉思型常驻辩手🤔"
     },
     "desc": {
-      "en": "Simply study together, supervise each other",
-      "zh": "简单地一起学习，互相监督"
-    }
-  },
-  "humanities_reading": {
-    "name": {
-      "en": "Humanities & Reading🧠",
-      "zh": "人文社科/读书分享🧠"
-    },
-    "desc": {
-      "en": "Reading clubs, film appreciation, historical and philosophical discussions, social issue discussions, etc.",
-      "zh": "读书会、电影鉴赏、历史哲学思辨、社会议题讨论等"
-    }
-  },
-  "tech_exchange": {
-    "name": {
-      "en": "Tech & Programming💻",
-      "zh": "研究计算机技术💻"
-    },
-    "desc": {
-      "en": "Programming development, algorithm research, etc.",
-      "zh": "装机、编程开发、算法研究等"
+      "en": "Loves discussing deep topics like social issues, philosophy, and psychology",
+      "zh": "喜欢讨论社会议题、哲学、心理学等深度话题"
     }
   }
 }

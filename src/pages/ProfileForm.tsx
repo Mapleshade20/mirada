@@ -28,6 +28,7 @@ import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import TagDescriptions from "../components/TagDescriptions";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
+import type { Tag } from "../data/tags";
 import { tagData } from "../data/tags";
 import { traitData } from "../data/traits";
 import { useDraftSaving } from "../hooks/useDraftSaving";
@@ -52,13 +53,6 @@ interface FormData {
 
 const { Option } = Select;
 const { TextArea } = Input;
-
-interface Tag {
-  id: string;
-  name: string;
-  is_matchable: boolean;
-  children?: Tag[];
-}
 
 // Helper function to convert tag data to TreeSelect format
 const convertTagsToTreeData = (

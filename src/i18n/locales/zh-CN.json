@@ -164,23 +164,23 @@
         "required": "请介绍一下自己"
       },
       "familiarTags": {
-        "label": "你喜欢、熟悉并且乐意和对方分享的爱好 🤩 (两问总计10个以内)",
-        "placeholder": "选择熟悉的兴趣...",
-        "required": "请选择熟悉的兴趣"
+        "label": "哪些星球是你有归属感的 ♥️ (两问共10个以内，部分选项勾选后会显示描述)",
+        "placeholder": "展开...",
+        "required": "请选择归属的星球"
       },
       "aspirationalTags": {
-        "label": "你不太熟但想了解、尝试并且希望对方感兴趣的事 🤗",
-        "placeholder": "选择想尝试的兴趣...",
-        "required": "请选择想尝试的兴趣"
+        "label": "你还有加入哪些新星球的打算 🤗",
+        "placeholder": "展开...",
+        "required": "请选择想加入的星球"
       },
       "selfTraits": {
         "label": "你最符合哪些性格特质 🤔 (1-3个)",
-        "placeholder": "选择你的个性...",
+        "placeholder": "选择...",
         "required": "请选择个性"
       },
       "idealTraits": {
-        "label": "你理想的伴侣具有哪些特质 🤔 (1-3个)",
-        "placeholder": "选择理想特质...",
+        "label": "你期望对方符合哪些特质 🤔 (1-3个)",
+        "placeholder": "选择...",
         "required": "请选择理想特质"
       },
       "physicalBoundary": {
@@ -246,7 +246,7 @@
     "refresh": "刷新",
     "loading": "正在加载匹配预览...",
     "infoTitle": "提示",
-    "infoDescription": "以下是基于你的资料计算出的一些潜在匹配。你可以向完全不感兴趣的人投出否决卡，被否决的用户不会出现在你的最终匹配中。过多次否决有小概率造成你最后落单，所以请谨慎使用。预览每 {{interval}} 分钟刷新一次。",
+    "infoDescription": "以下是基于你的资料计算出的一些潜在匹配。你可以向完全不感兴趣的人投出否决卡，被否决的用户不会出现在你的最终匹配中。过多次否决有小概率造成你最后落单，所以请谨慎使用。预览每 {{interval}} 分钟刷新一次，刚提交问卷后可能需要等待一段时间。",
     "potentialMatches": "潜在匹配",
     "vetoedMatches": "已否决匹配",
     "noMatches": "目前没有可用的匹配预览",
@@ -257,8 +257,8 @@
     "approve": "恢复",
     "vetoed": "已否决",
     "recentTopics": "近期动态",
-    "familiarTags": "喜欢且熟悉的活动",
-    "aspirationalTags": "不熟但感兴趣的活动",
+    "familiarTags": "归属的星球",
+    "aspirationalTags": "想加入的星球",
     "vetoConfirm": {
       "title": "否决此匹配？",
       "content": "确定要否决这个候选人吗？对方将被排除在你的最终匹配之外。",

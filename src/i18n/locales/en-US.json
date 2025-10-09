@@ -164,12 +164,12 @@
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you like, are familiar with, and would like to do together with them 🤩 (no more than 10 total for both questions)",
+        "label": "Things you like and are familiar with ♥️ (up to 10 in total for both questions; some options will show descriptions when selected)",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
       "aspirationalTags": {
-        "label": "Things you want to learn, try, and hope the other person is also interested in 🤗",
+        "label": "Things you want to try 🤗",
         "placeholder": "Select interests you want to try...",
         "required": "Please select interests you want to try"
       },
@@ -246,7 +246,7 @@
     "refresh": "Refresh",
     "loading": "Loading match previews...",
     "infoTitle": "Tips",
-    "infoDescription": "These are some potential matches calculated based on your profile. You can use veto cards on candidates you're completely not interested in; vetoed users will not appear in your final match. Excessive vetoes may result in you being unmatched, so please use them wisely. Previews refresh every {{interval}} minutes.",
+    "infoDescription": "These are some potential matches calculated based on your profile. You can use veto cards on candidates you're completely not interested in; vetoed users will not appear in your final match. Excessive vetoes may result in you being unmatched, so please use them wisely. Previews refresh every {{interval}} minutes. It may take some time to generate previews right after you submit your profile.",
     "potentialMatches": "Potential Matches",
     "vetoedMatches": "Vetoed Matches",
     "noMatches": "No match previews available at this time",
