@@ -159,12 +159,12 @@
         "female": "Female"
       },
       "selfIntro": {
-        "label": "How would you introduce yourself to a new friend?",
+        "label": "How would you introduce yourself to a new friend? (within 150 chars)",
         "placeholder": "Present your highlight in two or three sentences",
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you like and are familiar with ♥️ (up to 10 in total for both questions; some options will show descriptions when selected)",
+        "label": "Things you like and are familiar with ♥ (up to 10 in total for both questions; some options will show descriptions when selected)",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
@@ -191,7 +191,7 @@
         "fourth": "Romantic relationship"
       },
       "recentTopics": {
-        "label": "Topics you've been interested in, thinking about, or discussing recently, or interesting things you've been doing lately (can be from any aspect)",
+        "label": "Topics you've been interested in, thinking about, or discussing recently, or interesting things you've been doing lately (within 150 chars)",
         "placeholder": "For example: what books or movies you've been into, new skills you're learning, or questions you've been pondering...",
         "required": "Please describe recent topics"
       },
