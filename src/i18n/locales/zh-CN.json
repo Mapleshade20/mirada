@@ -117,7 +117,7 @@
       "mutualTitle": "匹配已确认",
       "mutualDescription": "你们已成功双向奔赴！现在，把 TA 添加为好友，开启你们的故事吧。对方的微信号是：",
       "mutualFooter": "主动一点，故事才会有然后～不妨从一个简单的 Hi 开始，然后从你们感兴趣的事情聊起。祝你们聊得愉快！",
-      "waitingTitle": "等待回应",
+      "waitingTitle": "等待对方",
       "waitingDescription": "匹配已接受，正在等待另一位主角到场",
       "waitingFooter": "过一段时间再回来查看结果吧 :D",
       "wechatId": "微信号: {{wechatId}}"
@@ -164,7 +164,7 @@
         "required": "请介绍一下自己"
       },
       "familiarTags": {
-        "label": "哪些星球是你有归属感的 ♥️ (两问共10个以内，部分选项勾选后会显示描述)",
+        "label": "哪些星球是你有归属感的 ♥ (两问共10个以内，部分选项勾选后会显示描述)",
         "placeholder": "展开...",
         "required": "请选择归属的星球"
       },
@@ -280,8 +280,8 @@
     "subtitle": "序章已经写下，不妨认识一下这个故事的另一位主角？",
     "selfIntro": "TA的自我介绍",
     "recentTopics": "TA近期的动态",
-    "familiarTags": "熟悉的爱好有",
-    "aspirationalTags": "不熟但也感兴趣的活动有",
+    "familiarTags": "TA的星球",
+    "aspirationalTags": "TA想加入的星球",
     "acceptButton": "接受匹配",
     "rejectButton": "拒绝",
     "acceptConfirm": {
