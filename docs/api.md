@@ -254,7 +254,7 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
   - Returns `200 OK` with updated profile
   - Response: refer to `GET /api/profile`
 
-- `GET /api/partner-image/{filename}` - Get partner's profile photo
+- `GET /api/images/partner/{filename}` - Get partner's profile photo
   - Maximum access control, only accessible to matched partners
   - Returns `200 OK` with image
 

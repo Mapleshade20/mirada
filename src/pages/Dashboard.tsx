@@ -299,9 +299,7 @@ const Dashboard: React.FC = () => {
             {/* Confirmation status card */}
             <Card>
               <div className="text-center">
-                <HeartOutlined
-                  className={`text-4xl mb-4 ${bothConfirmed ? "text-green-500" : "text-orange-500"}`}
-                />
+                <div className="text-6xl mb-4">🪐</div>
                 <h3 className="text-xl font-semibold mb-2">
                   {bothConfirmed
                     ? t("steps.confirmed.mutualTitle")

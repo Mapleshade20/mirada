@@ -81,7 +81,7 @@ const FinalMatchCard: React.FC<FinalMatchCardProps> = ({
     <Card className="w-full max-w-2xl mx-auto shadow-lg">
       {showTitle && (
         <div className="text-center mb-6">
-          <div className="text-6xl mb-4">💕</div>
+          <div className="text-6xl mb-4">🪐</div>
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             {t("finalMatch.title")}
           </h2>
