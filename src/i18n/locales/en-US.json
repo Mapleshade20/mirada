@@ -57,7 +57,7 @@
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code",
-    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy.\nAccess is only supported from within mainland China."
+    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy.\nEmail delivery may occasionally fail or be significantly delayed during certain periods. If this occurs, please try again after a couple of hours or contact the developer via email (see homepage for address).\nAccess is only allowed from IPs within mainland China."
   },
   "dashboard": {
     "title": "Contigo Dashboard",
@@ -65,6 +65,10 @@
     "privacyHints": "Privacy Hints",
     "nextMatch": "Next Match At: ",
     "logout": "Logout",
+    "viewFormModal": {
+      "title": "Your Submitted Form",
+      "fetchError": "Failed to load form data"
+    },
     "onboarding": {
       "title": "Privacy Hints",
       "before": "Before",
@@ -76,7 +80,7 @@
       },
       "systemPrivacy": {
         "title": "Our System Protects Your Privacy",
-        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Personal life photos will be shared with the other party after the final match is made, and WeChat IDs will only be shared after mutual match confirmation."
+        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Personal photos will be displayed as a \"thumbnail\" during the veto phase, while the full-size photo will be shared with the other party after the final match is made. Your WeChat ID will only be shared after both parties confirm the match."
       },
       "qualityConnections": {
         "title": "Genuine Connections",
@@ -107,7 +111,8 @@
       "title": "Preview Matches",
       "description": "Review potential matches",
       "reviewTitle": "Review Match Previews",
-      "viewButton": "View Previews"
+      "viewButton": "View Previews",
+      "viewFormButton": "View My Form"
     },
     "finalMatch": {
       "title": "Final Match",
@@ -164,12 +169,12 @@
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you like and are familiar with ♥ (up to 10 in total for both questions; some options will show descriptions when selected)",
+        "label": "Things you like and are familiar with ♥️ (up to 10 in total for both questions; some options will show descriptions when selected)",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
       "aspirationalTags": {
-        "label": "Things you want to try 🤗",
+        "label": "Things you want to try ⭐",
         "placeholder": "Select interests you want to try...",
         "required": "Please select interests you want to try"
       },

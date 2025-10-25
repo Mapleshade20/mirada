@@ -1,5 +1,6 @@
 import {
   EyeOutlined,
+  FileTextOutlined,
   FormOutlined,
   HeartOutlined,
   HomeOutlined,
@@ -24,9 +25,11 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import FinalMatchCard from "../components/FinalMatchCard";
 import Footer from "../components/Footer";
+import FormReviewModal from "../components/FormReviewModal";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { useImageCompression } from "../hooks/useImageCompression";
+import type { FormData as ApiFormData } from "../lib/api";
 import { apiService } from "../lib/api";
 import { useAuthStore } from "../store/authStore";
 import { getAllowedGrades, translateGrade } from "../utils/validation";
@@ -41,6 +44,9 @@ const Dashboard: React.FC = () => {
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [uploadModalVisible, setUploadModalVisible] = useState(false);
   const [nextMatchTime, setNextMatchTime] = useState<string | null>(null);
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [formData, setFormData] = useState<Partial<ApiFormData> | null>(null);
+  const [formLoading, setFormLoading] = useState(false);
   const [form] = Form.useForm();
   const { compressImage, state: compressionState } = useImageCompression();
 
@@ -120,6 +126,20 @@ const Dashboard: React.FC = () => {
   const handleLogout = () => {
     logout();
     navigate("/");
+  };
+
+  const handleViewForm = async () => {
+    try {
+      setFormLoading(true);
+      const data = await apiService.getForm();
+      setFormData(data);
+      setShowFormModal(true);
+    } catch (error) {
+      console.error("Failed to fetch form data:", error);
+      message.error(t("dashboard.viewFormModal.fetchError"));
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   const formatMatchTime = (timeString: string | null) => {
@@ -264,13 +284,24 @@ const Dashboard: React.FC = () => {
               <p className="text-gray-600 mb-4">
                 {t("steps.previewMatches.description")}
               </p>
-              <Button
-                type="primary"
-                size="large"
-                onClick={() => navigate("/previews")}
-              >
-                {t("steps.previewMatches.viewButton")}
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button
+                  type="primary"
+                  size="large"
+                  icon={<EyeOutlined />}
+                  onClick={() => navigate("/previews")}
+                >
+                  {t("steps.previewMatches.viewButton")}
+                </Button>
+                <Button
+                  size="large"
+                  icon={<FileTextOutlined />}
+                  onClick={handleViewForm}
+                  loading={formLoading}
+                >
+                  {t("steps.previewMatches.viewFormButton")}
+                </Button>
+              </div>
             </div>
           </Card>
         );
@@ -572,6 +603,13 @@ const Dashboard: React.FC = () => {
           </Form.Item>
         </Form>
       </Modal>
+
+      {/* Form Review Modal */}
+      <FormReviewModal
+        open={showFormModal}
+        onClose={() => setShowFormModal(false)}
+        formData={formData}
+      />
     </div>
   );
 };
