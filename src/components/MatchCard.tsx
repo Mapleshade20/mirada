@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import type { VetoPreview } from "../lib/api";
 import { useTagTranslation } from "../utils/i18n-helpers";
 import { translateGrade } from "../utils/validation";
+import AuthenticatedImage from "./AuthenticatedImage";
 import TagDescriptions from "./TagDescriptions";
 
 interface MatchCardProps {
@@ -31,6 +32,9 @@ const MatchCard: React.FC<MatchCardProps> = ({
 }) => {
   const { t } = useTranslation();
   const { getTagName } = useTagTranslation();
+
+  // Construct thumbnail URL path for AuthenticatedImage
+  const thumbnailPath = `/api/images/thumbnail/${candidate.candidate_id}`;
 
   const handleVetoClick = () => {
     if (isVetoed) {
@@ -55,20 +59,31 @@ const MatchCard: React.FC<MatchCardProps> = ({
       title={
         <div className="flex items-center justify-between gap-1">
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <UserOutlined className="text-blue-500 flex-shrink-0" />
-            <span className="truncate">{candidate.email_domain}</span>
-            <Tag color="blue" className="flex-shrink-0">
-              {translateGrade(candidate.grade, t)}
-            </Tag>
-            {isVetoed && (
-              <Tag
-                color="red"
-                icon={<CloseOutlined />}
-                className="ml-1 flex-shrink-0"
-              >
-                {t("previews.vetoed")}
-              </Tag>
-            )}
+            <AuthenticatedImage
+              src={thumbnailPath}
+              alt={t("previews.profilePhoto")}
+              size={64}
+              fallbackIcon={<UserOutlined />}
+              useAvatar={true}
+              className="flex-shrink-0"
+            />
+            <div className="flex flex-col min-w-0 flex-1">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="truncate">{candidate.email_domain}</span>
+                <Tag color="blue" className="flex-shrink-0">
+                  {translateGrade(candidate.grade, t)}
+                </Tag>
+                {isVetoed && (
+                  <Tag
+                    color="red"
+                    icon={<CloseOutlined />}
+                    className="ml-1 flex-shrink-0"
+                  >
+                    {t("previews.vetoed")}
+                  </Tag>
+                )}
+              </div>
+            </div>
           </div>
           <div className="flex-shrink-0 ml-2">
             <Button

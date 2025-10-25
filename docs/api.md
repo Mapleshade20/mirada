@@ -258,4 +258,11 @@ _All protected endpoints require valid JWT Bearer token in Authorization header_
   - Maximum access control, only accessible to matched partners
   - Returns `200 OK` with image
 
+- `GET /api/images/thumbnail/{user_id}` - Get user profile photo thumbnail
+  - Requires authentication with `form_completed` status
+  - Any `form_completed` user can fetch any other user's 80px thumbnail
+  - Thumbnails maintain aspect ratio (larger dimension resized to 80px)
+  - Returns `200 OK` with thumbnail image
+  - Returns `403 Forbidden` if requester doesn't have `form_completed` status
+  - Returns `404 Not Found` if user or thumbnai
 </details>
