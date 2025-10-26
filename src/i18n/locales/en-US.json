@@ -35,7 +35,7 @@
     },
     "cta": {
       "title": "Event Inspiration",
-      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices, including whether you want it to be a friendship or a romantic relationship. The system is almost fully automated, so this approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nCurrently, our service supports universities in the Haidian district, including: Tsinghua University and Peking University. Students from other universities who are interested are welcome to contact us via email at <maple@maplewrt.com>. We will consider gradually expanding our service scope based on the requests received.",
+      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices, including whether you want it to be a friendship or a romantic relationship. The system is almost fully automated, so this approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nThe matching system is expected to be online for about 3-4 weeks, open to all students at Tsinghua University, as well as female students from other universities in Haidian District. If you find that your university email is not supported, feel free to send an email to <maple@maplewrt.com>. Based on the feedback we receive, we will consider gradually expanding the service coverage.",
       "buttonText": "Start Your Journey"
     }
   },
@@ -75,12 +75,12 @@
       "next": "Next",
       "ok": "OK",
       "dataProtection": {
-        "title": "Data Protection",
-        "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 30 days after the conclusion of the event. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>"
+        "title": "Tips",
+        "description": "It is recommended to use a system browser instead of WeChat to open this website, as this way you won't need to log in again each time you open it."
       },
       "systemPrivacy": {
         "title": "Our System Protects Your Privacy",
-        "description": "Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Personal photos will be displayed as a \"thumbnail\" during the veto phase, while the full-size photo will be shared with the other party after the final match is made. Your WeChat ID will only be shared after both parties confirm the match."
+        "description": "All information you provide is securely stored on our backend servers, used solely for matching purposes, not shared with any third parties, and will be permanently deleted within 30 days after the conclusion of the event. If you need to delete your data before the event ends, please send a request to <maple@maplewrt.com>. Your uploaded student ID is only used for manual verification of your student status by administrators and will not be displayed or used by the subsequent matching system. Only the domain section of your email will be shown to other users. Personal photos will be displayed as a \"thumbnail\" during the veto phase, while the full-size photo will be shared with the other party after the final match is made. Your WeChat ID will only be shared after both parties confirm the match."
       },
       "qualityConnections": {
         "title": "Genuine Connections",
@@ -169,7 +169,7 @@
         "required": "Please introduce yourself"
       },
       "familiarTags": {
-        "label": "Things you like and are familiar with ♥️ (up to 10 in total for both questions; some options will show descriptions when selected)",
+        "label": "Things you like and are familiar with ♥ (up to 10 in total for both questions; some options will show descriptions when selected)",
         "placeholder": "Select familiar interests...",
         "required": "Please select familiar interests"
       },
