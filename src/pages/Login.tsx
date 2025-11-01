@@ -1,17 +1,20 @@
 import { Home } from "lucide-react";
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import { WeChatBrowserWarning } from "../components/WeChatBrowserWarning";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
 import { useAuthStore } from "../store/authStore";
+import { isWeChatBrowser } from "../utils/browserDetection";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
+  const [showWeChatWarning, setShowWeChatWarning] = useState(false);
 
   useEffect(() => {
     document.title = t("app.title");
@@ -20,12 +23,23 @@ const Login: React.FC = () => {
     if (isAuthenticated) {
       navigate("/dashboard");
     }
+
+    // Check if user is using WeChat browser
+    if (isWeChatBrowser()) {
+      setShowWeChatWarning(true);
+    }
   }, [isAuthenticated, navigate, t]);
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
       {/* Background */}
       <NovatrixBackground opacity={0.9} />
+
+      {/* WeChat Browser Warning */}
+      <WeChatBrowserWarning
+        open={showWeChatWarning}
+        onClose={() => setShowWeChatWarning(false)}
+      />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-md">

@@ -57,7 +57,12 @@
     "sendCodeError": "Failed to send verification code (often due to rate limiting or backend offline)",
     "loginSuccess": "Login successful",
     "invalidCodeError": "Invalid verification code",
-    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy.\nEmail delivery may occasionally fail or be significantly delayed during certain periods. If this occurs, please try again after a couple of hours or contact the developer via email (see homepage for address).\nAccess is only allowed from IPs within mainland China."
+    "tagline": "Supported university emails listed on the homepage. By signing up, you agree to our Terms of Service and Privacy Policy.\nEmail delivery may occasionally fail or be significantly delayed during certain periods. If this occurs, please try again after a couple of hours or contact the developer via email (see homepage for address).\nAccess is only allowed from IPs within mainland China.",
+    "wechatWarning": {
+      "title": "Please use system browser",
+      "description": "WeChat browser often does not save your persistent login token.\nFor the best experience and to keep you logged in, please open this page in your system browser (Safari, Chrome, etc.).\n\nTap the '...' button in the top right corner and select 'Open in Browser'.",
+      "confirm": "Got it"
+    }
   },
   "dashboard": {
     "title": "Contigo Dashboard",
