@@ -10,10 +10,10 @@ Contigo (backend repo name "hilo" and frontend repo name "mirada") is a one-time
 
 When unsure about usage of an external component, use `context7` mcp tool to check out online docs.
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production (TypeScript check included)
+- `pnpm run dev` - Start development server
+- `pnpm run build` - Build for production (TypeScript check included)
 - `npx @biomejs/biome check --write` - Format, lint, and organize imports of all files
-- `npm run preview` - Preview production build
+- `pnpm run preview` - Preview production build
 
 ## Code Formatting
 

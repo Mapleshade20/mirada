@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import LanguageSwitcher from "../components/LanguageSwitcher";
-import { WeChatBrowserWarning } from "../components/WeChatBrowserWarning";
 import NovatrixBackground from "../components/ui/uvcanvas-background";
+import { WeChatBrowserWarning } from "../components/WeChatBrowserWarning";
 import { useAuthStore } from "../store/authStore";
 import { isWeChatBrowser } from "../utils/browserDetection";
 

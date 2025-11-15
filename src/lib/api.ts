@@ -97,6 +97,12 @@ class ApiService {
     this.api.interceptors.response.use(
       (response) => response,
       async (error) => {
+        // Skip token refresh if activity has ended
+        const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+        if (isActivityEnded) {
+          throw error;
+        }
+
         if (error.response?.status === 401 && this.refreshToken) {
           try {
             if (this.refreshPromise) {
@@ -149,6 +155,10 @@ class ApiService {
   }
 
   private async ensureValidToken(): Promise<void> {
+    // Skip token refresh if activity has ended
+    const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+    if (isActivityEnded) return;
+
     if (!this.accessToken || !this.tokenExpiry) return;
 
     // Refresh token if it expires in the next 5 minutes
@@ -165,6 +175,12 @@ class ApiService {
   }
 
   private async refreshAccessToken(): Promise<void> {
+    // Skip token refresh if activity has ended
+    const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+    if (isActivityEnded) {
+      throw new Error("Activity has ended");
+    }
+
     if (!this.refreshToken) throw new Error("No refresh token available");
 
     const response = await axios.post(

@@ -12,12 +12,17 @@ const Index = () => {
   const howItWorksId = useId();
   const currentYear = new Date().getFullYear();
 
+  // Check if activity has ended
+  const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+
   useEffect(() => {
     document.title = t("app.title");
   }, [t]);
 
   const handleGetStarted = () => {
-    if (isAuthenticated) {
+    if (isActivityEnded) {
+      navigate("/summary");
+    } else if (isAuthenticated) {
       navigate("/dashboard");
     } else {
       navigate("/login");
@@ -42,7 +47,15 @@ const Index = () => {
           </div>
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
-            {isAuthenticated ? (
+            {isActivityEnded ? (
+              <button
+                type="button"
+                onClick={() => navigate("/summary")}
+                className="pefa-button-outline"
+              >
+                {t("homepage.header.activityReview")}
+              </button>
+            ) : isAuthenticated ? (
               <button
                 type="button"
                 onClick={() => navigate("/dashboard")}
@@ -96,9 +109,11 @@ const Index = () => {
                   className="pefa-button inline-flex items-center justify-center space-x-2"
                 >
                   <span>
-                    {isAuthenticated
-                      ? t("hero.goToDashboard")
-                      : t("hero.getStarted")}
+                    {isActivityEnded
+                      ? t("hero.viewActivityReview")
+                      : isAuthenticated
+                        ? t("hero.goToDashboard")
+                        : t("hero.getStarted")}
                   </span>
                   <ArrowRight className="h-5 w-5" />
                 </button>
@@ -204,9 +219,11 @@ const Index = () => {
             className="pefa-button inline-flex items-center space-x-2 text-lg px-8 py-4"
           >
             <span>
-              {isAuthenticated
-                ? t("hero.goToDashboard")
-                : t("homepage.cta.buttonText")}
+              {isActivityEnded
+                ? t("hero.viewActivityReview")
+                : isAuthenticated
+                  ? t("hero.goToDashboard")
+                  : t("homepage.cta.buttonText")}
             </span>
             <ArrowRight className="h-5 w-5" />
           </button>

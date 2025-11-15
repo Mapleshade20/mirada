@@ -193,6 +193,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   initializeAuth: async () => {
     const state = get();
 
+    // Check if activity has ended - skip authentication if so
+    const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+    if (isActivityEnded) {
+      set({ isAuthenticated: false, isLoading: false, isInitializing: false });
+      return;
+    }
+
     // Prevent concurrent initialization calls
     if (state.isInitializing) return;
 

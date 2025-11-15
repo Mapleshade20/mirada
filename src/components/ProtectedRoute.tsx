@@ -16,6 +16,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { isAuthenticated, user, isLoading } = useAuthStore();
   const location = useLocation();
 
+  // Check if activity has ended
+  const isActivityEnded = import.meta.env.VITE_ENDED === "true";
+
+  // If activity ended, redirect to homepage
+  if (isActivityEnded) {
+    return <Navigate to="/" replace />;
+  }
+
   // Remove redundant fetchUserProfile call - App.tsx initializeAuth() handles this
 
   // Show loading spinner while checking authentication or fetching user data

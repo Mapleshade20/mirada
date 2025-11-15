@@ -8,12 +8,14 @@
     "subtitle": "A special event designed for university students to connect through interest-based matching and meaningful conversations. ✨",
     "getStarted": "Get Started",
     "goToDashboard": "Go to Dashboard",
+    "viewActivityReview": "View Activity Review",
     "learnMore": "Learn More",
     "copyright": "Contigo. An experimental pairing event."
   },
   "homepage": {
     "header": {
-      "logIn": "Log In"
+      "logIn": "Log In",
+      "activityReview": "Activity Review"
     },
     "howItWorks": {
       "title": "How It Works",
@@ -35,7 +37,7 @@
     },
     "cta": {
       "title": "Event Inspiration",
-      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices, including whether you want it to be a friendship or a romantic relationship. The system is almost fully automated, so this approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nThe matching system is expected to be online for about 3-4 weeks, open to all students at Tsinghua University, as well as female students from other universities in Haidian District. If you find that your university email is not supported, feel free to send an email to <maple@maplewrt.com>. Based on the feedback we receive, we will consider gradually expanding the service coverage.",
+      "subtitle": "Contigo is inspired by the \"One-Week Couple\" event held on university official WeChat accounts in 2024. Although it was just a lighthearted social experiment, it still attracted hundreds of students and genuinely fostered some sincere intimate relationships.\nThis year, we hope to continue this initiative and make it even better. To achieve this, we've developed an experimental automated matching system. It features an opinionated questionnaire and a \"veto card\" mechanism, designed to consider your hobbies, personality, and proactive choices, including whether you want it to be a friendship or a romantic relationship. The system is almost fully automated, so this approach also reduces the burden of manual matching, making connections more efficient.\nThe system's role is to connect you with a peer of opposite gender whose hobbies and personality are a good fit. However, building a relationship requires mutual exploration and effort from both parties. We encourage you to view this as a lighthearted, enjoyable experiment. It could be the beginning of an intimate relationship, or simply an opportunity to meet an interesting new friend. You could go to a lecture together, play a game, go for a night run on the track, or simply grab a coffee and chat. What matters is not what you do, but who you do it with.\nThe matching system is expected to be online for about 2 weeks, open to all students at Tsinghua University, as well as female students from other universities in Haidian District. If you find that your university email is not supported, feel free to send an email to <maple@maplewrt.com>. Based on the feedback we receive, we will consider gradually expanding the service coverage.",
       "buttonText": "Start Your Journey"
     }
   },
